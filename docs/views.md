@@ -1,22 +1,18 @@
 # View Wireframes
 
-## New User
-![new-user]
+## Splash
+![splash]
 
-## New Session
-![new-session]
+## Explore
+![explore]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+## Launch
+![launch]
 
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
+## Company
+![company]
 
-## NotebookForm
-![notebook-form]
-
-[new-user]: ./wireframes/new_user.png
-[new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
-[notebook-form]: ./wireframes/notebook_form.png
+[splash]: ./wireframes/splash.png
+[explore]: ./wireframes/explore.png
+[launch]: ./wireframes/launch.png
+[company]: ./wireframes/company.png

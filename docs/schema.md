@@ -1,46 +1,85 @@
 # Schema Information
 
-## notes
+## companies
+column name      | data type | details
+-----------------|-----------|-----------------------
+id               | integer   | not null, primary key
+name             | string    | not null
+street_address   | string    | not null
+city             | string    | not null
+state            | string    | not null
+zip              | string    | not null
+media-url        | string    | not null
+description      | text      | not null
+business_plan    | text      | not null
+
+## updates
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-title       | string    | not null
-body        | text      | not null
 author_id   | integer   | not null, foreign key (references users), indexed
-notebook_id | integer   | not null, foreign key (references notebooks), indexed
-archived    | boolean   | not null, default: false
+company_id  | integer   | not null, foreign key (references companies), indexed
+title       | string    | not null
+body        | string    | not null
 
-## notebooks
+## comments
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users), indexed
-title       | string    | not null
-description | string    | 
+company_id  | integer   | not null, foreign key (references companies), indexed
+body        | string    | not null
 
-## reminders
+## likes
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references users), indexed
-note_id     | string    | not null, foreign key (references notes), indexed
-date        | datetime  | not null
-type        | string    | not null
-prev_id     | integer   | foreign key (references reminders), indexed
+company_id  | integer   | not null, foreign key (references companies), indexed
 
-## tags
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-name        | string    | not null
+## founders
+column name      | data type | details
+-----------------|-----------|-----------------------
+id               | integer   | not null, primary key
+name             | string    | not null
+street_address   | string    | not null
+city             | string    | not null
+state            | string    | not null
+zip              | string    | not null
+user_id          | integer   | not null, foreign key (references users), indexed
+company_id       | integer   | not null, foreign key (references companies), indexed
 
-## taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-name        | string    | not null
-note_id     | integer   | not null, foreign key (references notes), indexed, unique [tag_id]
-tag_id      | integer   | not null, foreign key (references tags), indexed
+## investors
+column name      | data type | details
+-----------------|-----------|-----------------------
+id               | integer   | not null, primary key
+name             | string    | not null
+street_address   | string    | not null
+city             | string    | not null
+state            | string    | not null
+zip              | string    | not null
+user_id          | integer   | not null, foreign key (references users), indexed
+company_id       | integer   | not null, foreign key (references companies), indexed
+
+## offerings
+column name        | data type | details
+-------------------|-----------|-----------------------
+id                 | integer   | not null, primary key
+price              | integer   | not null
+total_shares       | integer   | not null
+offering_date      | date      | not null
+expiration_date    | date      | not null
+company_id         | integer   | not null, foreign key (references companies), indexed
+description        | string    | not null
+
+## investments
+column name            | data type | details
+-----------------------|-----------|-----------------------
+id                     | integer   | not null, primary key
+shares                 | integer   | not null
+total_purchase_price   | date      | not null
+user_id                | integer   | not null, foreign key (references users), indexed
+offering_id            | integer   | not null, foreign key (references offerings), indexed
 
 ## users
 column name     | data type | details
