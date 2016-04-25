@@ -9,7 +9,7 @@ street_address   | string    | not null
 city             | string    | not null
 state            | string    | not null
 zip              | string    | not null
-media-url        | string    | not null
+media_url        | string    | not null
 description      | text      | not null
 business_plan    | text      | not null
 
