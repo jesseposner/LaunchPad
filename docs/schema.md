@@ -77,7 +77,6 @@ column name            | data type | details
 -----------------------|-----------|-----------------------
 id                     | integer   | not null, primary key
 shares                 | integer   | not null
-total_purchase_price   | date      | not null
 user_id                | integer   | not null, foreign key (references users), indexed
 offering_id            | integer   | not null, foreign key (references offerings), indexed
 
