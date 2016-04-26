@@ -1,15 +1,20 @@
-var Dispatcher = require('../dispatcher/dispatcher.js');
- // Example Constants call
- // var PokemonConstants = require('../constants/pokemonConstants.js');
- 
+var Dispatcher = require('../dispatcher/dispatcher.js'),
+    UserConstants = require('../constants/userConstants.js');
+
  var ServerActions = {
- // Example Function
- // receiveAllPokemons: function (pokemons) {
- // Dispatcher.dispatch({
- // actionType: PokemonConstants.POKEMONS_RECEIVED,
- // pokemons: pokemons
- // });
- // }
- }
- 
+   receiveCurrentUser: function (user) {
+     Dispatcher.dispatch({
+       actionType: UserConstants.LOGIN,
+       user: user
+     });
+   },
+
+   handleError: function (error) {
+     Dispatcher.dispatch({
+       actionType: UserConstants.ERROR,
+       errors: error.responseJSON.errors
+     });
+   }
+ };
+
  module.exports = ServerActions;
