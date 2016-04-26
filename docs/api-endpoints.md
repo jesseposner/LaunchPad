@@ -29,7 +29,7 @@
 
 ### About
 
-- `GET /about/`
+- `GET /about`
 
 ## JSON API
 
