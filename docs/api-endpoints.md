@@ -6,32 +6,19 @@
 
 - `GET /` - loads SplashCarouselApp
 
+## JSON API
+
 ### Users
 
-- `GET /users/new`
-- `POST /users`
-- `PATCH /users`
+- `GET /api/users`
+- `POST /api/users`
+- `PATCH /api/users`
 
 ### Session
 
-- `GET /session/new`
-- `POST /session`
-- `DELETE /session`
-
-### Explore
-
-- `GET /explore` - loads BrowserApp
-- `GET /explore/:id` - loads CompanyDetailApp
-
-### Launch
-
-- `GET /launch` - loads FormApp
-
-### About
-
-- `GET /about`
-
-## JSON API
+- `GET /api/session`
+- `POST /api/session`
+- `DELETE /api/session`
 
 ### Companies
 
