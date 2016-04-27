@@ -62,7 +62,7 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 **Objective:** Companies can be created and read through
 the API.
 
-- [ ] create `Company` model
+- [x] create `Company` model
 - [ ] seed the database with a small amount of test data
 - [ ] CRUD API for companies (`CompaniesController`)
 - [ ] jBuilder views for companies

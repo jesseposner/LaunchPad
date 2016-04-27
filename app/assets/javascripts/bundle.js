@@ -31869,8 +31869,8 @@
 
 	  deleteSession: function deleteSession() {
 	    //  ServerActions is present but ClientActions is an empty object???
-	    // ClientActions;
-	    // debugger;
+	    ClientActions;
+	    debugger;
 	    $.ajax({
 	      url: 'api/session',
 	      method: 'DELETE',
