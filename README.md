@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://lapad.herokuapp.com
 
 ## Minimum Viable Product
 
