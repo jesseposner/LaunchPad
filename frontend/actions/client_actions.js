@@ -7,6 +7,22 @@ var ClientActions = {
      Dispatcher.dispatch({
        actionType: UserConstants.LOGOUT,
      });
+   },
+
+   fetchCurrentUser: function () {
+     ApiUtil.fetchCurrentUser();
+   },
+
+   createUser: function (user) {
+     ApiUtil.createUser(user);
+   },
+
+   createSession: function (user) {
+     ApiUtil.createSession(user);
+   },
+
+   deleteSession: function () {
+     ApiUtil.deleteSession();
    }
  };
 
