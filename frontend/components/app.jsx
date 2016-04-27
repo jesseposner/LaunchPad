@@ -1,13 +1,12 @@
 var React = require('react');
- 
+
  module.exports = React.createClass({
  	render: function () {
  		return(
  			<div>
- 				Hello World!
+ 				LaunchPad
  				{this.props.children}
  			</div>
  		);
  	}
  });
-

@@ -22,11 +22,11 @@ UserStore.__onDispatch = function (payload) {
       break;
 
     case UserConstants.LOGOUT:
-      logout(payload.user);
+      logout();
       break;
 
     case UserConstants.ERROR:
-      setErrors(payload.user);
+      setErrors(payload.errors);
       break;
   }
 

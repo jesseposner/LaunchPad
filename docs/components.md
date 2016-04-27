@@ -1,22 +1,24 @@
 ## Component Hierarchy
 
 * `App`
- * `NavbarApp (all pages)`
+ * `NavbarApp`
    * `SearchIndex`
    * `SignInForm (modal)`
- * `SplashCarouselApp (/)`
-   * `SplashCarouselIndex`
-     * `SplashCarouselIndexItem`
- * `BrowserApp (/explore)`
-   * `BrowserSelectorIndex`
-   * `BrowserResultsIndex (infinite scroll)`
-     * `BrowserResultsIndexItem`
- * `CompanyDetailApp  (/explore/:id)`
-   * `InvestForm (modal)`
-   * `CompanyDetailTabs`
-     * `CompanyDetailTabItem`
-       * `CompanyUpdatesTabItem`
-       * `CompanyCommentsTabItem`
- * `CompanyFormApp`
-   * `CompanyFormTabs`
-     * `CompanyFormTabItem`
+ * `Main`
+   * `SplashCarouselApp (/)`
+     * `SplashCarouselIndex`
+       * `SplashCarouselIndexItem`
+   * `BrowserApp (/explore)`
+     * `BrowserSelectorIndex`
+     * `BrowserResultsIndex (infinite scroll)`
+       * `BrowserResultsIndexItem`
+   * `CompanyDetailApp  (/explore/:id)`
+     * `InvestForm (modal)`
+     * `CompanyDetailTabs`
+       * `CompanyDetailTabItem`
+         * `CompanyUpdatesTabItem`
+         * `CompanyCommentsTabItem`
+   * `CompanyFormApp`
+     * `CompanyFormTabs`
+       * `CompanyFormTabItem`
+ * `Footer`

@@ -24743,7 +24743,7 @@
 	          lineNumber: 6
 	        }
 	      },
-	      'Hello World!',
+	      'LaunchPad',
 	      this.props.children
 	    );
 	  }
@@ -24758,45 +24758,151 @@
 	var _jsxFileName = '/Users/jesse/Documents/Dropbox/App Academy/LaunchPad/launchpad-master/frontend/components/login_form.jsx';
 	var React = __webpack_require__(1),
 	    UserStore = __webpack_require__(218),
-	    ClientActions = __webpack_require__(241);
+	    ClientActions = __webpack_require__(241),
+	    hashHistory = __webpack_require__(159).hashHistory;
 
 	var LoginForm = React.createClass({
 	  displayName: 'LoginForm',
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      currentUser: UserStore.currentUser(),
-	      userErrors: UserStore.errors()
+	      username: "",
+	      password: ""
 	    };
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    UserStore.addListener(this.updateUser);
-	    if (!UserStore.currentUser()) ClientActions.fetchCurrentUser();
+	    UserStore.addListener(this.onChange);
 	  },
 
-	  updateUser: function updateUser() {
+	  onChange: function onChange() {
+	    if (UserStore.currentUser()) {
+	      hashHistory.push("/");
+	    } else {
+	      this.setState({
+	        errors: UserStore.errors()
+	      });
+	    }
+	  },
+
+	  submitLogin: function submitLogin(event) {
+	    ClientActions.createUser({
+	      username: this.state.username,
+	      password: this.state.password
+	    });
+	  },
+
+	  updateUsername: function updateUsername(event) {
 	    this.setState({
-	      currentUser: UserStore.currentUser(),
-	      userErrors: UserStore.errors()
+	      username: event.target.value
+	    });
+	  },
+
+	  updatePassword: function updatePassword(event) {
+	    this.setState({
+	      password: event.target.value
 	    });
 	  },
 
 	  render: function render() {
 	    return React.createElement(
 	      'div',
-	      {
-	        __source: {
+	      { id: 'login-form', __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 27
+	          lineNumber: 49
 	        }
 	      },
-	      this.state.currentUser,
-	      this.state.userErrors,
-	      '"test"'
+	      React.createElement('br', {
+	        __source: {
+	          fileName: _jsxFileName,
+	          lineNumber: 50
+	        }
+	      }),
+	      React.createElement(
+	        'form',
+	        {
+	          __source: {
+	            fileName: _jsxFileName,
+	            lineNumber: 51
+	          }
+	        },
+	        React.createElement(
+	          'label',
+	          {
+	            __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 52
+	            }
+	          },
+	          'Username: ',
+	          React.createElement('input', { type: 'text',
+	            placeholder: 'Username',
+	            value: this.state.username,
+	            onChange: this.updateUsername, __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 53
+	            }
+	          })
+	        ),
+	        React.createElement('br', {
+	          __source: {
+	            fileName: _jsxFileName,
+	            lineNumber: 58
+	          }
+	        }),
+	        React.createElement(
+	          'label',
+	          {
+	            __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 59
+	            }
+	          },
+	          'Password: ',
+	          React.createElement('input', { type: 'password',
+	            placeholder: 'Password',
+	            value: this.state.password,
+	            onChange: this.updatePassword, __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 60
+	            }
+	          })
+	        ),
+	        React.createElement('p', {
+	          __source: {
+	            fileName: _jsxFileName,
+	            lineNumber: 65
+	          }
+	        }),
+	        React.createElement(
+	          'button',
+	          { onClick: this.submitLogin, __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 66
+	            }
+	          },
+	          'Login'
+	        ),
+	        ' ',
+	        React.createElement(
+	          'button',
+	          { onClick: this.submitSignup, __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 69
+	            }
+	          },
+	          'Sign Up'
+	        )
+	      ),
+	      React.createElement('br', {
+	        __source: {
+	          fileName: _jsxFileName,
+	          lineNumber: 73
+	        }
+	      }),
+	      this.state.errors
 	    );
 	  }
-
 	});
 
 	module.exports = LoginForm;
@@ -24830,11 +24936,11 @@
 	      break;
 
 	    case UserConstants.LOGOUT:
-	      logout(payload.user);
+	      logout();
 	      break;
 
 	    case UserConstants.ERROR:
-	      setErrors(payload.user);
+	      setErrors(payload.errors);
 	      break;
 	  }
 
@@ -31746,7 +31852,6 @@
 	  },
 
 	  handleError: function handleError(error) {
-	    debugger;
 	    Dispatcher.dispatch({
 	      actionType: UserConstants.ERROR,
 	      errors: error.responseJSON.errors
