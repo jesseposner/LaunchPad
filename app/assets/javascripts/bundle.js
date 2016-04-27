@@ -55,24 +55,16 @@
 	    App = __webpack_require__(216),
 	    LoginForm = __webpack_require__(217);
 
-	var routes = React.createElement(
-	    Route,
-	    { path: '/', component: App, __source: {
-	            fileName: _jsxFileName,
-	            lineNumber: 10
-	        }
-	    },
-	    React.createElement(Route, { path: 'login', component: LoginForm, __source: {
-	            fileName: _jsxFileName,
-	            lineNumber: 11
-	        }
-	    })
-	);
+	var routes = React.createElement(Route, { path: '/', component: App, __source: {
+	        fileName: _jsxFileName,
+	        lineNumber: 10
+	    }
+	});
 
 	document.addEventListener('DOMContentLoaded', function () {
 	    ReactDOM.render(React.createElement(Router, { history: HashHistory, routes: routes, __source: {
 	            fileName: _jsxFileName,
-	            lineNumber: 18
+	            lineNumber: 17
 	        }
 	    }), document.getElementById('root'));
 	});
@@ -24729,22 +24721,78 @@
 	'use strict';
 
 	var _jsxFileName = '/Users/jesse/Documents/Dropbox/App Academy/LaunchPad/launchpad-master/frontend/components/app.jsx';
-	var React = __webpack_require__(1);
+	var React = __webpack_require__(1),
+	    UserStore = __webpack_require__(218),
+	    LoginForm = __webpack_require__(217),
+	    ClientActions = __webpack_require__(241);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
+	  getInitialState: function getInitialState() {
+	    return {
+	      currentUser: UserStore.currentUser()
+	    };
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this.removeToken = UserStore.addListener(this.onChange);
+	    ClientActions.fetchCurrentUser();
+	  },
+
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.removeToken.remove();
+	  },
+
+	  onChange: function onChange() {
+	    this.setState({
+	      currentUser: UserStore.currentUser()
+	    });
+	  },
+
+	  submitLogout: function submitLogout() {
+	    ClientActions.deleteSession();
+	  },
+
 	  render: function render() {
+	    var userEl;
+
+	    if (!this.state.currentUser) {
+	      userEl = React.createElement(LoginForm, {
+	        __source: {
+	          fileName: _jsxFileName,
+	          lineNumber: 36
+	        }
+	      });
+	    } else {
+	      userEl = React.createElement(
+	        'button',
+	        { onClick: this.submitLogout, __source: {
+	            fileName: _jsxFileName,
+	            lineNumber: 38
+	          }
+	        },
+	        'Logout'
+	      );
+	    }
+
 	    return React.createElement(
 	      'div',
 	      {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 6
+	          lineNumber: 42
 	        }
 	      },
 	      'LaunchPad',
-	      this.props.children
+	      this.props.children,
+	      React.createElement('p', {
+	        __source: {
+	          fileName: _jsxFileName,
+	          lineNumber: 45
+	        }
+	      }),
+	      userEl
 	    );
 	  }
 	});
@@ -24772,20 +24820,27 @@
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    UserStore.addListener(this.onChange);
+	    this.removeToken = UserStore.addListener(this.onChange);
+	  },
+
+	  componentWillUnmount: function componentWillUnmount() {
+	    this.removeToken.remove();
 	  },
 
 	  onChange: function onChange() {
-	    if (UserStore.currentUser()) {
-	      hashHistory.push("/");
-	    } else {
-	      this.setState({
-	        errors: UserStore.errors()
-	      });
-	    }
+	    this.setState({
+	      errors: UserStore.errors()
+	    });
 	  },
 
 	  submitLogin: function submitLogin(event) {
+	    ClientActions.createSession({
+	      username: this.state.username,
+	      password: this.state.password
+	    });
+	  },
+
+	  submitSignup: function submitSignup(event) {
 	    ClientActions.createUser({
 	      username: this.state.username,
 	      password: this.state.password
@@ -24809,13 +24864,13 @@
 	      'div',
 	      { id: 'login-form', __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 49
+	          lineNumber: 56
 	        }
 	      },
 	      React.createElement('br', {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 50
+	          lineNumber: 57
 	        }
 	      }),
 	      React.createElement(
@@ -24823,33 +24878,9 @@
 	        {
 	          __source: {
 	            fileName: _jsxFileName,
-	            lineNumber: 51
-	          }
-	        },
-	        React.createElement(
-	          'label',
-	          {
-	            __source: {
-	              fileName: _jsxFileName,
-	              lineNumber: 52
-	            }
-	          },
-	          'Username: ',
-	          React.createElement('input', { type: 'text',
-	            placeholder: 'Username',
-	            value: this.state.username,
-	            onChange: this.updateUsername, __source: {
-	              fileName: _jsxFileName,
-	              lineNumber: 53
-	            }
-	          })
-	        ),
-	        React.createElement('br', {
-	          __source: {
-	            fileName: _jsxFileName,
 	            lineNumber: 58
 	          }
-	        }),
+	        },
 	        React.createElement(
 	          'label',
 	          {
@@ -24858,27 +24889,51 @@
 	              lineNumber: 59
 	            }
 	          },
-	          'Password: ',
-	          React.createElement('input', { type: 'password',
-	            placeholder: 'Password',
-	            value: this.state.password,
-	            onChange: this.updatePassword, __source: {
+	          'Username: ',
+	          React.createElement('input', { type: 'text',
+	            placeholder: 'Username',
+	            value: this.state.username,
+	            onChange: this.updateUsername, __source: {
 	              fileName: _jsxFileName,
 	              lineNumber: 60
 	            }
 	          })
 	        ),
-	        React.createElement('p', {
+	        React.createElement('br', {
 	          __source: {
 	            fileName: _jsxFileName,
 	            lineNumber: 65
 	          }
 	        }),
 	        React.createElement(
+	          'label',
+	          {
+	            __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 66
+	            }
+	          },
+	          'Password: ',
+	          React.createElement('input', { type: 'password',
+	            placeholder: 'Password',
+	            value: this.state.password,
+	            onChange: this.updatePassword, __source: {
+	              fileName: _jsxFileName,
+	              lineNumber: 67
+	            }
+	          })
+	        ),
+	        React.createElement('p', {
+	          __source: {
+	            fileName: _jsxFileName,
+	            lineNumber: 72
+	          }
+	        }),
+	        React.createElement(
 	          'button',
 	          { onClick: this.submitLogin, __source: {
 	              fileName: _jsxFileName,
-	              lineNumber: 66
+	              lineNumber: 73
 	            }
 	          },
 	          'Login'
@@ -24888,7 +24943,7 @@
 	          'button',
 	          { onClick: this.submitSignup, __source: {
 	              fileName: _jsxFileName,
-	              lineNumber: 69
+	              lineNumber: 76
 	            }
 	          },
 	          'Sign Up'
@@ -24897,7 +24952,7 @@
 	      React.createElement('br', {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 73
+	          lineNumber: 80
 	        }
 	      }),
 	      this.state.errors
@@ -31746,12 +31801,6 @@
 	    UserConstants = __webpack_require__(240);
 
 	var ClientActions = {
-	  removeCurrentUser: function removeCurrentUser() {
-	    Dispatcher.dispatch({
-	      actionType: UserConstants.LOGOUT
-	    });
-	  },
-
 	  fetchCurrentUser: function fetchCurrentUser() {
 	    ApiUtil.fetchCurrentUser();
 	  },
@@ -31786,9 +31835,6 @@
 	      url: 'api/session',
 	      success: function success(user) {
 	        ServerActions.receiveCurrentUser(user);
-	      },
-	      error: function error(_error) {
-	        ServerActions.handleError(_error);
 	      }
 	    });
 	  },
@@ -31801,8 +31847,8 @@
 	      success: function success(serverUser) {
 	        ServerActions.receiveCurrentUser(serverUser);
 	      },
-	      error: function error(_error2) {
-	        ServerActions.handleError(_error2);
+	      error: function error(_error) {
+	        ServerActions.handleError(_error);
 	      }
 	    });
 	  },
@@ -31815,20 +31861,24 @@
 	      success: function success(serverUser) {
 	        ServerActions.receiveCurrentUser(serverUser);
 	      },
-	      error: function error(_error3) {
-	        ServerActions.handleError(_error3);
+	      error: function error(_error2) {
+	        ServerActions.handleError(_error2);
 	      }
 	    });
 	  },
 
 	  deleteSession: function deleteSession() {
+	    //  ServerActions is present but ClientActions is an empty object???
+	    // ClientActions;
+	    // debugger;
 	    $.ajax({
 	      url: 'api/session',
+	      method: 'DELETE',
 	      success: function success() {
-	        ClientActions.removeCurrentUser();
+	        ServerActions.removeCurrentUser();
 	      },
-	      error: function error(_error4) {
-	        ServerActions.handleError(_error4);
+	      error: function error(_error3) {
+	        ServerActions.handleError(_error3);
 	      }
 	    });
 	  }
@@ -31844,6 +31894,12 @@
 	    UserConstants = __webpack_require__(240);
 
 	var ServerActions = {
+	  removeCurrentUser: function removeCurrentUser() {
+	    Dispatcher.dispatch({
+	      actionType: UserConstants.LOGOUT
+	    });
+	  },
+
 	  receiveCurrentUser: function receiveCurrentUser(user) {
 	    Dispatcher.dispatch({
 	      actionType: UserConstants.LOGIN,

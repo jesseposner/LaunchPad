@@ -8,7 +8,6 @@
 
  var routes = (
  	<Route path='/' component={App}>
-    <Route path="login" component={LoginForm} />
  	</Route>
 
  );

@@ -12,20 +12,27 @@ var LoginForm = React.createClass({
   },
 
   componentDidMount: function() {
-    UserStore.addListener(this.onChange);
+    this.removeToken = UserStore.addListener(this.onChange);
+  },
+
+  componentWillUnmount: function() {
+    this.removeToken.remove();
   },
 
   onChange: function () {
-    if (UserStore.currentUser()) {
-      hashHistory.push("/");
-    } else {
-      this.setState({
-        errors: UserStore.errors()
-      });
-    }
+    this.setState({
+      errors: UserStore.errors()
+    });
   },
 
   submitLogin: function (event) {
+    ClientActions.createSession({
+      username: this.state.username,
+      password: this.state.password
+    });
+  },
+
+  submitSignup: function (event) {
     ClientActions.createUser({
       username: this.state.username,
       password: this.state.password

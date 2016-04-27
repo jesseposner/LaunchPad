@@ -1,5 +1,5 @@
-var ServerActions = require('../actions/server_actions.js'),
-    ClientActions = require('../actions/client_actions.js');
+var ServerActions = require('../actions/server_actions'),
+    ClientActions = require('../actions/client_actions');
 
  module.exports = {
    fetchCurrentUser: function () {
@@ -8,9 +8,6 @@ var ServerActions = require('../actions/server_actions.js'),
        success: function (user) {
          ServerActions.receiveCurrentUser(user);
        },
-       error: function (error) {
-         ServerActions.handleError(error);
-       }
      });
    },
 
@@ -43,10 +40,14 @@ var ServerActions = require('../actions/server_actions.js'),
    },
 
    deleteSession: function () {
+    //  ServerActions is present but ClientActions is an empty object???
+    // ClientActions;
+    // debugger;
      $.ajax({
        url: 'api/session',
+       method: 'DELETE',
        success: function () {
-         ClientActions.removeCurrentUser();
+         ServerActions.removeCurrentUser();
        },
        error: function (error) {
          ServerActions.handleError(error);
