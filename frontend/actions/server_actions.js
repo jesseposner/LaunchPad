@@ -10,6 +10,7 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
    },
 
    handleError: function (error) {
+     debugger;
      Dispatcher.dispatch({
        actionType: UserConstants.ERROR,
        errors: error.responseJSON.errors
