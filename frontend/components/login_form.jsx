@@ -69,14 +69,14 @@ var LoginForm = React.createClass({
                    value={this.state.password}
                    onChange={this.updatePassword} />
           </label>
-          <p />
-          <button onClick={this.submitLogin}>
-            Login
-          </button>&nbsp;
-          <button onClick={this.submitSignup}>
-            Sign Up
-          </button>
         </form>
+        <br />
+        <button onClick={this.submitLogin}>
+          Login
+        </button>&nbsp;
+        <button onClick={this.submitSignup}>
+          Sign Up
+        </button>
         <br />
         {this.state.errors}
       </div>

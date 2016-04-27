@@ -11,6 +11,12 @@ User.create!(
     state: Faker::Address.state_abbr,
     zip: Faker::Address.zip,
     media_url: Faker::Company.logo,
-    description: 
+    description: Faker::Company.catch_phrase +
+                 " and " +
+                 Faker::Company.catch_phrase.downcase +
+                 ", with " +
+                 Faker::Company.catch_phrase.downcase +
+                 ".",
+    business_plan: Faker::Hipster.paragraphs(5)
   )
 end

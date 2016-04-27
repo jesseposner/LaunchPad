@@ -7,7 +7,7 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
        actionType: UserConstants.LOGOUT,
      });
    },
-   
+
    receiveCurrentUser: function (user) {
      Dispatcher.dispatch({
        actionType: UserConstants.LOGIN,

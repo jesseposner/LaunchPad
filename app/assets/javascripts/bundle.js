@@ -24747,7 +24747,7 @@
 	  onChange: function onChange() {
 	    this.setState({
 	      currentUser: UserStore.currentUser()
-	    });
+	    }, console.log(this.state.currentUser));
 	  },
 
 	  submitLogout: function submitLogout() {
@@ -24755,13 +24755,14 @@
 	  },
 
 	  render: function render() {
+	    console.log(this.state.currentUser);
 	    var userEl;
 
 	    if (!this.state.currentUser) {
 	      userEl = React.createElement(LoginForm, {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 36
+	          lineNumber: 37
 	        }
 	      });
 	    } else {
@@ -24769,7 +24770,7 @@
 	        'button',
 	        { onClick: this.submitLogout, __source: {
 	            fileName: _jsxFileName,
-	            lineNumber: 38
+	            lineNumber: 39
 	          }
 	        },
 	        'Logout'
@@ -24781,7 +24782,7 @@
 	      {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 42
+	          lineNumber: 43
 	        }
 	      },
 	      'LaunchPad',
@@ -24789,7 +24790,7 @@
 	      React.createElement('p', {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 45
+	          lineNumber: 46
 	        }
 	      }),
 	      userEl
@@ -24922,32 +24923,32 @@
 	              lineNumber: 67
 	            }
 	          })
-	        ),
-	        React.createElement('p', {
-	          __source: {
-	            fileName: _jsxFileName,
-	            lineNumber: 72
-	          }
-	        }),
-	        React.createElement(
-	          'button',
-	          { onClick: this.submitLogin, __source: {
-	              fileName: _jsxFileName,
-	              lineNumber: 73
-	            }
-	          },
-	          'Login'
-	        ),
-	        ' ',
-	        React.createElement(
-	          'button',
-	          { onClick: this.submitSignup, __source: {
-	              fileName: _jsxFileName,
-	              lineNumber: 76
-	            }
-	          },
-	          'Sign Up'
 	        )
+	      ),
+	      React.createElement('br', {
+	        __source: {
+	          fileName: _jsxFileName,
+	          lineNumber: 73
+	        }
+	      }),
+	      React.createElement(
+	        'button',
+	        { onClick: this.submitLogin, __source: {
+	            fileName: _jsxFileName,
+	            lineNumber: 74
+	          }
+	        },
+	        'Login'
+	      ),
+	      ' ',
+	      React.createElement(
+	        'button',
+	        { onClick: this.submitSignup, __source: {
+	            fileName: _jsxFileName,
+	            lineNumber: 77
+	          }
+	        },
+	        'Sign Up'
 	      ),
 	      React.createElement('br', {
 	        __source: {
@@ -31868,9 +31869,6 @@
 	  },
 
 	  deleteSession: function deleteSession() {
-	    //  ServerActions is present but ClientActions is an empty object???
-	    ClientActions;
-	    debugger;
 	    $.ajax({
 	      url: 'api/session',
 	      method: 'DELETE',

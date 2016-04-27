@@ -63,7 +63,7 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 the API.
 
 - [x] create `Company` model
-- [ ] seed the database with a small amount of test data
+- [x] seed the database with a small amount of test data
 - [ ] CRUD API for companies (`CompaniesController`)
 - [ ] jBuilder views for companies
 - [ ] setup Webpack & Flux scaffold

@@ -40,9 +40,6 @@ var ServerActions = require('../actions/server_actions'),
    },
 
    deleteSession: function () {
-    //  ServerActions is present but ClientActions is an empty object???
-    ClientActions;
-    debugger;
      $.ajax({
        url: 'api/session',
        method: 'DELETE',

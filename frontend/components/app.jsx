@@ -22,7 +22,7 @@ var React = require('react'),
    onChange: function () {
      this.setState({
        currentUser: UserStore.currentUser()
-     });
+     }, console.log(this.state.currentUser));
    },
 
    submitLogout: function () {
@@ -30,6 +30,7 @@ var React = require('react'),
    },
 
  	render: function () {
+    console.log(this.state.currentUser);
     var userEl;
 
     if (!this.state.currentUser) {
