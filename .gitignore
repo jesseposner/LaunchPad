@@ -14,4 +14,5 @@
 
 
 node_modules
-bundle.js
+/app/assets/javascripts/bundle.js
+.byebug_history
