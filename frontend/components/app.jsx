@@ -1,7 +1,8 @@
 var React = require('react'),
     UserStore = require('../stores/userStore'),
     LoginForm = require('./loginForm'),
-    ClientActions = require('../actions/clientActions');
+    ClientActions = require('../actions/clientActions'),
+    Link = require('react-router').Link;
 
  var App = React.createClass({
    getInitialState: function() {
@@ -30,6 +31,7 @@ var React = require('react'),
    },
 
  	render: function () {
+    var navLink;
     var userEl;
 
     if (!this.state.currentUser) {
@@ -45,10 +47,18 @@ var React = require('react'),
       );
     }
 
+    if (this.props.location.pathname === '/') {
+      navLink = <Link to='explore'>Explore</Link>;
+    } else {
+      navLink = <Link to='/'>Home</Link>;
+    }
+
  		return(
  			<div>
  				LaunchPad
         {userEl}
+        <p />
+        {navLink}
         <p />
  				{this.props.children}
  			</div>
