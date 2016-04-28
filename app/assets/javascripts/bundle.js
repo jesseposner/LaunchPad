@@ -24747,7 +24747,7 @@
 	  onChange: function onChange() {
 	    this.setState({
 	      currentUser: UserStore.currentUser()
-	    }, console.log(this.state.currentUser));
+	    });
 	  },
 
 	  submitLogout: function submitLogout() {
@@ -24755,14 +24755,13 @@
 	  },
 
 	  render: function render() {
-	    console.log(this.state.currentUser);
 	    var userEl;
 
 	    if (!this.state.currentUser) {
 	      userEl = React.createElement(LoginForm, {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 37
+	          lineNumber: 36
 	        }
 	      });
 	    } else {
@@ -24770,7 +24769,7 @@
 	        'button',
 	        { onClick: this.submitLogout, __source: {
 	            fileName: _jsxFileName,
-	            lineNumber: 39
+	            lineNumber: 38
 	          }
 	        },
 	        'Logout'
@@ -24782,7 +24781,7 @@
 	      {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 43
+	          lineNumber: 42
 	        }
 	      },
 	      'LaunchPad',
@@ -24790,7 +24789,7 @@
 	      React.createElement('p', {
 	        __source: {
 	          fileName: _jsxFileName,
-	          lineNumber: 46
+	          lineNumber: 45
 	        }
 	      }),
 	      userEl
@@ -31840,6 +31839,24 @@
 	    });
 	  },
 
+	  fetchCompany: function fetchCompany(id) {
+	    $.ajax({
+	      url: 'api/companies/' + id,
+	      success: function success(company) {
+	        ServerActions.receiveCompany(company);
+	      }
+	    });
+	  },
+
+	  fetchCompanies: function fetchCompanies() {
+	    $.ajax({
+	      url: 'api/companies',
+	      success: function success(companies) {
+	        ServerActions.receiveCompanies(companies);
+	      }
+	    });
+	  },
+
 	  createUser: function createUser(clientUser) {
 	    $.ajax({
 	      url: 'api/user',
@@ -31889,7 +31906,8 @@
 	'use strict';
 
 	var Dispatcher = __webpack_require__(219),
-	    UserConstants = __webpack_require__(240);
+	    UserConstants = __webpack_require__(240),
+	    CompanyConstants = __webpack_require__(244);
 
 	var ServerActions = {
 	  removeCurrentUser: function removeCurrentUser() {
@@ -31905,6 +31923,20 @@
 	    });
 	  },
 
+	  receiveCompany: function receiveCompany(company) {
+	    Dispatcher.dispatch({
+	      actionType: CompanyConstants.COMPANY_RECEIVED,
+	      company: company
+	    });
+	  },
+
+	  receiveCompanies: function receiveCompanies(companies) {
+	    Dispatcher.dispatch({
+	      actionType: CompanyConstants.COMPANIES_RECEIVED,
+	      companies: companies
+	    });
+	  },
+
 	  handleError: function handleError(error) {
 	    Dispatcher.dispatch({
 	      actionType: UserConstants.ERROR,
@@ -31914,6 +31946,17 @@
 	};
 
 	module.exports = ServerActions;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	module.exports = {
+	  COMPANY_RECEIVED: "COMPANY_RECEIVED",
+	  COMPANIES_RECEIVED: "COMPANIES_RECEIVED"
+	};
 
 /***/ }
 /******/ ]);

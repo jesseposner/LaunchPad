@@ -1,4 +1,8 @@
 class Api::CompaniesController < ApplicationController
+  def index
+    @companies = Company.all
+  end
+
   def create
     @company = Company.new(company_params)
 		if @company.save
@@ -10,7 +14,7 @@ class Api::CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find_by_id(params[:company][:id])
+    @company = Company.find_by_id(params[:id])
 
     if @company
       render :show

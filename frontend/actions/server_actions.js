@@ -1,5 +1,6 @@
 var Dispatcher = require('../dispatcher/dispatcher.js'),
-    UserConstants = require('../constants/userConstants.js');
+    UserConstants = require('../constants/userConstants.js'),
+    CompanyConstants = require('../constants/companyConstants.js');
 
  var ServerActions = {
    removeCurrentUser: function () {
@@ -12,6 +13,20 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
      Dispatcher.dispatch({
        actionType: UserConstants.LOGIN,
        user: user
+     });
+   },
+
+   receiveCompany: function (company) {
+     Dispatcher.dispatch({
+       actionType: CompanyConstants.COMPANY_RECEIVED,
+       company: company
+     });
+   },
+
+   receiveCompanies: function (companies) {
+     Dispatcher.dispatch({
+       actionType: CompanyConstants.COMPANIES_RECEIVED,
+       companies: companies
      });
    },
 

@@ -11,6 +11,24 @@ var ServerActions = require('../actions/server_actions'),
      });
    },
 
+   fetchCompany: function (id) {
+     $.ajax({
+       url: 'api/companies/' + id,
+       success: function (company) {
+         ServerActions.receiveCompany(company);
+       }
+     });
+   },
+
+   fetchCompanies: function () {
+     $.ajax({
+       url: 'api/companies',
+       success: function (companies) {
+         ServerActions.receiveCompanies(companies);
+       }
+     });
+   },
+
    createUser: function (clientUser) {
      $.ajax({
        url: 'api/user',
