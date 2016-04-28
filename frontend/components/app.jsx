@@ -1,9 +1,9 @@
 var React = require('react'),
-    UserStore = require('../stores/user_store'),
-    LoginForm = require('./login_form'),
-    ClientActions = require('../actions/client_actions');
+    UserStore = require('../stores/userStore'),
+    LoginForm = require('./loginForm'),
+    ClientActions = require('../actions/clientActions');
 
- module.exports = React.createClass({
+ var App = React.createClass({
    getInitialState: function() {
      return {
        currentUser: UserStore.currentUser()
@@ -35,16 +35,26 @@ var React = require('react'),
     if (!this.state.currentUser) {
       userEl = <LoginForm />;
     } else {
-      userEl = <button onClick={this.submitLogout}>Logout</button>;
+      userEl = (
+        <div>
+          <p />
+          <button onClick={this.submitLogout}>
+            Logout
+          </button>
+        </div>
+      );
     }
 
  		return(
  			<div>
  				LaunchPad
- 				{this.props.children}
-        <p />
         {userEl}
+        <p />
+ 				{this.props.children}
  			</div>
  		);
  	}
+
  });
+
+ module.exports = App;

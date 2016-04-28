@@ -1,4 +1,5 @@
-json.array! @companies, :name,
+json.array! @companies, :id,
+                        :name,
                         :street_address,
                         :city,
                         :state,

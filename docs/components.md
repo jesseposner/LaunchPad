@@ -3,7 +3,7 @@
 * `App`
  * `NavbarApp`
    * `SearchIndex`
-    * `SignInForm (modal)`
+    * `LoginForm (modal)`
  * `Main`
    * `SplashCarouselApp (/)`
      * `SplashCarouselIndex`

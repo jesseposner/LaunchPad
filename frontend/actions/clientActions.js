@@ -1,10 +1,17 @@
-var ApiUtil = require('../util/api_util.js'),
-    Dispatcher = require('../dispatcher/dispatcher.js'),
-    UserConstants = require('../constants/userConstants.js');
+var ApiUtil = require('../util/apiUtil.js'),
+    Dispatcher = require('../dispatcher/dispatcher.js');
 
 var ClientActions = {
    fetchCurrentUser: function () {
      ApiUtil.fetchCurrentUser();
+   },
+
+   fetchCompany: function (id) {
+     ApiUtil.fetchCompany(id);
+   },
+
+   fetchCompanies: function () {
+     ApiUtil.fetchCompanies();
    },
 
    createUser: function (user) {

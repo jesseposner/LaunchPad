@@ -1,6 +1,6 @@
 var React = require('react'),
-    UserStore = require('../stores/user_store'),
-    ClientActions = require('../actions/client_actions'),
+    UserStore = require('../stores/userStore'),
+    ClientActions = require('../actions/clientActions'),
     hashHistory = require('react-router').hashHistory;
 
 var LoginForm = React.createClass({

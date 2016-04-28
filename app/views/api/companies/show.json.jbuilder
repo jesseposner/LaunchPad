@@ -1,4 +1,5 @@
-json.extract! @company, :name,
+json.extract! @company, :id,
+                        :name,
                         :street_address,
                         :city,
                         :state,

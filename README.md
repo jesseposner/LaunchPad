@@ -66,16 +66,16 @@ the API.
 - [x] seed the database with a small amount of test data
 - [x] CRUD API for companies (`CompaniesController`)
 - [x] jBuilder views for companies
-- [ ] setup Webpack & Flux scaffold
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [x] setup Webpack & Flux scaffold
+- [x] setup `APIUtil` to interact with the API
+- [x] test out API interaction in the console.
 
 ### Phase 3: Flux Architecture and Router (1.5 days)
 
 **Objective:** Companies can be browsed and read with the user interface.
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
+- [x] setup the flux loop with skeleton files
+- [x] setup React Router
 - implement each company component, building out the flux loop as needed.
   - [ ] `BrowserSelectorIndex`
   - [ ] `BrowserResultsIndex`
