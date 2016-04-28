@@ -8,7 +8,6 @@ var BrowserApp = React.createClass({
   render: function() {
     return (
       <div>
-        Browser
         <BrowserIndex />
       </div>
     );

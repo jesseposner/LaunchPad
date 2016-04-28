@@ -3,7 +3,7 @@ User.create!(
   password: "password"
 )
 
-10.times do
+100.times do
   Company.create!(
     name: Faker::Company.name + " " + Faker::Company.suffix,
     street_address: Faker::Address.street_address,

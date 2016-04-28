@@ -28,7 +28,13 @@ var BrowserIndex = React.createClass({
   render: function() {
     return (
       <div>
-        <ul>
+        <span className="browser-index-title">
+          Explore <span className="index-number">
+                    {this.state.companies.length}&nbsp;
+                  </span>
+          companies
+        </span>
+        <ul className="browser-list">
           {this.state.companies.map(function (company) {
             return (
               <BrowserIndexItem key={company.id} company={company} />

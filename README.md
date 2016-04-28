@@ -77,9 +77,9 @@ the API.
 - [x] setup the flux loop with skeleton files
 - [x] setup React Router
 - implement each company component, building out the flux loop as needed.
-  - [ ] `BrowserSelectorIndex`
-  - [ ] `BrowserResultsIndex`
-  - [ ] `BrowserResultsIndexItem`
+  - [ ] `BrowserSelector`
+  - [x] `BrowserIndex`
+  - [x] `BrowserIndexItem`
   - [ ] `CompanyDetailTabs`
   - [ ] `CompanyDetailTabItem`
 
