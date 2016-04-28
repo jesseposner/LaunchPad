@@ -5,11 +5,13 @@
      HashHistory = require('react-router').hashHistory,
      App = require('./components/app.jsx'),
      LoginForm = require('./components/loginForm'),
-     BrowserApp = require('./components/browser/browserApp');
+     BrowserApp = require('./components/browser/browserApp'),
+     CompanyDetailApp = require('./components/companyDetail/companyDetailApp');
 
  var routes = (
  	<Route path='/' component={App}>
     <Route path='explore' component={BrowserApp} />
+    <Route path='explore/:companyId' component={CompanyDetailApp} />
  	</Route>
 
  );
