@@ -1,6 +1,7 @@
 var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
-    ClientActions = require('../../actions/clientActions');
+    ClientActions = require('../../actions/clientActions'),
+    BrowserIndexItem = require('./browserIndexItem');
 
 var BrowserIndex = React.createClass({
   getInitialState: function() {
@@ -29,7 +30,9 @@ var BrowserIndex = React.createClass({
       <div>
         <ul>
           {this.state.companies.map(function (company) {
-            return <li key={company.id}>{company.name}</li>;
+            return (
+              <BrowserIndexItem key={company.id} company={company} />
+            );
           })}
         </ul>
       </div>

@@ -10,8 +10,8 @@
        * `SplashCarouselIndexItem`
     * `BrowserApp (/explore)`
       * `BrowserSelectorIndex`
-      * `BrowserResultsIndex (infinite scroll)`
-        * `BrowserResultsIndexItem`
+      * `BrowserIndex (infinite scroll)`
+        * `BrowserIndexItem`
     * `CompanyDetailApp  (/explore/:id)`
       * `InvestForm (modal)`
       * `CompanyDetailTabs`
