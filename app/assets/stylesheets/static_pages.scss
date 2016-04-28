@@ -38,7 +38,7 @@
   text-decoration: none;
 }
 
-.company-picture {
+.small-company-picture {
   max-width: 100%;
   padding-top: 10px;
 }
@@ -51,4 +51,30 @@
 
 .index-number {
   color: #008cdd;
+}
+
+.company-title {
+  text-align: center;
+  font: 24px Arial, sans-serif;
+  font-weight: lighter;
+  margin: 10px;
+}
+
+.large-company-picture {
+  max-width: 100%;
+  max-height: 100%;
+  margin: 20px;
+}
+
+.company-media {
+  float: left;
+  width: 55%;
+  height: 400px;
+}
+
+.company-stats {
+  width: 35%;
+  height: 400px;
+  float: right;
+  padding: 20px;
 }

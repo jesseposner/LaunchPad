@@ -32,7 +32,23 @@ var CompanyDetailApp = React.createClass({
   render: function() {
     return (
       <div>
-        {this.state.company.name}
+        <div className="company-title">
+          {this.state.company.name}
+        </div>
+        <div className="company-top">
+          <div className="company-media">
+            <img className="large-company-picture"
+                 src={this.state.company.media_url}/>
+          </div>
+          <div className="company-stats">
+            investors
+            <p />
+            total raised
+            <p />
+            valuation
+            <p />
+          </div>
+        </div>
       </div>
     );
   }
