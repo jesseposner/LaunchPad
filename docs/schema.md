@@ -4,7 +4,7 @@
 column name      | data type | details
 -----------------|-----------|-----------------------
 id               | integer   | not null, primary key
-name             | string    | not null
+name             | string    | not null, indexed, unique
 street_address   | string    | not null
 city             | string    | not null
 state            | string    | not null

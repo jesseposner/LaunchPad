@@ -64,8 +64,8 @@ the API.
 
 - [x] create `Company` model
 - [x] seed the database with a small amount of test data
-- [ ] CRUD API for companies (`CompaniesController`)
-- [ ] jBuilder views for companies
+- [x] CRUD API for companies (`CompaniesController`)
+- [x] jBuilder views for companies
 - [ ] setup Webpack & Flux scaffold
 - [ ] setup `APIUtil` to interact with the API
 - [ ] test out API interaction in the console.
