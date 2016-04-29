@@ -87,7 +87,9 @@ var CompanyDetailApp = React.createClass({
             <div className="company-caption-left">
               {this.state.company.description}<p/>
               <div className="invest-button">
-                <Link to='path' className="invest-link">Invest</Link>
+                <Link to='path' className="invest-link">
+                  Invest in {this.state.company.name}
+                </Link>
               </div>
             </div>
           </div>

@@ -134,6 +134,7 @@
 
 .company-tabs li {
   margin: 0px;
+  margin-top: 1px;
   list-style: none;
   padding: 2em;
   font: 14px normal Arial, sans-serif;
@@ -172,10 +173,9 @@
   padding: 18px 30px;
   border-radius: 6px;
   background-color: #008cdd;
-  width: 300px;
+  width: 450px;
   text-align: center;
-  margin-left: 45px;
-  margin-bottom: 0px;
+  margin-bottom: 1px;
   margin-top: 5px;
 }
 
@@ -184,8 +184,9 @@
 }
 
 .invest-link {
-  font: 20px normal Arial, sans-serif;
+  font: 20px Arial, sans-serif;
   color: #ffffff;
+  font-weight: lighter;
   text-decoration: none;
 }
 
