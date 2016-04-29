@@ -91,7 +91,7 @@
 }
 
 .company-caption-right {
-  height: 200px;
+  height: 190px;
   padding-left: 20px;
   margin-right: 50px;
   font: 14px normal Arial, sans-serif;
@@ -99,11 +99,13 @@
 }
 
 .company-caption-left {
-  height: 200px;
+  height: 190px;
   padding: 24px;
+  padding-bottom: 0px;
   font: 20px normal Arial, sans-serif;
   color: #444;
   line-height: 1.6;
+  margin-bottom: 0px;
 }
 
 .company-top {
@@ -159,6 +161,32 @@
   font: 50px Arial, sans-serif;
   color: #008cdd;
   font-weight: bold;
+}
+
+.invest-button {
+  display: inline-block;
+  border-width: 2px;
+  border-color: transparent;
+  border-style: solid;
+  cursor: pointer;
+  padding: 18px 30px;
+  border-radius: 6px;
+  background-color: #008cdd;
+  width: 300px;
+  text-align: center;
+  margin-left: 45px;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.invest-button:hover {
+  background-color: #0075DD;
+}
+
+.invest-link {
+  font: 20px normal Arial, sans-serif;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 body {

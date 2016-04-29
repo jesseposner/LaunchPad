@@ -1,6 +1,7 @@
 var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
-    ClientActions = require('../../actions/clientActions');
+    ClientActions = require('../../actions/clientActions'),
+    Link = require('react-router').Link;
 
 var CompanyDetailApp = React.createClass({
   getInitialState: function () {
@@ -84,7 +85,10 @@ var CompanyDetailApp = React.createClass({
                    src={this.state.company.media_url}/>
             </div>
             <div className="company-caption-left">
-              {this.state.company.description}
+              {this.state.company.description}<p/>
+              <div className="invest-button">
+                <Link to='path' className="invest-link">Invest</Link>
+              </div>
             </div>
           </div>
           <div className="company-right">
