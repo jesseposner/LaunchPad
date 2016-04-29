@@ -57,7 +57,7 @@
   text-align: center;
   font: 30px Arial, sans-serif;
   margin: 0px;
-  padding: 15px;
+  padding: 20px;
   color: #444;
   background-color: white;
   border-top: solid 1px #D9D9DE;
@@ -81,6 +81,7 @@
 .company-stats {
   height: 300px;
   padding: 20px;
+  padding-top: 50px;
   font: 14px normal Arial, sans-serif;
   color: #828587;
 }
@@ -91,14 +92,15 @@
 
 .company-caption-right {
   height: 200px;
-  padding: 20px;
+  padding-left: 20px;
+  margin-right: 50px;
   font: 14px normal Arial, sans-serif;
   color: #444;
 }
 
 .company-caption-left {
   height: 200px;
-  padding: 20px;
+  padding: 24px;
   font: 20px normal Arial, sans-serif;
   color: #444;
   line-height: 1.6;
@@ -153,7 +155,7 @@
   font: 14px normal Arial, sans-serif;
 }
 
-.stats {
+.stat {
   font: 50px Arial, sans-serif;
   color: #008cdd;
   font-weight: bold;

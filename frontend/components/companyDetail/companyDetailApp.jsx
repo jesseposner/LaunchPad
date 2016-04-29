@@ -44,6 +44,8 @@ var CompanyDetailApp = React.createClass({
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     var founders,
+        offeringDate,
+        expirationDate,
         investors = 0,
         valuation = 0,
         raised = 0;
@@ -57,6 +59,8 @@ var CompanyDetailApp = React.createClass({
     }
 
     if (this.state.company.offerings) {
+      offeringDate = this.state.company.offering_date;
+      expirationDate = this.state.company.expiration_date;
       valuation = numberWithCommas(
         Math.round(
           this.state.company.offerings[0].price * 10000000
@@ -85,24 +89,25 @@ var CompanyDetailApp = React.createClass({
           </div>
           <div className="company-right">
             <div className="company-stats">
-              <span className="stats">
+              <span className="stat">
                 {investors}<br />
               </span>
               investors
               <p />
-              <span className="stats">
+              <span className="stat">
                 ${raised}<br />
               </span>
               total raised
               <p />
-              <span className="stats">
+              <span className="stat">
                 ${valuation}<br />
               </span>
               valuation
               <p />
             </div>
             <div className="company-caption-right">
-              caption right
+              The current offering was created on {offeringDate}.
+              This offering will expire on {expirationDate}.
             </div>
           </div>
         </div>

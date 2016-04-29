@@ -15,3 +15,6 @@ offering = @company.offerings[0]
 
 json.raised (offering.investments.map(&:shares).inject(:+) *
             offering.price).round
+
+json.offering_date offering.offering_date.strftime('%A, %B %-d, %Y')
+json.expiration_date offering.expiration_date.strftime('%A, %B %-d, %Y')
