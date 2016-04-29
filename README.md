@@ -80,8 +80,8 @@ the API.
   - [ ] `BrowserSelector`
   - [x] `BrowserIndex`
   - [x] `BrowserIndexItem`
-  - [ ] `CompanyDetailTabs`
-  - [ ] `CompanyDetailTabItem`
+  - [x] `CompanyDetailTabs`
+  - [x] `CompanyDetailTabItem`
 
 ### Phase 4: Start Styling (0.5 days)
 

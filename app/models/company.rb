@@ -11,4 +11,5 @@ class Company < ActiveRecord::Base
   validates :name, uniqueness: true
 
   has_many :founders
+  has_many :investors
 end

@@ -7,4 +7,5 @@ json.extract! @company, :id,
                         :media_url,
                         :description,
                         :business_plan,
-                        :founders
+                        :founders,
+                        :investors
