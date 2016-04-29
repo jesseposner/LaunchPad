@@ -63,3 +63,15 @@ end
     company_id: i + 1
   )
 end
+
+1000.times do |i|
+  Investor.create!(
+    name: Faker::Name.name,
+    street_address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    zip: Faker::Address.zip,
+    user_id: rand(101),
+    company_id: rand(101)
+  )
+end

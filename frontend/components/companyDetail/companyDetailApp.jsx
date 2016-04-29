@@ -32,18 +32,23 @@ var CompanyDetailApp = React.createClass({
   parseBusinessPlan: function () {
     if (this.state.company.business_plan) {
       return JSON.parse(this.state.company.business_plan).map(
-        function (paragraph) {
-          return <p>{paragraph}</p>;
+        function (paragraph, i) {
+          return <p key={i}>{paragraph}</p>;
         }
       );
     }
   },
 
   render: function() {
-    var founders;
+    var founders,
+        investors = 0;
 
     if (this.state.company.founders) {
-      founders = "Founded by " + this.state.company.founders[0].name;
+      founders = <b>{this.state.company.founders[0].name}</b>;
+    }
+
+    if (this.state.company.investors) {
+      investors = this.state.company.investors.length
     }
 
     return (
@@ -52,7 +57,7 @@ var CompanyDetailApp = React.createClass({
           {this.state.company.name}
           <p />
           <div className="founders">
-            {founders}
+            founded by {founders}
           </div>
         </div>
         <div className="company-top">
@@ -67,6 +72,9 @@ var CompanyDetailApp = React.createClass({
           </div>
           <div className="company-right">
             <div className="company-stats">
+              <span className="stats">
+                {investors}<br />
+              </span>
               investors
               <p />
               total raised
