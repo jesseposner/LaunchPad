@@ -9,4 +9,6 @@ class Company < ActiveRecord::Base
             :business_plan,
             presence: true
   validates :name, uniqueness: true
+
+  has_many :founders
 end
