@@ -36,17 +36,27 @@ var CompanyDetailApp = React.createClass({
           {this.state.company.name}
         </div>
         <div className="company-top">
-          <div className="company-media">
-            <img className="large-company-picture"
-                 src={this.state.company.media_url}/>
+          <div className="company-left">
+            <div className="large-media-container">
+              <img className="large-company-picture"
+                   src={this.state.company.media_url}/>
+            </div>
+            <div className="company-caption-left">
+              caption left
+            </div>
           </div>
-          <div className="company-stats">
-            investors
-            <p />
-            total raised
-            <p />
-            valuation
-            <p />
+          <div className="company-right">
+            <div className="company-stats">
+              investors
+              <p />
+              total raised
+              <p />
+              valuation
+              <p />
+            </div>
+            <div className="company-caption-right">
+              caption right
+            </div>
           </div>
         </div>
       </div>
