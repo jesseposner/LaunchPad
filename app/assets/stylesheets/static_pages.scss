@@ -57,8 +57,12 @@
   text-align: center;
   font: 24px Arial, sans-serif;
   font-weight: lighter;
-  margin: 10px;
+  margin: 0px;
+  padding: 10px;
   color: #444;
+  background-color: white;
+  border-top: solid 1px #D9D9DE;
+  border-bottom: solid 1px #D9D9DE;
 }
 
 .large-company-picture {
@@ -67,7 +71,7 @@
 }
 
 .large-media-container {
-  height: 400px;
+  height: 300px;
   padding: 20px;
 }
 
@@ -76,7 +80,7 @@
 }
 
 .company-stats {
-  height: 400px;
+  height: 300px;
   padding: 20px;
   font: 14px normal Arial, sans-serif;
   color: #444;
@@ -116,15 +120,17 @@
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  height: 100px;
+  height: 80px;
   margin: 0px;
   align-items: center;
   background-color: white;
   border-top: solid 1px #D9D9DE;
   border-bottom: solid 1px #D9D9DE;
+  justify-content: flex-start;
 }
 
 .company-tabs li {
+  margin: 0px;
   list-style: none;
   padding: 2em;
   font: 14px normal Arial, sans-serif;
@@ -136,7 +142,7 @@
 }
 
 .company-main {
-  margin: 40px 15px;
+  margin: 15px 15px;
   max-width: 650px;
   line-height: 1.6;
   font-size: 18px;

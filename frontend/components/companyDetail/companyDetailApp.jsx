@@ -29,6 +29,16 @@ var CompanyDetailApp = React.createClass({
     });
   },
 
+  parseBusinessPlan: function () {
+    if (this.state.company.business_plan) {
+      return JSON.parse(this.state.company.business_plan).map(
+        function (paragraph) {
+          return <p>{paragraph}</p>;
+        }
+      );
+    }
+  },
+
   render: function() {
     var founders;
 
@@ -75,7 +85,7 @@ var CompanyDetailApp = React.createClass({
           <li>Comments</li>
         </ul>
         <div className="company-main">
-          {this.state.company.business_plan}
+          {this.parseBusinessPlan()}
         </div>
       </div>
     );
