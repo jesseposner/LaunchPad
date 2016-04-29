@@ -8,4 +8,5 @@ json.array! @companies, :id,
                         :description,
                         :business_plan,
                         :founders,
-                        :investors
+                        :investors,
+                        :offerings

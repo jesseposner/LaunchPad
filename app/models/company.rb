@@ -12,4 +12,5 @@ class Company < ActiveRecord::Base
 
   has_many :founders
   has_many :investors
+  has_many :offerings
 end

@@ -8,4 +8,5 @@ json.extract! @company, :id,
                         :description,
                         :business_plan,
                         :founders,
-                        :investors
+                        :investors,
+                        :offerings
