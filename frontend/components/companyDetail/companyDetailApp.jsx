@@ -40,22 +40,35 @@ var CompanyDetailApp = React.createClass({
   },
 
   render: function() {
+    function numberWithCommas(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
     var founders,
-        investors = 0;
+        investors = 0,
+        valuation = 0,
+        raised = 0;
 
     if (this.state.company.founders) {
       founders = <b>{this.state.company.founders[0].name}</b>;
     }
 
     if (this.state.company.investors) {
-      investors = this.state.company.investors.length
+      investors = this.state.company.investors.length;
+    }
+
+    if (this.state.company.offerings) {
+      valuation = numberWithCommas(
+        Math.round(
+          this.state.company.offerings[0].price * 10000000
+        )
+      );
+      raised = numberWithCommas(this.state.company.raised);
     }
 
     return (
       <div>
         <div className="company-title">
           {this.state.company.name}
-          <p />
           <div className="founders">
             founded by {founders}
           </div>
@@ -77,8 +90,14 @@ var CompanyDetailApp = React.createClass({
               </span>
               investors
               <p />
+              <span className="stats">
+                ${raised}<br />
+              </span>
               total raised
               <p />
+              <span className="stats">
+                ${valuation}<br />
+              </span>
               valuation
               <p />
             </div>

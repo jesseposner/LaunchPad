@@ -5,8 +5,4 @@ json.array! @companies, :id,
                         :state,
                         :zip,
                         :media_url,
-                        :description,
-                        :business_plan,
-                        :founders,
-                        :investors,
-                        :offerings
+                        :description

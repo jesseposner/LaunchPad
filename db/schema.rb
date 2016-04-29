@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429190047) do
+ActiveRecord::Schema.define(version: 20160429210001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20160429190047) do
   add_index "founders", ["company_id"], name: "index_founders_on_company_id", using: :btree
   add_index "founders", ["user_id"], name: "index_founders_on_user_id", using: :btree
 
+  create_table "investments", force: :cascade do |t|
+    t.integer  "shares",      null: false
+    t.integer  "investor_id", null: false
+    t.integer  "offering_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "investments", ["investor_id"], name: "index_investments_on_investor_id", using: :btree
+  add_index "investments", ["offering_id"], name: "index_investments_on_offering_id", using: :btree
+
   create_table "investors", force: :cascade do |t|
     t.string   "name",           null: false
     t.string   "street_address", null: false
@@ -62,7 +73,7 @@ ActiveRecord::Schema.define(version: 20160429190047) do
   add_index "investors", ["user_id"], name: "index_investors_on_user_id", using: :btree
 
   create_table "offerings", force: :cascade do |t|
-    t.integer  "price",           null: false
+    t.float    "price",           null: false
     t.integer  "total_shares",    null: false
     t.date     "offering_date",   null: false
     t.date     "expiration_date", null: false

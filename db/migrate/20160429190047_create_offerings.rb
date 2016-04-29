@@ -1,7 +1,7 @@
 class CreateOfferings < ActiveRecord::Migration
   def change
     create_table :offerings do |t|
-      t.integer :price, null: false
+      t.float :price, null: false
       t.integer :total_shares, null: false
       t.date :offering_date, null: false
       t.date :expiration_date, null: false

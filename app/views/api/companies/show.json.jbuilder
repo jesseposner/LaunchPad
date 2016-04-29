@@ -10,3 +10,8 @@ json.extract! @company, :id,
                         :founders,
                         :investors,
                         :offerings
+
+offering = @company.offerings[0]
+
+json.raised (offering.investments.map(&:shares).inject(:+) *
+            offering.price).round

@@ -75,3 +75,22 @@ end
     company_id: rand(101)
   )
 end
+
+100.times do |i|
+  Offering.create!(
+    price: rand(0.9).round(5),
+    total_shares: rand(100000..5000000),
+    offering_date: Faker::Date.backward(100),
+    expiration_date: Faker::Date.forward(100),
+    company_id: i + 1,
+    description: ["Series A", "Seed", "Bridge", "Series B"].sample
+  )
+end
+
+1100.times do |i|
+  Investment.create!(
+    shares: rand(50000),
+    investor_id: i + 1,
+    offering_id: rand(101)
+  )
+end

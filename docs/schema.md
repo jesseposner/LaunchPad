@@ -65,7 +65,7 @@ company_id       | integer   | not null, foreign key (references companies), ind
 column name        | data type | details
 -------------------|-----------|-----------------------
 id                 | integer   | not null, primary key
-price              | integer   | not null
+price              | float     | not null
 total_shares       | integer   | not null
 offering_date      | date      | not null
 expiration_date    | date      | not null
