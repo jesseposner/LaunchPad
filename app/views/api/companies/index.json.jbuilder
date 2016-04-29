@@ -6,4 +6,5 @@ json.array! @companies, :id,
                         :zip,
                         :media_url,
                         :description,
-                        :business_plan
+                        :business_plan,
+                        :founders

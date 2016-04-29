@@ -30,10 +30,20 @@ var CompanyDetailApp = React.createClass({
   },
 
   render: function() {
+    var founders;
+
+    if (this.state.company.founders) {
+      founders = "Founded by " + this.state.company.founders[0].name;
+    }
+
     return (
       <div>
         <div className="company-title">
           {this.state.company.name}
+          <p />
+          <div className="founders">
+            {founders}
+          </div>
         </div>
         <div className="company-top">
           <div className="company-left">
@@ -42,7 +52,7 @@ var CompanyDetailApp = React.createClass({
                    src={this.state.company.media_url}/>
             </div>
             <div className="company-caption-left">
-              caption left
+              {this.state.company.description}
             </div>
           </div>
           <div className="company-right">
@@ -58,6 +68,14 @@ var CompanyDetailApp = React.createClass({
               caption right
             </div>
           </div>
+        </div>
+        <ul className="company-tabs">
+          <li>Business Plan</li>
+          <li>Updates</li>
+          <li>Comments</li>
+        </ul>
+        <div className="company-main">
+          {this.state.company.business_plan}
         </div>
       </div>
     );

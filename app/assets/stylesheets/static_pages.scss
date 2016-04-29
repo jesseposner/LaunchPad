@@ -58,46 +58,47 @@
   font: 24px Arial, sans-serif;
   font-weight: lighter;
   margin: 10px;
+  color: #444;
 }
 
 .large-company-picture {
   max-width: 100%;
   max-height: 100%;
-  border: solid 1px;
 }
 
 .large-media-container {
-  height: 500px;
-  border: solid 1px;
+  height: 400px;
   padding: 20px;
 }
 
 .company-left {
-  border: solid 1px;
   width: 65%;
 }
 
 .company-stats {
-  border: solid 1px;
-  height: 500px;
+  height: 400px;
   padding: 20px;
+  font: 14px normal Arial, sans-serif;
+  color: #444;
 }
 
 .company-right {
-  border: solid 1px;
   width: 35%;
 }
 
 .company-caption-right {
-  border: solid 1px;
   height: 200px;
   padding: 20px;
+  font: 14px normal Arial, sans-serif;
+  color: #444;
 }
 
 .company-caption-left {
-  border: solid 1px;
   height: 200px;
   padding: 20px;
+  font: 20px normal Arial, sans-serif;
+  color: #444;
+  line-height: 1.6;
 }
 
 .company-top {
@@ -106,6 +107,51 @@
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  border: solid 1px;
   justify-content: center;
+}
+
+.company-tabs {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 100px;
+  margin: 0px;
+  align-items: center;
+  background-color: white;
+  border-top: solid 1px #D9D9DE;
+  border-bottom: solid 1px #D9D9DE;
+}
+
+.company-tabs li {
+  list-style: none;
+  padding: 2em;
+  font: 14px normal Arial, sans-serif;
+  color: #444;
+}
+
+.company-tabs li:hover {
+  color: #008cdd;
+}
+
+.company-main {
+  margin: 40px 15px;
+  max-width: 650px;
+  line-height: 1.6;
+  font-size: 18px;
+  padding: 0 10px;
+}
+
+.founders {
+  font: 14px normal Arial, sans-serif;
+}
+
+body {
+  line-height: 1.6;
+  color:#444;
+}
+
+h1,h2,h3 {
+  line-height: 1.2;
 }
