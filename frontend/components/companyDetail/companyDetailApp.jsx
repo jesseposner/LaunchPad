@@ -59,9 +59,9 @@ var CompanyDetailApp = React.createClass({
     var founders,
         offeringDate,
         expirationDate,
-        investors = 0,
-        valuation = 0,
-        raised = 0,
+        investors,
+        preMoneyValuation,
+        raised,
         customStyle = {
           overlay : {
             position          : 'fixed',
@@ -97,12 +97,14 @@ var CompanyDetailApp = React.createClass({
     }
 
     if (this.state.company.offerings) {
+      var offering = this.state.company.offerings[0];
+      var newInvestment = offering.price * offering.new_shares;
+      var postMoneyValuation = newInvestment *
+        (offering.post_shares/offering.new_shares);
       offeringDate = this.state.company.offering_date;
       expirationDate = this.state.company.expiration_date;
-      valuation = numberWithCommas(
-        Math.round(
-          this.state.company.offerings[0].price * 10000000
-        )
+      preMoneyValuation = numberWithCommas(
+        Math.round(postMoneyValuation - newInvestment)
       );
       raised = numberWithCommas(this.state.company.raised);
     }
@@ -141,9 +143,9 @@ var CompanyDetailApp = React.createClass({
               total raised
               <p />
               <span className="stat">
-                ${valuation}<br />
+                ${preMoneyValuation}<br />
               </span>
-              valuation
+              pre-money valuation
               <p />
             </div>
             <div className="company-caption-right">

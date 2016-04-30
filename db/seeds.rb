@@ -77,9 +77,12 @@ end
 end
 
 100.times do |i|
+  new_shares = rand(100000..5000000)
+
   Offering.create!(
     price: rand(0.9).round(5),
-    total_shares: rand(100000..5000000),
+    new_shares: new_shares,
+    post_shares: new_shares + 10000000,
     offering_date: Faker::Date.backward(100),
     expiration_date: Faker::Date.forward(100),
     company_id: i + 1,
