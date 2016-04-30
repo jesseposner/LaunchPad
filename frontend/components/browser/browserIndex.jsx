@@ -1,7 +1,8 @@
 var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
     ClientActions = require('../../actions/clientActions'),
-    BrowserIndexItem = require('./browserIndexItem');
+    BrowserIndexItem = require('./browserIndexItem'),
+    Masonry = require('react-masonry-component');
 
 var BrowserIndex = React.createClass({
   getInitialState: function() {
@@ -26,6 +27,11 @@ var BrowserIndex = React.createClass({
   },
 
   render: function() {
+    var masonryOptions = {
+      isFitWidth: false,
+      percentPosition: true
+    };
+
     return (
       <div>
         <span className="browser-index-title">
@@ -34,13 +40,20 @@ var BrowserIndex = React.createClass({
                   </span>
           companies
         </span>
-        <ul className="browser-list">
-          {this.state.companies.map(function (company) {
-            return (
-              <BrowserIndexItem key={company.id} company={company} />
-            );
-          })}
-        </ul>
+        <Masonry
+          className={'browser-list'}
+          elementType={'ul'}
+          options={masonryOptions}
+          disableImagesLoaded={false}>
+
+          {this.state.companies.map(
+            function (company) {
+              return (
+                <BrowserIndexItem key={company.id} company={company} />
+              );
+            }
+          )}
+        </Masonry>
       </div>
     );
   }

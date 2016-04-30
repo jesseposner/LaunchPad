@@ -24,5 +24,18 @@ module.exports = {
   devtool: 'source-maps',
   resolve: {
     extensions: ["", ".js", ".jsx" ]
-  }
+  },
+
+
+  loaders: [
+    {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel'
+    },
+    {
+        test: /masonry|imagesloaded|fizzy\-ui\-utils|desandro\-|outlayer|get\-size|doc\-ready|eventie|eventemitter/,
+        loader: 'imports?define=>false&this=>window'
+    }
+  ]
 };
