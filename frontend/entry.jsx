@@ -6,7 +6,8 @@
      App = require('./components/app.jsx'),
      LoginForm = require('./components/loginForm'),
      BrowserApp = require('./components/browser/browserApp'),
-     CompanyDetailApp = require('./components/companyDetail/companyDetailApp');
+     CompanyDetailApp = require('./components/companyDetail/companyDetailApp'),
+     Modal = require("react-modal");
 
  var routes = (
  	<Route path='/' component={App}>
@@ -17,6 +18,7 @@
  );
 
  document.addEventListener('DOMContentLoaded', function () {
+  Modal.setAppElement(document.body);
  	ReactDOM.render(
  		<Router history={HashHistory} routes={routes} />,
  		document.getElementById('root')

@@ -1,11 +1,14 @@
 var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
     ClientActions = require('../../actions/clientActions'),
-    Link = require('react-router').Link;
+    Modal = require("react-modal");
 
 var CompanyDetailApp = React.createClass({
   getInitialState: function () {
-    return { company: {} };
+    return {
+      company: {},
+      modalOpen: false
+    };
   },
 
   componentDidMount: function() {
@@ -38,6 +41,14 @@ var CompanyDetailApp = React.createClass({
         }
       );
     }
+  },
+
+  openModal: function () {
+    this.setState({ modalOpen: true });
+  },
+
+  closeModal: function(){
+    this.setState({ modalOpen: false });
   },
 
   render: function() {
@@ -86,11 +97,9 @@ var CompanyDetailApp = React.createClass({
             </div>
             <div className="company-caption-left">
               {this.state.company.description}<p/>
-              <div className="invest-button">
-                <Link to='path' className="invest-link">
-                  Invest in {this.state.company.name}
-                </Link>
-              </div>
+              <button className="invest-button" onClick={this.openModal}>
+                {this.state.company.name}
+              </button>
             </div>
           </div>
           <div className="company-right">
@@ -125,6 +134,61 @@ var CompanyDetailApp = React.createClass({
         <div className="company-main">
           {this.parseBusinessPlan()}
         </div>
+        <Modal
+          isOpen={this.state.modalOpen}
+          onRequestClose={this.closeModal}>
+
+          <form className="pure-form pure-form-aligned">
+              <fieldset>
+                  <div className="pure-control-group">
+                      <label>Username</label>
+                      <input id="name"
+                             type="text"
+                             placeholder="Username" />
+                  </div>
+
+                  <div className="pure-control-group">
+                      <label>Password</label>
+                      <input id="password"
+                             type="password"
+                             placeholder="Password" />
+                  </div>
+
+                  <div className="pure-control-group">
+                      <label>Email Address</label>
+                      <input id="email"
+                             type="email"
+                             placeholder="Email Address" />
+                  </div>
+
+                  <div className="pure-control-group">
+                      <label>Supercalifragilistic Label</label>
+                      <input id="foo"
+                             type="text"
+                             placeholder="Enter something here..." />
+                  </div>
+
+                  <div className="pure-controls">
+                      <label className="pure-checkbox">
+                          <input id="cb"
+                                  type="checkbox" />
+                      &nbsp;I've read the terms and conditions
+                      </label>
+
+                      <button type="submit"
+                              className="pure-button pure-button-primary">
+                              Submit
+                      </button>
+                      &nbsp;&nbsp;
+                      <button type="submit"
+                              className="pure-button pure-button-primary"
+                              onClick={this.closeModal}>
+                        Cancel
+                      </button>
+                  </div>
+              </fieldset>
+          </form>
+        </Modal>
       </div>
     );
   }
