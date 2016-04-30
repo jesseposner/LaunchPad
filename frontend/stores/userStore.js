@@ -1,14 +1,19 @@
 var Dispatcher = require('../dispatcher/dispatcher.js'),
     Store = require('flux/utils').Store,
-    UserConstants = require('../constants/userConstants.js');
+    UserConstants = require('../constants/userConstants.js'),
+    myStorage = localStorage;
 
 var UserStore = new Store(Dispatcher);
 
-var _currentUser,
+var _currentUser = JSON.parse(myStorage.getItem("currentUser")),
     _errors;
 
 UserStore.currentUser = function () {
-  if (_currentUser) return $.extend({}, _currentUser);
+  if (myStorage.getItem("currentUser") === "false"){
+    return null;
+  } else {
+    return _currentUser;
+  }
 };
 
 UserStore.errors = function () {
@@ -35,6 +40,7 @@ UserStore.__onDispatch = function (payload) {
 
 function login(user) {
   _currentUser = user;
+  myStorage.setItem("currentUser", JSON.stringify(user));
   _errors = null;
 }
 
