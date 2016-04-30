@@ -105,7 +105,7 @@
   font: 20px normal Arial, sans-serif;
   color: #444;
   line-height: 1.6;
-  margin-bottom: 0px;
+  margin-bottom: 1px;
 }
 
 .company-top {
@@ -189,23 +189,21 @@
 .ReactModal__Overlay {
   -webkit-perspective: 600;
   perspective: 600;
-  opacity: 0;
 }
 
 .ReactModal__Overlay--after-open {
   opacity: 1;
-  transition: opacity 150ms ease-out;
 }
 
 .ReactModal__Content {
-  -webkit-transform: scale(0.5) rotateX(-30deg);
-  transform: scale(0.5) rotateX(-30deg);
+  -webkit-transform: translate3d(0, 75%, 0);
+  transform: translate3d(0, 75%, 0);
 }
 
 .ReactModal__Content--after-open {
-  -webkit-transform: scale(1) rotateX(0deg);
-  transform: scale(1) rotateX(0deg);
-  transition: all 150ms ease-in;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  transition: all 350ms ease-in;
 }
 
 .ReactModal__Overlay--before-close {
@@ -213,8 +211,8 @@
 }
 
 .ReactModal__Content--before-close {
-  -webkit-transform: scale(0.5) rotateX(30deg);
-  transform: scale(0.5) rotateX(30deg);
+  -webkit-transform: translate3d(0, 75%, 0);
+  transform: translate3d(0, 75%, 0);
   transition: all 150ms ease-in;
 }
 

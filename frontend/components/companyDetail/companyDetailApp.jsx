@@ -47,7 +47,8 @@ var CompanyDetailApp = React.createClass({
     this.setState({ modalOpen: true });
   },
 
-  closeModal: function(){
+  closeModal: function(event){
+    event.preventDefault();
     this.setState({ modalOpen: false });
   },
 
@@ -60,7 +61,32 @@ var CompanyDetailApp = React.createClass({
         expirationDate,
         investors = 0,
         valuation = 0,
-        raised = 0;
+        raised = 0,
+        customStyle = {
+          overlay : {
+            position          : 'fixed',
+            top               : 0,
+            left              : 0,
+            right             : 0,
+            bottom            : 0,
+            backgroundColor   : 'rgba(50, 50, 50, 0.75)'
+          },
+          content : {
+            position                   : 'absolute',
+            top                        : '40px',
+            left                       : '150px',
+            right                      : '150px',
+            bottom                     : '40px',
+            border                     : '1px solid #ccc',
+            background                 : '#F7FAFA',
+            overflow                   : 'auto',
+            WebkitOverflowScrolling    : 'touch',
+            borderRadius               : '4px',
+            outline                    : 'none',
+            padding                    : '20px'
+
+          }
+        };
 
     if (this.state.company.founders) {
       founders = <b>{this.state.company.founders[0].name}</b>;
@@ -98,7 +124,7 @@ var CompanyDetailApp = React.createClass({
             <div className="company-caption-left">
               {this.state.company.description}<p/>
               <button className="invest-button" onClick={this.openModal}>
-                {this.state.company.name}
+                Invest in {this.state.company.name}
               </button>
             </div>
           </div>
@@ -126,6 +152,7 @@ var CompanyDetailApp = React.createClass({
             </div>
           </div>
         </div>
+        <br />
         <ul className="company-tabs">
           <li>Business Plan</li>
           <li>Updates</li>
@@ -136,7 +163,9 @@ var CompanyDetailApp = React.createClass({
         </div>
         <Modal
           isOpen={this.state.modalOpen}
-          onRequestClose={this.closeModal}>
+          onRequestClose={this.closeModal}
+          closeTimeoutMS={150}
+          style={customStyle}>
 
           <form className="pure-form pure-form-aligned">
               <fieldset>
