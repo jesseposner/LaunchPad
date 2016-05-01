@@ -89,11 +89,6 @@ var BrowserIndex = React.createClass({
                 );
               }
             )}
-            <div className="loader-footer">
-              <Loader loaded={!this.state.loadingFlag}
-                      scale={0.50}
-                      hwaccel="true" />
-            </div>
           </Masonry>
         </Loader>
       </div>
