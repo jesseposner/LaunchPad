@@ -10,8 +10,12 @@ var ClientActions = {
      ApiUtil.fetchCompany(id);
    },
 
-   fetchCompanies: function () {
-     ApiUtil.fetchCompanies();
+   fetchCompanies: function (page) {
+     ApiUtil.fetchCompanies(page);
+   },
+
+   fetchTotalCompanies: function () {
+     ApiUtil.fetchTotalCompanies();
    },
 
    createUser: function (user) {

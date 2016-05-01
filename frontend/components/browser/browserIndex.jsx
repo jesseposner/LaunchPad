@@ -7,36 +7,69 @@ var React = require('react'),
 var BrowserIndex = React.createClass({
   getInitialState: function() {
     return {
-      companies: []
+      companies: [],
+      loadingFlag: true,
+      page: 1,
+      total: 0
     };
   },
 
   componentDidMount: function() {
     this.removeToken = CompanyStore.addListener(this.onChange);
-    ClientActions.fetchCompanies();
+    window.addEventListener("scroll", this.handleScroll);
+    ClientActions.fetchCompanies(1);
+    ClientActions.fetchTotalCompanies();
   },
 
   componentWillUnmount: function() {
     this.removeToken.remove();
+    window.removeEventListener("scroll", this.handleScroll);
   },
 
   onChange: function () {
     this.setState({
-      companies: CompanyStore.all()
+      companies: CompanyStore.all(),
+      loadingFlag: false,
+      total: CompanyStore.total()
     });
+  },
+
+  handleScroll:function(event) {
+    if (this.state.companies.length === this.state.total) {
+      window.removeEventListener("scroll", this.handleScroll);
+    } else if ($(window).scrollTop() +
+               $(window).height() >
+               $(document).height() - 100) {
+      if (!this.state.loadingFlag) {
+        this.setState({
+          loadingFlag:true,
+        });
+        this.getPage();
+      }
+    }
+  },
+
+  getPage: function () {
+    console.log("request");
+    var nextPage = this.state.page + 1;
+    this.setState({
+      page: nextPage
+    });
+    ClientActions.fetchTotalCompanies();
+    ClientActions.fetchCompanies(this.state.page);
   },
 
   render: function() {
     var masonryOptions = {
       isFitWidth: false,
-      percentPosition: true
+      percentPosition: false
     };
 
     return (
       <div>
         <span className="browser-index-title">
           Explore <span className="index-number">
-                    {this.state.companies.length}&nbsp;
+                    {this.state.total}&nbsp;
                   </span>
           companies
         </span>

@@ -30,6 +30,13 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
      });
    },
 
+   receiveTotalCompanies: function (total) {
+     Dispatcher.dispatch({
+       actionType: CompanyConstants.TOTAL_RECEIVED,
+       total: total
+     });
+   },
+
    handleError: function (error) {
      Dispatcher.dispatch({
        actionType: UserConstants.ERROR,

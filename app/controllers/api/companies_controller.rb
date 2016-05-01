@@ -1,6 +1,14 @@
 class Api::CompaniesController < ApplicationController
   def index
-    @companies = Company.all
+    if params[:total]
+      @total = Company.all.length
+      render :total
+    else
+      range_end = params[:page].to_i * 20
+      range_start = range_end - 19
+      @companies = Company.where(id: range_start..range_end)
+      render :index
+    end
   end
 
   def create

@@ -10,9 +10,9 @@ User.create!(
   )
 end
 
-101.times do
-  Company.create!(
-    name: Faker::Company.name + " " + Faker::Company.suffix,
+1001.times do
+  Company.create(
+    name: Faker::Company.name,
     street_address: Faker::Address.street_address,
     city: Faker::Address.city,
     state: Faker::Address.state_abbr,

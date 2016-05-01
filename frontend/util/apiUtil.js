@@ -20,11 +20,22 @@ var ServerActions = require('../actions/serverActions'),
      });
    },
 
-   fetchCompanies: function () {
+   fetchCompanies: function (page) {
      $.ajax({
        url: 'api/companies',
+       data: { page: page },
        success: function (companies) {
          ServerActions.receiveCompanies(companies);
+       }
+     });
+   },
+
+   fetchTotalCompanies: function () {
+     $.ajax({
+       url: 'api/companies',
+       data: { total: true },
+       success: function (total) {
+         ServerActions.receiveTotalCompanies(total);
        }
      });
    },

@@ -4,7 +4,8 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
 
 var CompanyStore = new Store(Dispatcher);
 
-var _companies = {};
+var _companies = {},
+    _total = 0;
 
 CompanyStore.all = function () {
   return Object.keys(_companies).map(function (id) {
@@ -16,6 +17,10 @@ CompanyStore.find = function (id) {
   return _companies[id];
 };
 
+CompanyStore.total = function () {
+  return _total;
+};
+
 CompanyStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case CompanyConstants.COMPANIES_RECEIVED:
@@ -25,13 +30,16 @@ CompanyStore.__onDispatch = function (payload) {
     case CompanyConstants.COMPANY_RECEIVED:
       updateCompany(payload.company);
       break;
+
+    case CompanyConstants.TOTAL_RECEIVED:
+      updateTotal(payload.total);
+      break;
   }
 
   this.__emitChange();
 };
 
 function updateCompanies(companies) {
-  _companies = {};
   companies.forEach(function (company) {
     _companies[company.id] = company;
   });
@@ -39,6 +47,10 @@ function updateCompanies(companies) {
 
 function updateCompany(company) {
   _companies[company.id] = company;
+}
+
+function updateTotal(total) {
+  _total = total.total;
 }
 
 module.exports = CompanyStore;
