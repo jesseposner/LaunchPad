@@ -1,9 +1,13 @@
 var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
     ClientActions = require('../../actions/clientActions'),
-    Modal = require("react-modal");
+    Modal = require("react-modal"),
+    StripeCheckout = require('react-stripe-checkout');
 
 var CompanyDetailApp = React.createClass({
+  onToken: function(token) {
+  },
+
   getInitialState: function () {
     return {
       company: {},
@@ -62,6 +66,7 @@ var CompanyDetailApp = React.createClass({
         investors,
         preMoneyValuation,
         raised,
+        description,
         customStyle = {
           overlay : {
             position          : 'fixed',
@@ -73,10 +78,10 @@ var CompanyDetailApp = React.createClass({
           },
           content : {
             position                   : 'absolute',
-            top                        : '40px',
-            left                       : '150px',
-            right                      : '150px',
-            bottom                     : '40px',
+            top                        : '300px',
+            left                       : '300px',
+            right                      : '300px',
+            bottom                     : '300px',
             border                     : '1px solid #ccc',
             background                 : '#F7FAFA',
             overflow                   : 'auto',
@@ -98,6 +103,7 @@ var CompanyDetailApp = React.createClass({
 
     if (this.state.company.offerings) {
       var offering = this.state.company.offerings[0];
+      description = offering.description;
       var newInvestment = offering.price * offering.new_shares;
       var postMoneyValuation = newInvestment *
         (offering.post_shares/offering.new_shares);
@@ -125,9 +131,31 @@ var CompanyDetailApp = React.createClass({
             </div>
             <div className="company-caption-left">
               {this.state.company.description}<p/>
-              <button className="invest-button" onClick={this.openModal}>
-                Invest in {this.state.company.name}
-              </button>
+              <form className="pure-form">
+                <fieldset>
+                  <input type="number" placeholder="Shares" />
+                  &nbsp;&nbsp;&nbsp;
+                  <StripeCheckout
+                    token={this.onToken}
+                    stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
+                    amount={1000000}
+                    description={description + " Financing"}
+                    email="guest@launchpad.com"
+                    bitcoin={true}
+                    image={this.state.company.media_url}
+                    name={this.state.company.name}
+                    allowRememberMe={false}
+                    panelLabel="Purchase Shares">
+                      <button className="pure-button pure-button-primary">
+                        Purchase
+                      </button>
+                  </StripeCheckout><p/>
+                  <label for="remember">
+                    <input id="remember" type="checkbox"/>
+                    &nbsp;I have read the the terms and conditions.
+                  </label>
+                </fieldset>
+              </form>
             </div>
           </div>
           <div className="company-right">
@@ -205,11 +233,22 @@ var CompanyDetailApp = React.createClass({
                                   type="checkbox" />
                       &nbsp;I've read the terms and conditions
                       </label>
-
-                      <button type="submit"
-                              className="pure-button pure-button-primary">
-                              Submit
-                      </button>
+                      <StripeCheckout
+                        token={this.onToken}
+                        stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
+                        amount={1000000}
+                        description={description + " Financing"}
+                        email="guest@launchpad.com"
+                        bitcoin={true}
+                        image={this.state.company.media_url}
+                        name={this.state.company.name}
+                        allowRememberMe={false}
+                        panelLabel="Purchase Shares">
+                          <button type="submit"
+                                  className="pure-button pure-button-primary">
+                                  Submit
+                          </button>
+                      </StripeCheckout>
                       &nbsp;&nbsp;
                       <button type="submit"
                               className="pure-button pure-button-primary"
