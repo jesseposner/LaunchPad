@@ -37,7 +37,7 @@ var BrowserIndex = React.createClass({
     });
   },
 
-  handleScroll:function(event) {
+  handleScroll: function(event) {
     if (this.state.companies.length === this.state.total) {
       window.removeEventListener("scroll", this.handleScroll);
     } else if ($(window).scrollTop() +
@@ -53,7 +53,6 @@ var BrowserIndex = React.createClass({
   },
 
   getPage: function () {
-    console.log("request");
     var nextPage = this.state.page + 1;
     this.setState({
       page: nextPage
@@ -76,7 +75,7 @@ var BrowserIndex = React.createClass({
                   </span>
           companies
         </span>
-        <Loader loaded={this.state.loaded}>
+        <Loader loaded={this.state.loaded} hwaccel="true">
           <Masonry
             className={'browser-list'}
             elementType={'ul'}
@@ -90,6 +89,11 @@ var BrowserIndex = React.createClass({
                 );
               }
             )}
+            <div className="loader-footer">
+              <Loader loaded={!this.state.loadingFlag}
+                      scale={0.50}
+                      hwaccel="true" />
+            </div>
           </Masonry>
         </Loader>
       </div>

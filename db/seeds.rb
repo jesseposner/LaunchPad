@@ -3,7 +3,7 @@ User.create!(
   password: "password"
 )
 
-200.times do
+1000.times do
   User.create(
     username: Faker::Internet.user_name,
     password: Faker::Internet.password
@@ -28,7 +28,7 @@ end
   )
 end
 
-100.times do |i|
+1001.times do |i|
   Founder.create!(
     name: Faker::Name.name,
     street_address: Faker::Address.street_address,
@@ -40,7 +40,7 @@ end
   )
 end
 
-100.times do |i|
+1001.times do |i|
   Investor.create!(
     name: Faker::Name.name,
     street_address: Faker::Address.street_address,
@@ -52,31 +52,19 @@ end
   )
 end
 
-100.times do |i|
+10000.times do |i|
   Investor.create!(
     name: Faker::Name.name,
     street_address: Faker::Address.street_address,
     city: Faker::Address.city,
     state: Faker::Address.state_abbr,
     zip: Faker::Address.zip,
-    user_id: i + 101,
-    company_id: i + 1
+    user_id: rand(1002),
+    company_id: rand(1002)
   )
 end
 
-1000.times do |i|
-  Investor.create!(
-    name: Faker::Name.name,
-    street_address: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    zip: Faker::Address.zip,
-    user_id: rand(101),
-    company_id: rand(101)
-  )
-end
-
-100.times do |i|
+1001.times do |i|
   new_shares = rand(100000..5000000)
 
   Offering.create!(
@@ -90,10 +78,10 @@ end
   )
 end
 
-1100.times do |i|
+11000.times do |i|
   Investment.create!(
     shares: rand(50000),
     investor_id: i + 1,
-    offering_id: rand(101)
+    offering_id: rand(1002)
   )
 end
