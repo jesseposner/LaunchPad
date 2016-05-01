@@ -2,7 +2,8 @@ var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
     ClientActions = require('../../actions/clientActions'),
     BrowserIndexItem = require('./browserIndexItem'),
-    Masonry = require('react-masonry-component');
+    Masonry = require('react-masonry-component'),
+    Loader = require('react-loader');
 
 var BrowserIndex = React.createClass({
   getInitialState: function() {
@@ -10,7 +11,8 @@ var BrowserIndex = React.createClass({
       companies: [],
       loadingFlag: true,
       page: 1,
-      total: 0
+      total: 0,
+      loaded: false
     };
   },
 
@@ -30,7 +32,8 @@ var BrowserIndex = React.createClass({
     this.setState({
       companies: CompanyStore.all(),
       loadingFlag: false,
-      total: CompanyStore.total()
+      total: CompanyStore.total(),
+      loaded: true
     });
   },
 
@@ -42,7 +45,7 @@ var BrowserIndex = React.createClass({
                $(document).height() - 100) {
       if (!this.state.loadingFlag) {
         this.setState({
-          loadingFlag:true,
+          loadingFlag: true,
         });
         this.getPage();
       }
@@ -73,20 +76,22 @@ var BrowserIndex = React.createClass({
                   </span>
           companies
         </span>
-        <Masonry
-          className={'browser-list'}
-          elementType={'ul'}
-          options={masonryOptions}
-          disableImagesLoaded={false}>
+        <Loader loaded={this.state.loaded}>
+          <Masonry
+            className={'browser-list'}
+            elementType={'ul'}
+            options={masonryOptions}
+            disableImagesLoaded={false}>
 
-          {this.state.companies.map(
-            function (company) {
-              return (
-                <BrowserIndexItem key={company.id} company={company} />
-              );
-            }
-          )}
-        </Masonry>
+            {this.state.companies.map(
+              function (company) {
+                return (
+                  <BrowserIndexItem key={company.id} company={company} />
+                );
+              }
+            )}
+          </Masonry>
+        </Loader>
       </div>
     );
   }

@@ -24,6 +24,7 @@
     "react": "^0.14.2",
     "react-addons-linked-state-mixin": "^0.14.2",
     "react-dom": "^0.14.2",
+    "react-loader": "^2.4.0",
     "react-masonry-component": "^4.0.2",
     "react-modal": "^1.2.1",
     "react-router": "^2.0.0",
