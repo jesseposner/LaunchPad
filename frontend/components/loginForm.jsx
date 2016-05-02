@@ -56,6 +56,10 @@ var LoginForm = React.createClass({
   render: function() {
     return (
       <div className="login-form">
+        <span className="close" onClick={this.props.closeModal}>
+          x
+        </span>
+        <br />
         <form className="pure-form pure-form-aligned">
           <fieldset>
               <div className="pure-control-group">

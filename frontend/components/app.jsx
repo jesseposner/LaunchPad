@@ -3,7 +3,7 @@ var React = require('react'),
     LoginForm = require('./loginForm'),
     ClientActions = require('../actions/clientActions'),
     Link = require('react-router').Link,
-    Modal = require("react-modal");
+    Modal = require('react-modal');
 
  var App = React.createClass({
    getInitialState: function() {
@@ -33,12 +33,10 @@ var React = require('react'),
    },
 
    openModal: function () {
-     event.preventDefault();
      this.setState({ modalOpen: true });
    },
 
-   closeModal: function(event){
-     event.preventDefault();
+   closeModal: function(){
      this.setState({ modalOpen: false });
    },
 
@@ -58,18 +56,20 @@ var React = require('react'),
           },
           content : {
             position                   : 'absolute',
-            top                        : '300px',
-            left                       : '320px',
-            right                      : '320px',
-            bottom                     : '250px',
+            top                        : '0px',
+            left                       : '0px',
+            right                      : '0px',
+            bottom                     : '0px',
             border                     : '1px solid #ccc',
             background                 : '#F7FAFA',
             overflow                   : 'auto',
             WebkitOverflowScrolling    : 'touch',
             borderRadius               : '4px',
             outline                    : 'none',
-            padding                    : '20px'
-
+            padding                    : '20px',
+            margin                     : 'auto',
+            width                      : '400px',
+            height                     : '300px'
           }
         };
 
@@ -97,7 +97,7 @@ var React = require('react'),
             <Link to='launch'>Launch</Link>
           </div>
           <div className="navbar-login" onClick={this.openModal}>
-              Log in + Sign up
+            Log in + Sign up
           </div>
         </div>
         {this.props.children}
@@ -107,7 +107,7 @@ var React = require('react'),
           closeTimeoutMS={150}
           style={customStyle}>
 
-          <LoginForm />
+          <LoginForm closeModal={this.closeModal}/>
         </Modal>
  			</div>
  		);

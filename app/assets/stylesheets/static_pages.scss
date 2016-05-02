@@ -274,8 +274,8 @@
 }
 
 .ReactModal__Content {
-  -webkit-transform: translate3d(0, 75%, 0);
-  transform: translate3d(0, 75%, 0);
+  -webkit-transform: translate3d(0, 99%, 0);
+  transform: translate3d(0, 99%, 0);
 }
 
 .ReactModal__Content--after-open {
@@ -292,6 +292,21 @@
   -webkit-transform: translate3d(0, 75%, 0);
   transform: translate3d(0, 75%, 0);
   transition: all 150ms ease-in;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 0px;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 body {
