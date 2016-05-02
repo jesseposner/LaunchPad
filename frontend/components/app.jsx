@@ -33,6 +33,7 @@ var React = require('react'),
    },
 
    openModal: function () {
+     event.preventDefault();
      this.setState({ modalOpen: true });
    },
 
@@ -44,6 +45,8 @@ var React = require('react'),
  	render: function () {
     var navLink,
         userEl,
+        rootElement = document.getElementById("root"),
+        imagePaths = JSON.parse(rootElement.dataset.images),
         customStyle = {
           overlay : {
             position          : 'fixed',
@@ -56,9 +59,9 @@ var React = require('react'),
           content : {
             position                   : 'absolute',
             top                        : '300px',
-            left                       : '300px',
-            right                      : '300px',
-            bottom                     : '300px',
+            left                       : '320px',
+            right                      : '320px',
+            bottom                     : '250px',
             border                     : '1px solid #ccc',
             background                 : '#F7FAFA',
             overflow                   : 'auto',
@@ -87,15 +90,14 @@ var React = require('react'),
  			<div>
         <div className="navbar">
           <div className="logo">
-            <Link to='/'>LaunchPad</Link>
+            <Link to='/'><img src={imagePaths.logo} /></Link>
           </div>
-          <div>
+          <div className="navbar-links">
             <Link to='explore'>Explore</Link>
+            <Link to='launch'>Launch</Link>
           </div>
-          <div className="navbar-login">
-            <button onClick={this.openModal}>
-              Log In + Sign Up
-            </button>
+          <div className="navbar-login" onClick={this.openModal}>
+              Log in + Sign up
           </div>
         </div>
         {this.props.children}
@@ -105,7 +107,7 @@ var React = require('react'),
           closeTimeoutMS={150}
           style={customStyle}>
 
-          <LoginForm />;
+          <LoginForm />
         </Modal>
  			</div>
  		);

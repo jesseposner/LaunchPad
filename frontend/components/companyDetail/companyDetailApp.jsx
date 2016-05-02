@@ -96,10 +96,10 @@ var CompanyDetailApp = React.createClass({
           100 * (this.state.shares * offering.price)
         )/100;
         purchasePriceStr = "$" + purchasePrice;
-        purchasePriceInt = (parseInt(purchasePrice) * 100) +
+        purchasePriceInt = Math.round((parseInt(purchasePrice) * 100) +
                            (100 *
                              (purchasePrice - parseInt(purchasePrice))
-                           );
+                           ));
       }
     }
 

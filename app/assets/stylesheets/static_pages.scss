@@ -1,25 +1,64 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.login-form {
+  margin: 0px;
+  padding: 0px;
+}
+
 .navbar {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  font-size: 14px;
   flex-wrap: nowrap;
   color: #008cdd;
   padding: 10px;
   border-bottom: solid 1px #D9D9DE;
+  align-items: center;
+  height: 40px;
   a {
     color: #008cdd;
     text-decoration: none;
+    padding: 10px;
+    -webkit-transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
+    transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
+  }
+  a:hover {
+    color: #292e31;
   }
 }
 
 .logo {
-  font-size: 2em;
-  font-weight: bold;
+  img {
+    width: 150px;
+    padding-top: 10px;
+    padding-left: 30px;
+  }
+}
+
+.navbar-links {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.navbar-login {
+  margin-left: auto;
+  margin-right: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 14px;
+  border: 1px solid rgba(115, 189, 232, 0.67);
+  -webkit-transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
+  transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
+}
+
+.navbar-login:hover {
+  color: #292e31;
 }
 
 .browser-list {

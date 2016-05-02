@@ -26,6 +26,7 @@ var LoginForm = React.createClass({
   },
 
   submitLogin: function (event) {
+    event.preventDefault();
     ClientActions.createSession({
       username: this.state.username,
       password: this.state.password
@@ -33,6 +34,7 @@ var LoginForm = React.createClass({
   },
 
   submitSignup: function (event) {
+    event.preventDefault();
     ClientActions.createUser({
       username: this.state.username,
       password: this.state.password
@@ -53,32 +55,49 @@ var LoginForm = React.createClass({
 
   render: function() {
     return (
-      <div id="login-form">
-        <br />
-        <form>
-          <label>Username:&nbsp;
-            <input type="text"
-                   placeholder="Username"
-                   value={this.state.username}
-                   onChange={this.updateUsername} />
-          </label>
-          <br />
-          <label>Password:&nbsp;
-            <input type="password"
-                   placeholder="Password"
-                   value={this.state.password}
-                   onChange={this.updatePassword} />
-          </label>
+      <div className="login-form">
+        <form className="pure-form pure-form-aligned">
+          <fieldset>
+              <div className="pure-control-group">
+                  <label>Username</label>
+                  <input id="name"
+                         type="text"
+                         placeholder="Username"
+                         value={this.state.username}
+                         onChange={this.updateUsername} />
+              </div>
+
+              <div className="pure-control-group">
+                  <label>Password</label>
+                  <input id="password"
+                         type="password"
+                         placeholder="Password"
+                         value={this.state.password}
+                         onChange={this.updatePassword} />
+              </div>
+
+              <div className="pure-controls">
+                  <label className="pure-checkbox">
+                      <input id="cb"
+                             type="checkbox" />
+                         &nbsp;I've read the terms and conditions.
+                  </label>
+
+                  <button type="submit"
+                          className="pure-button pure-button-primary"
+                          onClick={this.submitLogin}>
+                            Log in
+                          </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <button type="submit"
+                          className="pure-button pure-button-primary"
+                          onClick={this.submitSignup}>
+                            Sign up
+                          </button>&nbsp;
+              </div>
+              <br />
+              {this.state.errors}
+          </fieldset>
         </form>
-        <br />
-        <button onClick={this.submitLogin}>
-          Login
-        </button>&nbsp;
-        <button onClick={this.submitSignup}>
-          Sign Up
-        </button>
-        <br />
-        {this.state.errors}
       </div>
     );
   }

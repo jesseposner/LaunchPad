@@ -18,9 +18,9 @@
  );
 
  document.addEventListener('DOMContentLoaded', function () {
-  Modal.setAppElement(document.body);
- 	ReactDOM.render(
- 		<Router history={HashHistory} routes={routes} />,
- 		document.getElementById('root')
+   Modal.setAppElement(document.body);
+ 	 ReactDOM.render(
+ 	   <Router history={HashHistory} routes={routes} />,
+ 	   document.getElementById("root")
  	);
 });
