@@ -1,7 +1,6 @@
 var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
     ClientActions = require('../../actions/clientActions'),
-    Modal = require("react-modal"),
     StripeCheckout = require('react-stripe-checkout'),
     Loader = require('react-loader');
 
@@ -12,7 +11,6 @@ var CompanyDetailApp = React.createClass({
   getInitialState: function () {
     return {
       company: {},
-      modalOpen: false,
       shares: "",
       loaded: false
     };
@@ -59,15 +57,6 @@ var CompanyDetailApp = React.createClass({
     }
   },
 
-  openModal: function () {
-    this.setState({ modalOpen: true });
-  },
-
-  closeModal: function(event){
-    event.preventDefault();
-    this.setState({ modalOpen: false });
-  },
-
   render: function() {
     function numberWithCommas(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -80,32 +69,7 @@ var CompanyDetailApp = React.createClass({
         raised,
         description,
         purchasePriceStr,
-        purchasePriceInt,
-        customStyle = {
-          overlay : {
-            position          : 'fixed',
-            top               : 0,
-            left              : 0,
-            right             : 0,
-            bottom            : 0,
-            backgroundColor   : 'rgba(50, 50, 50, 0.75)'
-          },
-          content : {
-            position                   : 'absolute',
-            top                        : '300px',
-            left                       : '300px',
-            right                      : '300px',
-            bottom                     : '300px',
-            border                     : '1px solid #ccc',
-            background                 : '#F7FAFA',
-            overflow                   : 'auto',
-            WebkitOverflowScrolling    : 'touch',
-            borderRadius               : '4px',
-            outline                    : 'none',
-            padding                    : '20px'
-
-          }
-        };
+        purchasePriceInt;
 
     if (this.state.company.founders) {
       founders = <b>{this.state.company.founders[0].name}</b>;
@@ -230,74 +194,6 @@ var CompanyDetailApp = React.createClass({
           <div className="company-main">
             {this.parseBusinessPlan()}
           </div>
-          <Modal
-            isOpen={this.state.modalOpen}
-            onRequestClose={this.closeModal}
-            closeTimeoutMS={150}
-            style={customStyle}>
-
-            <form className="pure-form pure-form-aligned">
-                <fieldset>
-                    <div className="pure-control-group">
-                        <label>Username</label>
-                        <input id="name"
-                               type="text"
-                               placeholder="Username" />
-                    </div>
-
-                    <div className="pure-control-group">
-                        <label>Password</label>
-                        <input id="password"
-                               type="password"
-                               placeholder="Password" />
-                    </div>
-
-                    <div className="pure-control-group">
-                        <label>Email Address</label>
-                        <input id="email"
-                               type="email"
-                               placeholder="Email Address" />
-                    </div>
-
-                    <div className="pure-control-group">
-                        <label>Supercalifragilistic Label</label>
-                        <input id="foo"
-                               type="text"
-                               placeholder="Enter something here..." />
-                    </div>
-
-                    <div className="pure-controls">
-                        <label className="pure-checkbox">
-                            <input id="cb"
-                                    type="checkbox" />
-                        &nbsp;I've read the terms and conditions
-                        </label>
-                        <StripeCheckout
-                          token={this.onToken}
-                          stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
-                          amount={1000000}
-                          description={description + " Financing"}
-                          email="guest@launchpad.com"
-                          bitcoin={true}
-                          image={this.state.company.media_url}
-                          name={this.state.company.name}
-                          allowRememberMe={false}
-                          panelLabel="Purchase Shares">
-                            <button type="submit"
-                                    className="pure-button pure-button-primary">
-                                    Submit
-                            </button>
-                        </StripeCheckout>
-                        &nbsp;&nbsp;
-                        <button type="submit"
-                                className="pure-button pure-button-primary"
-                                onClick={this.closeModal}>
-                          Cancel
-                        </button>
-                    </div>
-                </fieldset>
-            </form>
-          </Modal>
         </Loader>
       </div>
     );

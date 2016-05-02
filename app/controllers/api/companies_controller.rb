@@ -22,7 +22,8 @@ class Api::CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.find_by_id(params[:id])
+    @company = Company.includes(offerings: :investments)
+                      .find_by_id(params[:id])
 
     if @company
       render :show

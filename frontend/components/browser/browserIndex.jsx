@@ -42,7 +42,7 @@ var BrowserIndex = React.createClass({
       window.removeEventListener("scroll", this.handleScroll);
     } else if ($(window).scrollTop() +
                $(window).height() >
-               $(document).height() - 100) {
+               $(document).height() - 200) {
       if (!this.state.loadingFlag) {
         this.setState({
           loadingFlag: true,
@@ -64,11 +64,12 @@ var BrowserIndex = React.createClass({
   render: function() {
     var masonryOptions = {
       isFitWidth: false,
-      percentPosition: false
+      percentPosition: false,
+      transitionDuration: '0.8s'
     };
 
     return (
-      <div>
+      <div><p />
         <span className="browser-index-title">
           Explore <span className="index-number">
                     {this.state.total}&nbsp;

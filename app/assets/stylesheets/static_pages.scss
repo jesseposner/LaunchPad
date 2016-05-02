@@ -1,6 +1,27 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.navbar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: nowrap;
+  color: #008cdd;
+  padding: 10px;
+  border-bottom: solid 1px #D9D9DE;
+  a {
+    color: #008cdd;
+    text-decoration: none;
+  }
+}
+
+.logo {
+  font-size: 2em;
+  font-weight: bold;
+}
+
 .browser-list {
   display: -webkit-box;
   display: -moz-box;
@@ -33,7 +54,7 @@
 
 .browser-list-item {
   list-style: none;
-  width: 20%;
+  width: 200px;
   border: solid 1px #D9D9DE;
   border-radius: 6px;
   font: 14px normal Arial, sans-serif;
@@ -80,7 +101,6 @@
   padding: 20px;
   color: #444;
   background-color: white;
-  border-top: solid 1px #D9D9DE;
   border-bottom: solid 1px #D9D9DE;
 }
 
