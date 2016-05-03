@@ -13,6 +13,16 @@ var LoginForm = React.createClass({
 
   componentDidMount: function() {
     this.removeToken = UserStore.addListener(this.onChange);
+    $(document).ready(function(){
+      $('.pure-form').slick({
+        accessibility: false,
+        arrows: false,
+        draggable: false,
+        infinite: false,
+        swipe: false,
+        touchMove: false
+      });
+    });
   },
 
   componentWillUnmount: function() {
@@ -57,6 +67,10 @@ var LoginForm = React.createClass({
     });
   },
 
+  nextSlide: function () {
+    $('.pure-form').slick('slickNext');
+  },
+
   render: function() {
     return (
       <div className="login-form">
@@ -65,46 +79,104 @@ var LoginForm = React.createClass({
         </span>
         <br />
         <form className="pure-form pure-form-aligned">
-          <fieldset>
-              <div className="pure-control-group">
-                  <label>Username</label>
-                  <input id="name"
-                         type="text"
-                         placeholder="Username"
-                         value={this.state.username}
-                         onChange={this.updateUsername} />
-              </div>
+          <div className="slide-1">
+            <h2 className="form-title">Welcome</h2>
+            <div className="pure-control-group">
+                <label>E-Mail</label>
+                <input id="email"
+                       type="email"
+                       placeholder="Username"
+                       value={this.state.username}
+                       onChange={this.updateUsername} />
+            </div>
 
-              <div className="pure-control-group">
-                  <label>Password</label>
-                  <input id="password"
-                         type="password"
-                         placeholder="Password"
-                         value={this.state.password}
-                         onChange={this.updatePassword} />
-              </div>
+            <div className="pure-control-group">
+                <label>Password</label>
+                <input id="password"
+                       type="password"
+                       placeholder="Password"
+                       value={this.state.password}
+                       onChange={this.updatePassword} />
+            </div>
 
-              <div className="pure-controls">
-                  <label className="pure-checkbox">
-                      <input id="cb"
-                             type="checkbox" />
-                         &nbsp;I've read the terms and conditions.
-                  </label>
+            <div className="pure-controls">
+                <button type="submit"
+                        className="pure-button pure-button-primary"
+                        onClick={this.submitLogin}>
+                          Log in
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="submit"
+                        className="pure-button pure-button-primary"
+                        onClick={this.nextSlide}>
+                          Sign up
+                        </button>&nbsp;
+            </div>
+            <br />
+            {this.state.errors}
+          </div>
+          <div className="slide-2">
+            <div className="pure-control-group">
+                <label>First Name</label>
+                <input id="first-name"
+                       type="text"
+                       placeholder="First Name"
+                       value={this.state.username}
+                       onChange={this.updateUsername} />
+            </div>
 
-                  <button type="submit"
-                          className="pure-button pure-button-primary"
-                          onClick={this.submitLogin}>
-                            Log in
-                          </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button type="submit"
-                          className="pure-button pure-button-primary"
-                          onClick={this.submitSignup}>
-                            Sign up
-                          </button>&nbsp;
-              </div>
-              <br />
-              {this.state.errors}
-          </fieldset>
+            <div className="pure-control-group">
+                <label>Last Name</label>
+                <input id="last-name"
+                       type="text"
+                       placeholder="Last Name"
+                       value={this.state.username}
+                       onChange={this.updateUsername} />
+            </div>
+
+            <div className="pure-control-group">
+                <label>Street Address</label>
+                <input id="street-address"
+                       type="text"
+                       placeholder="Street Address"
+                       value={this.state.username}
+                       onChange={this.updateUsername} />
+            </div>
+
+            <div className="pure-control-group">
+                <label>City</label>
+                <input id="city"
+                       type="text"
+                       placeholder="City"
+                       value={this.state.username}
+                       onChange={this.updateUsername} />
+            </div>
+
+            <div className="pure-control-group">
+                <label>State</label>
+                <select id="state" className="pure-input-1-2">
+                    <option>AL</option>
+                    <option>CA</option>
+                    <option>IL</option>
+                </select>
+            </div>
+            <div className="pure-control-group">
+                <label>Zip</label>
+                <input id="zip"
+                       type="text"
+                       placeholder="Zip"
+                       value={this.state.username}
+                       onChange={this.updateUsername} />
+            </div>
+            <div className="pure-controls">
+                <button type="submit"
+                        className="pure-button pure-button-primary"
+                        onClick={this.submitSignup}>
+                          Submit
+                        </button>&nbsp;
+            </div>
+            <br />
+            {this.state.errors}
+          </div>
         </form>
       </div>
     );

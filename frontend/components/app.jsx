@@ -42,7 +42,7 @@ var React = require('react'),
    },
 
    afterOpen: function () {
-     document.getElementById("name").focus();
+     document.getElementById("email").focus();
    },
 
  	render: function () {
@@ -66,15 +66,14 @@ var React = require('react'),
             right                      : '0px',
             bottom                     : '0px',
             border                     : '1px solid rgba(0, 0, 0, 0.3)',
-            overflow                   : 'auto',
+            overflow                   : 'hidden',
             WebkitOverflowScrolling    : 'touch',
             borderRadius               : '10px',
             outline                    : 'none',
             padding                    : '20px',
             margin                     : 'auto',
-            width                      : '400px',
-            height                     : '300px',
-            background                 : 'white'
+            width                      : '450px',
+            height                     : '400px'
           }
         };
 
