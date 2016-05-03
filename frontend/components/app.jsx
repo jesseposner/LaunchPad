@@ -65,16 +65,16 @@ var React = require('react'),
             left                       : '0px',
             right                      : '0px',
             bottom                     : '0px',
-            border                     : '1px solid #ccc',
-            background                 : '#F7FAFA',
+            border                     : '1px solid rgba(0, 0, 0, 0.3)',
             overflow                   : 'auto',
             WebkitOverflowScrolling    : 'touch',
-            borderRadius               : '4px',
+            borderRadius               : '10px',
             outline                    : 'none',
             padding                    : '20px',
             margin                     : 'auto',
             width                      : '400px',
-            height                     : '300px'
+            height                     : '300px',
+            background                 : 'white'
           }
         };
 
@@ -105,6 +105,7 @@ var React = require('react'),
         </div>
         {this.props.children}
         <Modal
+          className="modal"
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}
           onAfterOpen={this.afterOpen}
