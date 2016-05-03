@@ -8,7 +8,7 @@ var BrowserIndexItem = React.createClass({
 
   render: function() {
     return (
-      <li className="browser-list-item">
+      <li className="browser-list-item animated bounceInUp">
         <Link to={'explore/' + this.props.company.id}
               className="link"
               onClick={this.saveScroll} >

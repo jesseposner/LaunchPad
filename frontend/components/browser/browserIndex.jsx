@@ -2,7 +2,6 @@ var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
     ClientActions = require('../../actions/clientActions'),
     BrowserIndexItem = require('./browserIndexItem'),
-    Masonry = require('react-masonry-component'),
     Loader = require('react-loader');
 
 var BrowserIndex = React.createClass({
@@ -45,7 +44,7 @@ var BrowserIndex = React.createClass({
       window.removeEventListener("scroll", this.handleScroll);
     } else if ($(window).scrollTop() +
                $(window).height() >
-               $(document).height() - 200) {
+               $(document).height() - 100) {
       if (!this.state.loadingFlag) {
         this.setState({
           loadingFlag: true,
@@ -65,12 +64,6 @@ var BrowserIndex = React.createClass({
   },
 
   render: function() {
-    var masonryOptions = {
-      isFitWidth: false,
-      percentPosition: false,
-      transitionDuration: '0.8s'
-    };
-
     return (
       <div><p />
         <span className="browser-index-title">
@@ -80,20 +73,19 @@ var BrowserIndex = React.createClass({
           companies
         </span>
         <Loader loaded={this.state.loaded} hwaccel="true">
-          <Masonry
-            className={'browser-list'}
-            elementType={'ul'}
-            options={masonryOptions}
-            disableImagesLoaded={false}>
-
-            {this.state.companies.map(
-              function (company) {
-                return (
-                  <BrowserIndexItem key={company.id} company={company} />
-                );
-              }
-            )}
-          </Masonry>
+          <div>
+          <ul className="browser-list">
+            {this.state.companies.map(function (company) {
+              return (
+                <BrowserIndexItem key={company.id} company={company} />
+               );
+            })}
+          </ul>
+        </div><p />
+          <div className="footer">
+            <Loader loaded={!this.state.loadingFlag}
+                    scale={0.5} />
+          </div>
         </Loader>
       </div>
     );

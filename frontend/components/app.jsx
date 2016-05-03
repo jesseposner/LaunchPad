@@ -80,12 +80,20 @@ var React = require('react'),
 
     if (!this.state.currentUser) {
       userEl = (
-        <div className="navbar-login" onClick={this.openModal}>
+        <div className="navbar-login
+                        hvr-underline-from-center
+                        animated
+                        fadeInRight"
+             onClick={this.openModal}>
           Log in + Sign up
         </div>);
     } else {
       userEl = (
-        <div className="navbar-logout" onClick={this.submitLogout}>
+        <div className="navbar-login
+                        hvr-underline-from-center
+                        animated
+                        fadeInLeft"
+             onClick={this.submitLogout}>
           Log out
         </div>
       );
@@ -98,8 +106,12 @@ var React = require('react'),
             <Link to='/'><img src={imagePaths.logo} /></Link>
           </div>
           <div className="navbar-links">
-            <Link to='explore'>Explore</Link>
-            <Link to='launch'>Launch</Link>
+            <Link to='explore' className="hvr-underline-from-center">
+              Explore
+            </Link>
+            <Link to='launch' className="hvr-underline-from-center">
+              Launch
+            </Link>
           </div>
           {userEl}
         </div>

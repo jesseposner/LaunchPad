@@ -22,7 +22,10 @@
   a {
     color: #008cdd;
     text-decoration: none;
-    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     -webkit-transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
     transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
   }
@@ -47,19 +50,14 @@
 .navbar-login {
   margin-left: auto;
   margin-right: 60px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 14px;
-  border: 1px solid #BBBBBB;
+  padding-bottom: 10px;
+  padding-top: 10px;
   -webkit-transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
   transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
 }
 
 .navbar-login:hover {
   color: #292e31;
-  border-color: #008cdd;
 }
 
 .navbar-logout {
@@ -117,7 +115,7 @@
   border-radius: 6px;
   font: 14px normal Arial, sans-serif;
   color: #828587;
-  margin: 10px;
+  margin: 20px;
   padding: 10px;
   padding-top: 0px;
 }
@@ -396,4 +394,10 @@ h1,h2,h3 {
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding-box;
     background-clip: padding-box;
+}
+
+.footer {
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 50px;
 }
