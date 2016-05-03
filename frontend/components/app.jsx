@@ -1,4 +1,5 @@
 var React = require('react'),
+    ReactDOM = require('react-dom'),
     UserStore = require('../stores/userStore'),
     LoginForm = require('./loginForm'),
     ClientActions = require('../actions/clientActions'),
@@ -38,6 +39,14 @@ var React = require('react'),
 
    closeModal: function(){
      this.setState({ modalOpen: false });
+   },
+
+   getRef: function (ref) {
+     this.setState({ ref: ref });
+   },
+
+   afterOpen: function () {
+     ReactDOM.findDOMNode(this.state.ref).focus();
    },
 
  	render: function () {
@@ -104,10 +113,11 @@ var React = require('react'),
         <Modal
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}
+          onAfterOpen={this.afterOpen}
           closeTimeoutMS={150}
           style={customStyle}>
 
-          <LoginForm closeModal={this.closeModal}/>
+          <LoginForm closeModal={this.closeModal} getRef={this.getRef} />
         </Modal>
  			</div>
  		);

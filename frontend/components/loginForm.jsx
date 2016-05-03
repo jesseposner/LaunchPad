@@ -13,6 +13,7 @@ var LoginForm = React.createClass({
 
   componentDidMount: function() {
     this.removeToken = UserStore.addListener(this.onChange);
+    this.props.getRef(this.refs.username);
   },
 
   componentWillUnmount: function() {
@@ -22,7 +23,11 @@ var LoginForm = React.createClass({
   onChange: function () {
     this.setState({
       errors: UserStore.errors()
-    });
+    }, this.checkResult);
+  },
+
+  checkResult: function () {
+    if (!this.state.errors) this.props.closeModal();
   },
 
   submitLogin: function (event) {
@@ -66,6 +71,7 @@ var LoginForm = React.createClass({
                   <label>Username</label>
                   <input id="name"
                          type="text"
+                         ref="username"
                          placeholder="Username"
                          value={this.state.username}
                          onChange={this.updateUsername} />
