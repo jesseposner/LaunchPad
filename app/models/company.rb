@@ -10,7 +10,9 @@ class Company < ActiveRecord::Base
             presence: true
   validates :name, uniqueness: true
 
-  has_many :founders
-  has_many :investors
+  has_many :foundings
+  has_many :founders, through: :foundings, source: :user
+  has_many :investments, through: :offerings
+  has_many :investors, through: :investments, source: :user
   has_many :offerings
 end

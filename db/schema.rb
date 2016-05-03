@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430233109) do
+ActiveRecord::Schema.define(version: 20160503222424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,46 +31,26 @@ ActiveRecord::Schema.define(version: 20160430233109) do
 
   add_index "companies", ["name"], name: "index_companies_on_name", unique: true, using: :btree
 
-  create_table "founders", force: :cascade do |t|
-    t.string   "name",           null: false
-    t.string   "street_address", null: false
-    t.string   "city",           null: false
-    t.string   "state",          null: false
-    t.integer  "zip",            null: false
-    t.integer  "user_id",        null: false
-    t.integer  "company_id",     null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+  create_table "foundings", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "founders", ["company_id"], name: "index_founders_on_company_id", using: :btree
-  add_index "founders", ["user_id"], name: "index_founders_on_user_id", using: :btree
+  add_index "foundings", ["company_id"], name: "index_foundings_on_company_id", using: :btree
+  add_index "foundings", ["user_id"], name: "index_foundings_on_user_id", using: :btree
 
   create_table "investments", force: :cascade do |t|
     t.integer  "shares",      null: false
-    t.integer  "investor_id", null: false
+    t.integer  "user_id",     null: false
     t.integer  "offering_id", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "investments", ["investor_id"], name: "index_investments_on_investor_id", using: :btree
   add_index "investments", ["offering_id"], name: "index_investments_on_offering_id", using: :btree
-
-  create_table "investors", force: :cascade do |t|
-    t.string   "name",           null: false
-    t.string   "street_address", null: false
-    t.string   "city",           null: false
-    t.string   "state",          null: false
-    t.integer  "zip",            null: false
-    t.integer  "user_id",        null: false
-    t.integer  "company_id",     null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "investors", ["company_id"], name: "index_investors_on_company_id", using: :btree
-  add_index "investors", ["user_id"], name: "index_investors_on_user_id", using: :btree
+  add_index "investments", ["user_id"], name: "index_investments_on_user_id", using: :btree
 
   create_table "offerings", force: :cascade do |t|
     t.float    "price",           null: false
@@ -87,14 +67,19 @@ ActiveRecord::Schema.define(version: 20160430233109) do
   add_index "offerings", ["company_id"], name: "index_offerings_on_company_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
+    t.string   "email",           null: false
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "name",            null: false
+    t.string   "street_address",  null: false
+    t.string   "city",            null: false
+    t.string   "state",           null: false
+    t.string   "zip",             null: false
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end

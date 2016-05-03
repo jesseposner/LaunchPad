@@ -1,4 +1,4 @@
-class Founder < ActiveRecord::Base
+class Founding < ActiveRecord::Base
   belongs_to :user
   belongs_to :company
 end

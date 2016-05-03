@@ -37,27 +37,10 @@ id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references users), indexed
 company_id  | integer   | not null, foreign key (references companies), indexed
 
-## founders
+## foundings
 column name      | data type | details
 -----------------|-----------|-----------------------
 id               | integer   | not null, primary key
-name             | string    | not null
-street_address   | string    | not null
-city             | string    | not null
-state            | string    | not null
-zip              | string    | not null
-user_id          | integer   | not null, foreign key (references users), indexed
-company_id       | integer   | not null, foreign key (references companies), indexed
-
-## investors
-column name      | data type | details
------------------|-----------|-----------------------
-id               | integer   | not null, primary key
-name             | string    | not null
-street_address   | string    | not null
-city             | string    | not null
-state            | string    | not null
-zip              | string    | not null
 user_id          | integer   | not null, foreign key (references users), indexed
 company_id       | integer   | not null, foreign key (references companies), indexed
 
@@ -78,13 +61,18 @@ column name            | data type | details
 -----------------------|-----------|-----------------------
 id                     | integer   | not null, primary key
 shares                 | integer   | not null
-investor_id            | integer   | not null, foreign key (references users), indexed
+user_id                | integer   | not null, foreign key (references users), indexed
 offering_id            | integer   | not null, foreign key (references offerings), indexed
 
 ## users
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
-username        | string    | not null, indexed, unique
+email           | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
+name            | string    | not null
+street_address  | string    | not null
+city            | string    | not null
+state           | string    | not null
+zip             | string    | not null

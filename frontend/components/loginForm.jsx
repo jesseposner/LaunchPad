@@ -6,7 +6,7 @@ var React = require('react'),
 var LoginForm = React.createClass({
   getInitialState: function() {
     return {
-      username: "",
+      email: "",
       password: ""
     };
   },
@@ -42,7 +42,7 @@ var LoginForm = React.createClass({
   submitLogin: function (event) {
     event.preventDefault();
     ClientActions.createSession({
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password
     });
   },
@@ -50,14 +50,14 @@ var LoginForm = React.createClass({
   submitSignup: function (event) {
     event.preventDefault();
     ClientActions.createUser({
-      username: this.state.username,
+      email: this.state.email,
       password: this.state.password
     });
   },
 
-  updateUsername: function (event) {
+  updateemail: function (event) {
     this.setState({
-      username: event.target.value
+      email: event.target.value
     });
   },
 
@@ -69,6 +69,10 @@ var LoginForm = React.createClass({
 
   nextSlide: function () {
     $('.pure-form').slick('slickNext');
+  },
+
+  prevSlide: function () {
+    $('.pure-form').slick('slickPrev');
   },
 
   render: function() {
@@ -85,9 +89,9 @@ var LoginForm = React.createClass({
                 <label>E-Mail</label>
                 <input id="email"
                        type="email"
-                       placeholder="Username"
-                       value={this.state.username}
-                       onChange={this.updateUsername} />
+                       placeholder="email"
+                       value={this.state.email}
+                       onChange={this.updateemail} />
             </div>
 
             <div className="pure-control-group">
@@ -120,8 +124,8 @@ var LoginForm = React.createClass({
                 <input id="first-name"
                        type="text"
                        placeholder="First Name"
-                       value={this.state.username}
-                       onChange={this.updateUsername} />
+                       value={this.state.email}
+                       onChange={this.updateemail} />
             </div>
 
             <div className="pure-control-group">
@@ -129,8 +133,8 @@ var LoginForm = React.createClass({
                 <input id="last-name"
                        type="text"
                        placeholder="Last Name"
-                       value={this.state.username}
-                       onChange={this.updateUsername} />
+                       value={this.state.email}
+                       onChange={this.updateemail} />
             </div>
 
             <div className="pure-control-group">
@@ -138,8 +142,8 @@ var LoginForm = React.createClass({
                 <input id="street-address"
                        type="text"
                        placeholder="Street Address"
-                       value={this.state.username}
-                       onChange={this.updateUsername} />
+                       value={this.state.email}
+                       onChange={this.updateemail} />
             </div>
 
             <div className="pure-control-group">
@@ -147,8 +151,8 @@ var LoginForm = React.createClass({
                 <input id="city"
                        type="text"
                        placeholder="City"
-                       value={this.state.username}
-                       onChange={this.updateUsername} />
+                       value={this.state.email}
+                       onChange={this.updateemail} />
             </div>
 
             <div className="pure-control-group">
@@ -164,15 +168,20 @@ var LoginForm = React.createClass({
                 <input id="zip"
                        type="text"
                        placeholder="Zip"
-                       value={this.state.username}
-                       onChange={this.updateUsername} />
+                       value={this.state.email}
+                       onChange={this.updateemail} />
             </div>
             <div className="pure-controls">
-                <button type="submit"
-                        className="pure-button pure-button-primary"
-                        onClick={this.submitSignup}>
-                          Submit
-                        </button>&nbsp;
+              <button type="submit"
+                      className="pure-button pure-button-primary"
+                      onClick={this.prevSlide}>
+                        Back
+                      </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <button type="submit"
+                      className="pure-button pure-button-primary"
+                      onClick={this.submitSignup}>
+                        Sign up
+                      </button>&nbsp;
             </div>
             <br />
             {this.state.errors}

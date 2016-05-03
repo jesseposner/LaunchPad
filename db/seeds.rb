@@ -1,16 +1,26 @@
 User.create!(
-  username: "guest",
-  password: "password"
+  email: "guest@launchpad.com",
+  password: "password",
+  name: Faker::Name.name ,
+  street_address: Faker::Address.street_address,
+  city: Faker::Address.city,
+  state: Faker::Address.state_abbr,
+  zip: Faker::Address.zip
 )
 
-1000.times do
+5.times do
   User.create(
-    username: Faker::Internet.user_name,
-    password: Faker::Internet.password
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+    name: Faker::Name.name,
+    street_address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    zip: Faker::Address.zip
   )
 end
 
-1001.times do
+5.times do
   Company.create(
     name: Faker::Company.name,
     street_address: Faker::Address.street_address,
@@ -28,43 +38,14 @@ end
   )
 end
 
-1001.times do |i|
-  Founder.create!(
-    name: Faker::Name.name,
-    street_address: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    zip: Faker::Address.zip,
+5.times do |i|
+  Founding.create!(
     user_id: i + 1,
     company_id: i + 1
   )
 end
 
-1001.times do |i|
-  Investor.create!(
-    name: Faker::Name.name,
-    street_address: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    zip: Faker::Address.zip,
-    user_id: i + 1,
-    company_id: i + 1
-  )
-end
-
-10000.times do |i|
-  Investor.create!(
-    name: Faker::Name.name,
-    street_address: Faker::Address.street_address,
-    city: Faker::Address.city,
-    state: Faker::Address.state_abbr,
-    zip: Faker::Address.zip,
-    user_id: rand(1002),
-    company_id: rand(1002)
-  )
-end
-
-1001.times do |i|
+5.times do |i|
   new_shares = rand(100000..5000000)
 
   Offering.create!(
@@ -78,10 +59,10 @@ end
   )
 end
 
-11000.times do |i|
+5.times do |i|
   Investment.create!(
     shares: rand(50000),
-    investor_id: i + 1,
-    offering_id: rand(1002)
+    user_id: i + 1,
+    offering_id: i + 1
   )
 end

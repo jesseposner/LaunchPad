@@ -1,14 +1,17 @@
 class User < ActiveRecord::Base
-  validates :username, :password_digest, :session_token, presence: true
-  validates :username, :session_token, uniqueness: true
+  validates :email, :password_digest, :session_token, presence: true
+  validates :email, :session_token, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: true
+
+  has_many :investments
+  has_many :foundings
 
   after_initialize :ensure_session_token
 
   attr_reader :password
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by_email(email)
     return nil unless user && user.is_password?(password)
     user
   end
