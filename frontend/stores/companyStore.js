@@ -5,7 +5,8 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
 var CompanyStore = new Store(Dispatcher);
 
 var _companies = {},
-    _total = 0;
+    _total = 0,
+   _pos = 0;
 
 CompanyStore.all = function () {
   return Object.keys(_companies).map(function (id) {
@@ -21,6 +22,10 @@ CompanyStore.total = function () {
   return _total;
 };
 
+CompanyStore.pos = function () {
+  return _pos;
+};
+
 CompanyStore.__onDispatch = function (payload) {
   switch (payload.actionType) {
     case CompanyConstants.COMPANIES_RECEIVED:
@@ -33,6 +38,10 @@ CompanyStore.__onDispatch = function (payload) {
 
     case CompanyConstants.TOTAL_RECEIVED:
       updateTotal(payload.total);
+      break;
+
+    case CompanyConstants.POSITION_RECEIVED:
+      updatePosition(payload.px);
       break;
   }
 
@@ -51,6 +60,10 @@ function updateCompany(company) {
 
 function updateTotal(total) {
   _total = total.total;
+}
+
+function updatePosition(px) {
+  _pos = px;
 }
 
 module.exports = CompanyStore;

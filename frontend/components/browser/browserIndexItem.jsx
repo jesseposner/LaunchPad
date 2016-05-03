@@ -1,9 +1,10 @@
 var React = require('react'),
-    Link = require('react-router').Link;
+    Link = require('react-router').Link,
+    ClientActions = require('../../actions/clientActions');
 
 var BrowserIndexItem = React.createClass({
   saveScroll: function () {
-    // clientaction to company store to save $(window).scrollTop()
+    ClientActions.setPosition($(window).scrollTop());
   },
 
   render: function() {

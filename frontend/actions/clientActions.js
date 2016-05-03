@@ -1,5 +1,6 @@
 var ApiUtil = require('../util/apiUtil.js'),
-    Dispatcher = require('../dispatcher/dispatcher.js');
+    Dispatcher = require('../dispatcher/dispatcher.js'),
+    CompanyConstants = require('../constants/companyConstants');
 
 var ClientActions = {
    fetchCurrentUser: function () {
@@ -16,6 +17,13 @@ var ClientActions = {
 
    fetchTotalCompanies: function () {
      ApiUtil.fetchTotalCompanies();
+   },
+
+   setPosition: function (px) {
+     Dispatcher.dispatch({
+       actionType: CompanyConstants.POSITION_RECEIVED,
+       px: px
+     });
    },
 
    createUser: function (user) {

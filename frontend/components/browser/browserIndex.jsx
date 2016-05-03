@@ -12,14 +12,15 @@ var BrowserIndex = React.createClass({
       page: Math.floor(CompanyStore.all().length/20) + 1,
       total: 0,
       loaded: false,
-      scrollPos: $(window).scrollTop()
-      // get pos from company store instead of $(window).scrollTop()
+      scrollPos: CompanyStore.pos()
     };
   },
 
   componentDidMount: function() {
     this.removeToken = CompanyStore.addListener(this.onChange);
-    $(window).scrollTop(this.state.scrollPos);
+    setTimeout(function () {
+      $(window).scrollTop(this.state.scrollPos);
+    }.bind(this), 500);
     window.addEventListener("scroll", this.handleScroll);
     ClientActions.fetchCompanies(1);
     ClientActions.fetchTotalCompanies();
