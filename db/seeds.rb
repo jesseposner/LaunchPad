@@ -8,7 +8,7 @@ User.create!(
   zip: Faker::Address.zip
 )
 
-5.times do
+1000.times do |i|
   User.create(
     email: Faker::Internet.email,
     password: Faker::Internet.password,
@@ -20,7 +20,7 @@ User.create!(
   )
 end
 
-5.times do
+1000.times do
   Company.create(
     name: Faker::Company.name,
     street_address: Faker::Address.street_address,
@@ -38,14 +38,14 @@ end
   )
 end
 
-5.times do |i|
+1000.times do |i|
   Founding.create!(
     user_id: i + 1,
     company_id: i + 1
   )
 end
 
-5.times do |i|
+1000.times do |i|
   new_shares = rand(100000..5000000)
 
   Offering.create!(
@@ -59,10 +59,10 @@ end
   )
 end
 
-5.times do |i|
+10000.times do |i|
   Investment.create!(
     shares: rand(50000),
-    user_id: i + 1,
-    offering_id: i + 1
+    user_id: rand(1001),
+    offering_id: rand(1001)
   )
 end

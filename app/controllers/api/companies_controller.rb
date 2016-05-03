@@ -22,10 +22,11 @@ class Api::CompaniesController < ApplicationController
   end
 
   def show
-    @company = Company.includes(:founders,
+    @company = Company.includes(:foundings,
+                                :founders,
                                 :investors,
                                 :offerings,
-                                offerings: :investments)
+                                :investments)
                       .find_by_id(params[:id])
 
     if @company

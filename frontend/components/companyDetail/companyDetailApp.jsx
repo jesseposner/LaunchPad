@@ -149,10 +149,6 @@ var CompanyDetailApp = React.createClass({
                             Purchase
                           </button>
                       </StripeCheckout><p/>
-                      <label htmlFor="remember">
-                        <input id="remember" type="checkbox"/>
-                        &nbsp;I've read the terms and conditions.
-                      </label>
                     </fieldset>
                   </form>
                   <div className="purchase-price">
