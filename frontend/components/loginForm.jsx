@@ -13,7 +13,6 @@ var LoginForm = React.createClass({
 
   componentDidMount: function() {
     this.removeToken = UserStore.addListener(this.onChange);
-    this.props.getRef(this.refs.username);
   },
 
   componentWillUnmount: function() {
@@ -71,7 +70,6 @@ var LoginForm = React.createClass({
                   <label>Username</label>
                   <input id="name"
                          type="text"
-                         ref="username"
                          placeholder="Username"
                          value={this.state.username}
                          onChange={this.updateUsername} />

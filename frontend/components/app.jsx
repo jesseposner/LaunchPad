@@ -41,12 +41,8 @@ var React = require('react'),
      this.setState({ modalOpen: false });
    },
 
-   getRef: function (ref) {
-     this.setState({ ref: ref });
-   },
-
    afterOpen: function () {
-     ReactDOM.findDOMNode(this.state.ref).focus();
+     document.getElementById("name").focus();
    },
 
  	render: function () {
@@ -83,14 +79,14 @@ var React = require('react'),
         };
 
     if (!this.state.currentUser) {
-      userEl = <LoginForm />;
+      userEl = (
+        <div className="navbar-login" onClick={this.openModal}>
+          Log in + Sign up
+        </div>);
     } else {
       userEl = (
-        <div>
-          <p />
-          <button onClick={this.submitLogout}>
-            Logout
-          </button>
+        <div className="navbar-logout" onClick={this.submitLogout}>
+          Log out
         </div>
       );
     }
@@ -105,9 +101,7 @@ var React = require('react'),
             <Link to='explore'>Explore</Link>
             <Link to='launch'>Launch</Link>
           </div>
-          <div className="navbar-login" onClick={this.openModal}>
-            Log in + Sign up
-          </div>
+          {userEl}
         </div>
         {this.props.children}
         <Modal
@@ -117,7 +111,7 @@ var React = require('react'),
           closeTimeoutMS={150}
           style={customStyle}>
 
-          <LoginForm closeModal={this.closeModal} getRef={this.getRef} />
+          <LoginForm closeModal={this.closeModal} />
         </Modal>
  			</div>
  		);
