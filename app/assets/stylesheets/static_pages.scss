@@ -88,6 +88,7 @@
   position: absolute;
   top: 720px;
   font-size: 40px;
+  color: white;
 }
 
 .company-tab-container {
@@ -418,15 +419,15 @@ h1,h2,h3 {
   color: #414141;
 }
 
-.example-enter {
+.price-transition-enter {
   opacity: 0.01;
 }
 
-.example-enter.example-enter-active {
+.price-transition-enter.price-transition-enter-active {
   opacity: 1;
   -webkit-transition: color .1s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
   transition: color .1s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
-  color: #FF3B3F;
+  color: #7CDBD5;
 }
 
 .login-line-above {

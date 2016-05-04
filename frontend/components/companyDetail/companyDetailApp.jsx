@@ -188,7 +188,7 @@ var CompanyDetailApp = React.createClass({
                 </form>
               </div>
               <div className="purchase-price">
-                <ReactCSSTransitionGroup transitionName="example"
+                <ReactCSSTransitionGroup transitionName="price-transition"
                                          transitionLeave={false}
                                          transitionEnterTimeout={0}>
                   {purchasePriceStrTag}
