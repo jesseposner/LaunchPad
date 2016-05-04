@@ -41,7 +41,10 @@ var LoginForm = React.createClass({
   },
 
   submitLogin: function (event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
+    
     ClientActions.createSession({
       email: this.state.email,
       password: this.state.password
@@ -59,6 +62,38 @@ var LoginForm = React.createClass({
       state: this.state.state,
       zip: this.state.zip
     });
+  },
+
+  submitGuest: function (event) {
+    event.preventDefault();
+    var email = "guest@launchpad.com";
+    var password = "password";
+    var index = 0;
+    var intObject = setInterval(function() {
+      this.setState({
+        email: this.state.email += email[index]
+      });
+
+      index++;
+
+      if (index === email.length) {
+        clearInterval(intObject);
+        index = 0;
+
+        intObject = setInterval(function () {
+          this.setState({
+            password: this.state.password += password[index]
+          });
+
+          index++;
+
+          if (index === password.length) {
+            clearInterval(intObject);
+            this.submitLogin();
+          }
+        }.bind(this), 100);
+      }
+    }.bind(this), 100);
   },
 
   updateUserInfo: function (event) {
@@ -93,8 +128,9 @@ var LoginForm = React.createClass({
             <div className="pure-control-group">
                 <label>E-Mail</label>
                 <input id="email"
-                       type="email"
+                       type="text"
                        placeholder="E-Mail"
+                       value={this.state.email}
                        onChange={this.updateUserInfo} />
             </div>
 
@@ -103,10 +139,16 @@ var LoginForm = React.createClass({
                 <input id="password"
                        type="password"
                        placeholder="Password"
+                       value={this.state.password}
                        onChange={this.updateUserInfo} />
             </div>
 
-            <div className="pure-controls">
+            <div className="slide-1-buttons">
+                <button type="submit"
+                        className="pure-button pure-button-primary red-button"
+                        onClick={this.submitGuest}>
+                          Guest
+                        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="submit"
                         className="pure-button pure-button-primary red-button"
                         onClick={this.submitLogin}>
@@ -161,8 +203,56 @@ var LoginForm = React.createClass({
                         className="pure-input-1-2"
                         onChange={this.updateUserInfo}>
                     <option>AL</option>
+                    <option>AK</option>
+                    <option>AZ</option>
+                    <option>AR</option>
                     <option>CA</option>
+                    <option>CO</option>
+                    <option>CT</option>
+                    <option>DE</option>
+                    <option>DC</option>
+                    <option>FL</option>
+                    <option>GA</option>
+                    <option>HI</option>
+                    <option>ID</option>
                     <option>IL</option>
+                    <option>IN</option>
+                    <option>IA</option>
+                    <option>KS</option>
+                    <option>KY</option>
+                    <option>LA</option>
+                    <option>ME</option>
+                    <option>MD</option>
+                    <option>MA</option>
+                    <option>MI</option>
+                    <option>MN</option>
+                    <option>MS</option>
+                    <option>MO</option>
+                    <option>MT</option>
+                    <option>NE</option>
+                    <option>NV</option>
+                    <option>NH</option>
+                    <option>NJ</option>
+                    <option>NM</option>
+                    <option>NY</option>
+                    <option>NC</option>
+                    <option>ND</option>
+                    <option>OH</option>
+                    <option>OK</option>
+                    <option>OR</option>
+                    <option>PA</option>
+                    <option>RI</option>
+                    <option>SC</option>
+                    <option>SD</option>
+                    <option>TN</option>
+                    <option>TX</option>
+                    <option>UT</option>
+                    <option>VT</option>
+                    <option>VA</option>
+                    <option>WA</option>
+                    <option>WV</option>
+                    <option>WI</option>
+                    <option>WY</option>
                 </select>
             </div>
             <div className="pure-control-group">
