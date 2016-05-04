@@ -165,6 +165,7 @@ var CompanyDetailApp = React.createClass({
                            min="1"
                            value={this.state.shares}
                            onChange={this.updateShares} />
+                         <p />
                     <StripeCheckout
                       token={this.onToken}
                       stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
@@ -175,7 +176,7 @@ var CompanyDetailApp = React.createClass({
                       image={this.state.company.media_url}
                       name={this.state.company.name}
                       allowRememberMe={false}>
-                        <button className="purchase-button"
+                        <button className="purchase-button hvr-bubble-top"
                                 onClick={function (event) {
                                   event.preventDefault();
                                 }}>
