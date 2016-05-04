@@ -162,6 +162,7 @@ var CompanyDetailApp = React.createClass({
                   }.bind(this)}>
             Purchase
           </button>
+          <br />
           {this.state.error}
         </div>
       );
