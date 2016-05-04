@@ -157,14 +157,14 @@ var CompanyDetailApp = React.createClass({
               </div>
               <div className="purchase-container">
                 <form className="pure-form">
-                  <fieldset>
-                    <input style={{width: "179px"}}
+                  <fieldset className="pure-group">
+                    <input className="shares-input"
+                           autoFocus={true}
                            type="number"
                            placeholder="Shares"
                            min="1"
                            value={this.state.shares}
                            onChange={this.updateShares} />
-                         <p />
                     <StripeCheckout
                       token={this.onToken}
                       stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
@@ -175,9 +175,7 @@ var CompanyDetailApp = React.createClass({
                       image={this.state.company.media_url}
                       name={this.state.company.name}
                       allowRememberMe={false}>
-                        <button className="pure-button
-                                           pure-button-primary
-                                           red-button"
+                        <button className="red-button"
                                 onClick={function (event) {
                                   event.preventDefault();
                                 }}>
