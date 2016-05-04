@@ -1,5 +1,6 @@
 var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
+    UserStore = require('../../stores/userStore'),
     ClientActions = require('../../actions/clientActions'),
     StripeCheckout = require('react-stripe-checkout'),
     Loader = require('react-loader'),
@@ -69,6 +70,7 @@ var CompanyDetailApp = React.createClass({
         preMoneyValuation,
         raised,
         description,
+        purchaseButton,
         purchasePriceStr,
         purchasePriceStrTag,
         purchasePriceInt;
@@ -110,6 +112,43 @@ var CompanyDetailApp = React.createClass({
          <span key={purchasePriceInt}>{purchasePriceStr}</span>
        );
       }
+    }
+
+    if (UserStore.currentUser()) {
+      purchaseButton = (
+        <StripeCheckout
+          token={this.onToken}
+          stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
+          amount={purchasePriceInt}
+          description={this.state.shares + " Shares"}
+          email={UserStore.currentUser().email}
+          bitcoin={true}
+          image={this.state.company.media_url}
+          name={this.state.company.name}
+          allowRememberMe={false}>
+            <button className="purchase-button hvr-bubble-top"
+                    onClick={function (event) {
+                      event.preventDefault();
+                    }}>
+              Purchase
+            </button>
+        </StripeCheckout>
+      );
+    } else {
+      purchaseButton = (
+        <div>
+          <button className="purchase-button hvr-bubble-top"
+                  onClick={function (event) {
+                    event.preventDefault();
+                    this.setState({
+                      error: "You must be logged in."
+                    });
+                  }.bind(this)}>
+            Purchase
+          </button>
+          {this.state.error}
+        </div>
+      );
     }
 
     return (
@@ -165,24 +204,9 @@ var CompanyDetailApp = React.createClass({
                            min="1"
                            value={this.state.shares}
                            onChange={this.updateShares} />
-                         <p />
-                    <StripeCheckout
-                      token={this.onToken}
-                      stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
-                      amount={purchasePriceInt}
-                      description={this.state.shares + " Shares"}
-                      email="guest@launchpad.com"
-                      bitcoin={true}
-                      image={this.state.company.media_url}
-                      name={this.state.company.name}
-                      allowRememberMe={false}>
-                        <button className="purchase-button hvr-bubble-top"
-                                onClick={function (event) {
-                                  event.preventDefault();
-                                }}>
-                          Purchase
-                        </button>
-                    </StripeCheckout><p/>
+                      <p />
+                      {purchaseButton}
+                      <p />
                   </fieldset>
                 </form>
               </div>
