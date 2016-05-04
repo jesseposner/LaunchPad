@@ -91,8 +91,8 @@
 }
 
 .purchase-price {
-  position: relative;
-  top: 23px;
+  position: absolute;
+  top: 740px;
   font-size: 40px;
 }
 
@@ -410,7 +410,7 @@ h1,h2,h3 {
   text-align: center;
   padding-top: 0px;
   margin-top: 40px;
-  margin-bottom: 50px;
+  // margin-bottom: 50px;
 }
 
 .example-enter {
@@ -422,4 +422,13 @@ h1,h2,h3 {
   -webkit-transition: color .1s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
   transition: color .1s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
   color: #008cdd;
+}
+
+.login-line-above {
+  width: 300px;
+}
+
+.login-line-below {
+  margin-top: 20px;
+  width: 300px;
 }

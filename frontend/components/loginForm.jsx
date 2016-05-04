@@ -67,11 +67,13 @@ var LoginForm = React.createClass({
     });
   },
 
-  nextSlide: function () {
+  nextSlide: function (event) {
+    event.preventDefault();
     $('.pure-form').slick('slickNext');
   },
 
-  prevSlide: function () {
+  prevSlide: function (event) {
+    event.preventDefault();
     $('.pure-form').slick('slickPrev');
   },
 
@@ -84,7 +86,9 @@ var LoginForm = React.createClass({
         <br />
         <form className="pure-form pure-form-aligned">
           <div className="slide-1">
-            <h2 className="form-title">Welcome</h2>
+            <h2 className="form-title">
+              Welcome<hr className="login-line-above"/>
+            </h2>
             <div className="pure-control-group">
                 <label>E-Mail</label>
                 <input id="email"
@@ -115,6 +119,7 @@ var LoginForm = React.createClass({
                           Sign up
                         </button>&nbsp;
             </div>
+            <hr className="login-line-below" />
             <br />
             {this.state.errors}
           </div>
