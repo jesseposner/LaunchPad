@@ -175,7 +175,7 @@ var CompanyDetailApp = React.createClass({
                       image={this.state.company.media_url}
                       name={this.state.company.name}
                       allowRememberMe={false}>
-                        <button className="red-button"
+                        <button className="purchase-button"
                                 onClick={function (event) {
                                   event.preventDefault();
                                 }}>
