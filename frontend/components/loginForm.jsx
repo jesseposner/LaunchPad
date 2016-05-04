@@ -7,7 +7,8 @@ var LoginForm = React.createClass({
   getInitialState: function() {
     return {
       email: "",
-      password: ""
+      password: "",
+      state: "AL"
     };
   },
 
@@ -51,20 +52,20 @@ var LoginForm = React.createClass({
     event.preventDefault();
     ClientActions.createUser({
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      name: this.state.firstName + " " + this.state.lastName,
+      street_address: this.state.streetAddress,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip
     });
   },
 
-  updateemail: function (event) {
-    this.setState({
-      email: event.target.value
-    });
-  },
-
-  updatePassword: function (event) {
-    this.setState({
-      password: event.target.value
-    });
+  updateUserInfo: function (event) {
+    var category = event.target.id;
+    var state = {};
+    state[category] = event.target.value;
+    this.setState(state);
   },
 
   nextSlide: function (event) {
@@ -94,8 +95,7 @@ var LoginForm = React.createClass({
                 <input id="email"
                        type="email"
                        placeholder="E-Mail"
-                       value={this.state.email}
-                       onChange={this.updateemail} />
+                       onChange={this.updateUserInfo} />
             </div>
 
             <div className="pure-control-group">
@@ -103,8 +103,7 @@ var LoginForm = React.createClass({
                 <input id="password"
                        type="password"
                        placeholder="Password"
-                       value={this.state.password}
-                       onChange={this.updatePassword} />
+                       onChange={this.updateUserInfo} />
             </div>
 
             <div className="pure-controls">
@@ -126,29 +125,26 @@ var LoginForm = React.createClass({
           <div className="slide-2">
             <div className="pure-control-group">
                 <label>First Name</label>
-                <input id="first-name"
+                <input id="firstName"
                        type="text"
                        placeholder="First Name"
-                       value={this.state.email}
-                       onChange={this.updateemail} />
+                       onChange={this.updateUserInfo} />
             </div>
 
             <div className="pure-control-group">
                 <label>Last Name</label>
-                <input id="last-name"
+                <input id="lastName"
                        type="text"
                        placeholder="Last Name"
-                       value={this.state.email}
-                       onChange={this.updateemail} />
+                       onChange={this.updateUserInfo} />
             </div>
 
             <div className="pure-control-group">
                 <label>Street Address</label>
-                <input id="street-address"
+                <input id="streetAddress"
                        type="text"
                        placeholder="Street Address"
-                       value={this.state.email}
-                       onChange={this.updateemail} />
+                       onChange={this.updateUserInfo} />
             </div>
 
             <div className="pure-control-group">
@@ -156,13 +152,14 @@ var LoginForm = React.createClass({
                 <input id="city"
                        type="text"
                        placeholder="City"
-                       value={this.state.email}
-                       onChange={this.updateemail} />
+                       onChange={this.updateUserInfo} />
             </div>
 
             <div className="pure-control-group">
                 <label>State</label>
-                <select id="state" className="pure-input-1-2">
+                <select id="state"
+                        className="pure-input-1-2"
+                        onChange={this.updateUserInfo}>
                     <option>AL</option>
                     <option>CA</option>
                     <option>IL</option>
@@ -173,8 +170,7 @@ var LoginForm = React.createClass({
                 <input id="zip"
                        type="text"
                        placeholder="Zip"
-                       value={this.state.email}
-                       onChange={this.updateemail} />
+                       onChange={this.updateUserInfo} />
             </div>
             <div className="pure-controls">
               <button type="submit"
