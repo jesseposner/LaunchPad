@@ -101,7 +101,7 @@ var CompanyDetailApp = React.createClass({
         var purchasePrice = Math.round(
           100 * (this.state.shares * offering.price)
         )/100;
-        purchasePriceStr = "$" + purchasePrice;
+        purchasePriceStr = numberWithCommas("$" + purchasePrice);
         purchasePriceInt = Math.round((parseInt(purchasePrice) * 100) +
                            (100 *
                              (purchasePrice - parseInt(purchasePrice))
