@@ -165,11 +165,13 @@
 
 .large-media-container {
   height: 300px;
-  padding: 20px;
+  padding: 25px;
+  padding-down: 0px;
 }
 
 .company-left {
   max-width: 650px;
+  padding-left: 28px;
 }
 
 .company-stats {
@@ -196,11 +198,12 @@
 .company-caption-left {
   height: 100px;
   padding: 24px;
+  padding-top: 10px;
   padding-bottom: 0px;
   font: 20px normal Arial, sans-serif;
   color: #444;
   line-height: 1.6;
-  margin-bottom: 1px;
+  margin-bottom: 0px;
 }
 
 .company-top {
@@ -220,7 +223,7 @@
   display: flex;
   height: 80px;
   margin: 0px;
-  padding-left: 25px;
+  padding-left: 51px;
   align-items: center;
   background-color: #414141;
   color: #ffffff;
@@ -241,10 +244,10 @@
 }
 
 .company-main-content {
-  max-width: 580px;
+  max-width: 480px;
   line-height: 1.6;
   font-size: 18px;
-  padding-left: 25px;
+  padding-left: 51px;
   padding-top: 10px;
 }
 
