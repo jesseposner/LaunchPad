@@ -16,6 +16,8 @@
   flex-wrap: nowrap;
   color: #008cdd;
   padding: 10px;
+  background-color: #F7FAFD;
+  z-index: 999;
   border-bottom: solid 1px #BBBBBB;
   align-items: center;
   height: 40px;
@@ -92,20 +94,12 @@
 
 .purchase-price {
   position: absolute;
-  top: 740px;
+  top: 720px;
   font-size: 40px;
 }
 
 .company-tab-container {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-wrap: nowrap;
-  background-color: white;
   border-top: solid 1px #BBBBBB;
-  border-bottom: solid 1px #BBBBBB;
 }
 
 .title-text {
@@ -116,7 +110,7 @@
 .browser-list-item {
   list-style: none;
   width: 200px;
-  height: 275px;
+  height: 300px;
   border: solid 1px #D9D9DE;
   border-radius: 6px;
   font: 14px normal Arial, sans-serif;
@@ -124,6 +118,10 @@
   margin: 20px;
   padding: 10px;
   padding-top: 0px;
+  background-color: #F7FAFD;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
 }
 
 .company-name {
@@ -219,6 +217,7 @@
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
+  background-color: #F7FAFD;
 }
 
 .company-tabs {
@@ -248,12 +247,16 @@
   color: #008cdd;
 }
 
-.company-main {
-  margin: 15px 15px;
+.company-main-content {
   max-width: 580px;
   line-height: 1.6;
   font-size: 18px;
   padding: 0 10px;
+}
+
+.company-main-container {
+  background-color: #F7FAFD;
+  border-top: solid 1px #BBBBBB;
 }
 
 .founders {

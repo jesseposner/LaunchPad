@@ -190,15 +190,16 @@ var CompanyDetailApp = React.createClass({
               </div>
             </div>
           </div>
-          <br />
           <div className="company-tab-container">
             <ul className="company-tabs">
               <li>Business Plan</li>
               <li>Investors</li>
             </ul>
-          </div>
-          <div className="company-main">
-            {this.parseBusinessPlan()}
+            <div className="company-main-container">
+              <div className="company-main-content">
+                {this.parseBusinessPlan()}
+              </div>
+            </div>
           </div>
         </Loader>
       </div>

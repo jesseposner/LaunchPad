@@ -4,7 +4,9 @@ var React = require('react'),
     LoginForm = require('./loginForm'),
     ClientActions = require('../actions/clientActions'),
     Link = require('react-router').Link,
-    Modal = require('react-modal');
+    Modal = require('react-modal'),
+    StickyContainer = require('react-sticky').StickyContainer,
+    Sticky = require('react-sticky').Sticky;
 
  var App = React.createClass({
    getInitialState: function() {
@@ -100,21 +102,23 @@ var React = require('react'),
 
  		return(
  			<div>
-        <div className="navbar">
-          <div className="logo">
-            <Link to='/'><img src={imagePaths.logo} /></Link>
-          </div>
-          <div className="navbar-links">
-            <Link to='explore' className="hvr-underline-from-center">
-              Explore
-            </Link>
-            <Link to='launch' className="hvr-underline-from-center">
-              Launch
-            </Link>
-          </div>
-          {userEl}
-        </div>
-        {this.props.children}
+        <StickyContainer>
+          <Sticky className="navbar">
+            <div className="logo">
+              <Link to='/'><img src={imagePaths.logo} /></Link>
+            </div>
+            <div className="navbar-links">
+              <Link to='explore' className="hvr-underline-from-center">
+                Explore
+              </Link>
+              <Link to='launch' className="hvr-underline-from-center">
+                Launch
+              </Link>
+            </div>
+            {userEl}
+          </Sticky>
+          {this.props.children}
+        </StickyContainer>
         <Modal
           className="modal"
           isOpen={this.state.modalOpen}
