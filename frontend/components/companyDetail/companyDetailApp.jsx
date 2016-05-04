@@ -26,6 +26,16 @@ var CompanyDetailApp = React.createClass({
   componentDidMount: function() {
     this.removeToken = CompanyStore.addListener(this.onChange);
     ClientActions.fetchCompany(this.props.params.companyId);
+    setTimeout(function(){
+      $('.company-main-content').slick({
+        accessibility: false,
+        arrows: false,
+        draggable: false,
+        infinite: false,
+        swipe: false,
+        touchMove: false
+      });
+    }, 500);
   },
 
   componentWillUnmount: function() {
@@ -64,6 +74,11 @@ var CompanyDetailApp = React.createClass({
     }
   },
 
+  slickGoTo: function (index, event) {
+    event.preventDefault();
+    $('.company-main-content').slick('slickGoTo', index);
+  },
+
   render: function() {
     function numberWithCommas(num) {
       return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -72,6 +87,7 @@ var CompanyDetailApp = React.createClass({
         offeringDate,
         expirationDate,
         investors,
+        investorList,
         preMoneyValuation,
         raised,
         description,
@@ -89,17 +105,37 @@ var CompanyDetailApp = React.createClass({
     }
 
     if (this.state.company.investors) {
-      Array.prototype.unique = function() {
-        var o = {}, i, l = this.length, r = [];
-        for(i=0; i<l;i+=1) o[this[i]] = this[i];
-        for(i in o) r.push(o[i]);
-        return r;
+      Array.prototype.uniq = function() {
+        var resultArr = [];
+
+        for (var i = 0; i < this.length; i++) {
+          if (resultArr.indexOf(this[i]) === -1) {
+            resultArr.push(this[i]);
+          }
+        }
+
+        return resultArr;
       };
+
+      var investorNames = {};
+
+      this.state.company.investors.forEach(function (investor) {
+        investorNames[investor.id] = investor.name;
+      });
+
+      investorList = (
+        <ul className="investorList">
+          {Object.keys(investorNames).map(function (id) {
+            return <li key={id}>{investorNames[id]}</li>;
+          })}
+        </ul>
+      );
+
       investors = this.state
                       .company
                       .investors
                       .map(function(investor){return investor.id;})
-                      .unique()
+                      .uniq()
                       .length;
     }
 
@@ -238,12 +274,17 @@ var CompanyDetailApp = React.createClass({
           </div>
           <div className="company-tab-container">
             <ul className="company-tabs">
-              <li>Business Plan</li>
-              <li>Investors</li>
+              <li onClick={this.slickGoTo.bind(this, 0)}>Business Plan</li>
+              <li onClick={this.slickGoTo.bind(this, 1)}>Investors</li>
             </ul>
             <div className="company-main-container">
               <div className="company-main-content">
-                {this.parseBusinessPlan()}
+                <div className="bplan">
+                  {this.parseBusinessPlan()}
+                </div>
+                <div className="investors">
+                  {investorList}
+                </div>
               </div>
             </div>
           </div>

@@ -108,8 +108,8 @@ var LoginForm = React.createClass({
   },
 
   nextSlide: function (event) {
+    event.preventDefault();
     if (this.state.email && this.state.password) {
-      event.preventDefault();
       this.setState({
         errors: ""
       });

@@ -20,8 +20,8 @@ var BrowserIndex = React.createClass({
     this.removeToken = CompanyStore.addListener(this.onChange);
     setTimeout(function () {
       $(window).scrollTop(this.state.scrollPos);
+      window.addEventListener("scroll", this.handleScroll);
     }.bind(this), 500);
-    window.addEventListener("scroll", this.handleScroll);
     ClientActions.fetchCompanies(1);
     ClientActions.fetchTotalCompanies();
   },
