@@ -104,7 +104,7 @@ var React = require('react'),
  			<div>
         <StickyContainer>
           <Sticky className="navbar">
-            <div className="logo">
+            <div className="logo hvr-grow">
               <Link to='/'><img src={imagePaths.logo} /></Link>
             </div>
             <div className="navbar-links">

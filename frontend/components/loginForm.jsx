@@ -93,7 +93,7 @@ var LoginForm = React.createClass({
                 <label>E-Mail</label>
                 <input id="email"
                        type="email"
-                       placeholder="email"
+                       placeholder="E-Mail"
                        value={this.state.email}
                        onChange={this.updateemail} />
             </div>
@@ -109,12 +109,12 @@ var LoginForm = React.createClass({
 
             <div className="pure-controls">
                 <button type="submit"
-                        className="pure-button pure-button-primary"
+                        className="pure-button pure-button-primary red-button"
                         onClick={this.submitLogin}>
                           Log in
                         </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button type="submit"
-                        className="pure-button pure-button-primary"
+                        className="pure-button pure-button-primary red-button"
                         onClick={this.nextSlide}>
                           Sign up
                         </button>&nbsp;
@@ -178,12 +178,12 @@ var LoginForm = React.createClass({
             </div>
             <div className="pure-controls">
               <button type="submit"
-                      className="pure-button pure-button-primary"
+                      className="pure-button pure-button-primary red-button"
                       onClick={this.prevSlide}>
                         Back
                       </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button type="submit"
-                      className="pure-button pure-button-primary"
+                      className="pure-button pure-button-primary red-button"
                       onClick={this.submitSignup}>
                         Sign up
                       </button>&nbsp;

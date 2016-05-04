@@ -45,7 +45,7 @@ var BrowserIndex = React.createClass({
       window.removeEventListener("scroll", this.handleScroll);
     } else if ($(window).scrollTop() +
                $(window).height() >
-               $(document).height() - 100) {
+               $(document).height() - 150) {
       if (!this.state.loadingFlag) {
         this.setState({
           loadingFlag: true,
@@ -85,7 +85,8 @@ var BrowserIndex = React.createClass({
         </div><p />
           <div className="footer">
             <Loader loaded={!this.state.loadingFlag}
-                    scale={0.5} />
+                    scale={0.5}
+                    speed={2.2} />
           </div>
         </Loader>
       </div>

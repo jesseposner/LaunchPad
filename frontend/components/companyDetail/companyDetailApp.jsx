@@ -74,7 +74,11 @@ var CompanyDetailApp = React.createClass({
         purchasePriceInt;
 
     if (this.state.company.founders) {
-      founders = <b>{this.state.company.founders[0].name}</b>;
+      founders = (
+        <b className="founders-bold">
+          {this.state.company.founders[0].name}
+        </b>
+      );
     }
 
     if (this.state.company.investors) {
@@ -171,7 +175,9 @@ var CompanyDetailApp = React.createClass({
                       image={this.state.company.media_url}
                       name={this.state.company.name}
                       allowRememberMe={false}>
-                        <button className="pure-button pure-button-primary"
+                        <button className="pure-button
+                                           pure-button-primary
+                                           red-button"
                                 onClick={function (event) {
                                   event.preventDefault();
                                 }}>
