@@ -44,7 +44,7 @@ var LoginForm = React.createClass({
     if (event) {
       event.preventDefault();
     }
-    
+
     ClientActions.createSession({
       email: this.state.email,
       password: this.state.password
@@ -66,6 +66,10 @@ var LoginForm = React.createClass({
 
   submitGuest: function (event) {
     event.preventDefault();
+    this.setState({
+      email: "",
+      password: ""
+    });
     var email = "guest@launchpad.com";
     var password = "password";
     var index = 0;
@@ -104,8 +108,17 @@ var LoginForm = React.createClass({
   },
 
   nextSlide: function (event) {
-    event.preventDefault();
-    $('.pure-form').slick('slickNext');
+    if (this.state.email && this.state.password) {
+      event.preventDefault();
+      this.setState({
+        errors: ""
+      });
+      $('.pure-form').slick('slickNext');
+    } else {
+      this.setState({
+        errors: "You must enter an email address and password to register."
+      });
+    }
   },
 
   prevSlide: function (event) {
