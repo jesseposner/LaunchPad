@@ -54,6 +54,20 @@ var ServerActions = require('../actions/serverActions'),
      });
    },
 
+   createInvestment: function (investment) {
+     $.ajax({
+       url: 'api/investment',
+       method: 'POST',
+       data: { investment: investment },
+       success: function (company) {
+         ServerActions.receiveCompany(company);
+       },
+       error: function (error) {
+         ServerActions.handleError(error);
+       }
+     });
+   },
+
    createSession: function (clientUser) {
      $.ajax({
        url: 'api/session',

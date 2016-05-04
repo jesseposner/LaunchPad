@@ -30,6 +30,10 @@ var ClientActions = {
      ApiUtil.createUser(user);
    },
 
+   createInvestment: function (investment) {
+     ApiUtil.createInvestment(investment);
+   },
+
    createSession: function (user) {
      ApiUtil.createSession(user);
    },

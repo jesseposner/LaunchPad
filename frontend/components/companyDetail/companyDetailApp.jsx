@@ -8,6 +8,11 @@ var React = require('react'),
 
 var CompanyDetailApp = React.createClass({
   onToken: function(token) {
+    ClientActions.createInvestment({
+      user_id: UserStore.currentUser().id,
+      offering_id: this.state.company.offerings[0].id,
+      shares: this.state.shares
+    });
   },
 
   getInitialState: function () {
@@ -84,7 +89,18 @@ var CompanyDetailApp = React.createClass({
     }
 
     if (this.state.company.investors) {
-      investors = this.state.company.investors.length;
+      Array.prototype.unique = function() {
+        var o = {}, i, l = this.length, r = [];
+        for(i=0; i<l;i+=1) o[this[i]] = this[i];
+        for(i in o) r.push(o[i]);
+        return r;
+      };
+      investors = this.state
+                      .company
+                      .investors
+                      .map(function(investor){return investor.id;})
+                      .unique()
+                      .length;
     }
 
     if (this.state.company.offerings) {
