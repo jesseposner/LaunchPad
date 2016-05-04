@@ -87,19 +87,25 @@
 }
 
 .purchase-container {
+  line-height: normal;
+}
+
+.purchase-price {
+  position: relative;
+  top: 23px;
+  font-size: 40px;
+}
+
+.company-tab-container {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
   flex-wrap: nowrap;
-  line-height: normal;
-}
-
-.purchase-price {
-  font-size: 40px;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: white;
+  border-top: solid 1px #BBBBBB;
+  border-bottom: solid 1px #BBBBBB;
 }
 
 .title-text {
@@ -186,18 +192,19 @@
 .company-right {
   width: 35%;
   margin-left: 30px;
+  height: 550px;
 }
 
 .company-caption-right {
   margin-top: 15px;
-  height: 190px;
+  height: 75px;
   max-width: 260px;
   font: 14px normal Arial, sans-serif;
   color: #444;
 }
 
 .company-caption-left {
-  height: 190px;
+  height: 100px;
   padding: 24px;
   padding-bottom: 0px;
   font: 20px normal Arial, sans-serif;
@@ -224,9 +231,6 @@
   margin: 0px;
   padding-left: 25px;
   align-items: center;
-  background-color: white;
-  border-top: solid 1px #D9D9DE;
-  border-bottom: solid 1px #D9D9DE;
 }
 
 .company-tabs li {
@@ -407,4 +411,15 @@ h1,h2,h3 {
   padding-top: 0px;
   margin-top: 40px;
   margin-bottom: 50px;
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  -webkit-transition: color .1s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
+  transition: color .1s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
+  color: #008cdd;
 }

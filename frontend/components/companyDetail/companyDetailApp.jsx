@@ -2,7 +2,8 @@ var React = require('react'),
     CompanyStore = require('../../stores/companyStore'),
     ClientActions = require('../../actions/clientActions'),
     StripeCheckout = require('react-stripe-checkout'),
-    Loader = require('react-loader');
+    Loader = require('react-loader'),
+    ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 
 var CompanyDetailApp = React.createClass({
   onToken: function(token) {
@@ -69,6 +70,7 @@ var CompanyDetailApp = React.createClass({
         raised,
         description,
         purchasePriceStr,
+        purchasePriceStrTag,
         purchasePriceInt;
 
     if (this.state.company.founders) {
@@ -100,6 +102,9 @@ var CompanyDetailApp = React.createClass({
                            (100 *
                              (purchasePrice - parseInt(purchasePrice))
                            ));
+       purchasePriceStrTag = (
+         <span key={purchasePriceInt}>{purchasePriceStr}</span>
+       );
       }
     }
 
@@ -122,39 +127,6 @@ var CompanyDetailApp = React.createClass({
               </div>
               <div className="company-caption-left">
                 {this.state.company.description}<p/>
-                <div className="purchase-container">
-                  <form className="pure-form">
-                    <fieldset>
-                      <input style={{width: "179px"}}
-                             type="number"
-                             placeholder="Shares"
-                             min="1"
-                             value={this.state.shares}
-                             onChange={this.updateShares} />
-                      &nbsp;&nbsp;&nbsp;
-                      <StripeCheckout
-                        token={this.onToken}
-                        stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
-                        amount={purchasePriceInt}
-                        description={this.state.shares + " Shares"}
-                        email="guest@launchpad.com"
-                        bitcoin={true}
-                        image={this.state.company.media_url}
-                        name={this.state.company.name}
-                        allowRememberMe={false}>
-                          <button className="pure-button pure-button-primary"
-                                  onClick={function (event) {
-                                    event.preventDefault();
-                                  }}>
-                            Purchase
-                          </button>
-                      </StripeCheckout><p/>
-                    </fieldset>
-                  </form>
-                  <div className="purchase-price">
-                    {purchasePriceStr}
-                  </div>
-                </div>
               </div>
             </div>
             <div className="company-right">
@@ -179,14 +151,52 @@ var CompanyDetailApp = React.createClass({
                 The current offering was created on {offeringDate}.
                 This offering will expire on {expirationDate}.
               </div>
+              <div className="purchase-container">
+                <form className="pure-form">
+                  <fieldset>
+                    <input style={{width: "179px"}}
+                           type="number"
+                           placeholder="Shares"
+                           min="1"
+                           value={this.state.shares}
+                           onChange={this.updateShares} />
+                         <p />
+                    <StripeCheckout
+                      token={this.onToken}
+                      stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
+                      amount={purchasePriceInt}
+                      description={this.state.shares + " Shares"}
+                      email="guest@launchpad.com"
+                      bitcoin={true}
+                      image={this.state.company.media_url}
+                      name={this.state.company.name}
+                      allowRememberMe={false}>
+                        <button className="pure-button pure-button-primary"
+                                onClick={function (event) {
+                                  event.preventDefault();
+                                }}>
+                          Purchase
+                        </button>
+                    </StripeCheckout><p/>
+                  </fieldset>
+                </form>
+              </div>
+              <div className="purchase-price">
+                <ReactCSSTransitionGroup transitionName="example"
+                                         transitionLeave={false}
+                                         transitionEnterTimeout={0}>
+                  {purchasePriceStrTag}
+                </ReactCSSTransitionGroup>
+              </div>
             </div>
           </div>
           <br />
-          <ul className="company-tabs">
-            <li>Business Plan</li>
-            <li>Updates</li>
-            <li>Comments</li>
-          </ul>
+          <div className="company-tab-container">
+            <ul className="company-tabs">
+              <li>Business Plan</li>
+              <li>Investors</li>
+            </ul>
+          </div>
           <div className="company-main">
             {this.parseBusinessPlan()}
           </div>
