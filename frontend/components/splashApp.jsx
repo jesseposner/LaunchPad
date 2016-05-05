@@ -148,6 +148,47 @@ var SplashApp = React.createClass({
            </button>
          </div>
        </div>
+       <div className="value-props">
+         <div className="inner-col">
+           <div className="links">
+             <section className="all-features">
+               <a href="#">
+                 <h2>Incredible companies</h2>
+                 <p>
+                   Browse thousands of exciting startups.
+                 </p>
+                 <p>
+                   <span className="arrow">Explore companies</span>
+                 </p>
+               </a>
+             </section>
+
+             <section className="simple-pricing">
+               <a href="#">
+                 <h2>Join the adventure</h2>
+                 <p>
+                   Catch a rocket to the moon with the next hot startup.
+                 </p>
+                 <p>
+                   <span className="arrow">View details</span>
+                 </p>
+               </a>
+             </section>
+
+             <section className="web-mobile">
+               <a href="#">
+                 <h2>Simple payments</h2>
+                 <p>
+                   Use a credit card to easily buy shares.
+                 </p>
+                 <p>
+                   <span className="arrow">Learn more</span>
+                 </p>
+               </a>
+             </section>
+           </div>
+         </div>
+       </div>
      </div>
     );
   }

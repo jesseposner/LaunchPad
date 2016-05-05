@@ -47,6 +47,10 @@ var React = require('react'),
      document.getElementById("email").focus();
    },
 
+   saveScroll: function () {
+     ClientActions.setPosition($(window).scrollTop());
+   },
+
  	render: function () {
     var navLink,
         userEl,
@@ -105,13 +109,18 @@ var React = require('react'),
         <StickyContainer>
           <Sticky className="navbar">
             <div className="logo hvr-grow">
-              <Link to='/'><img src={imagePaths.logo} /></Link>
+              <Link to='/' onClick={this.saveScroll} >
+                <img src={imagePaths.logo} />
+              </Link>
             </div>
             <div className="navbar-links">
-              <Link to='explore' className="hvr-underline-from-center">
+              <Link to='explore'
+                    className="hvr-underline-from-center" >
                 Explore
               </Link>
-              <Link to='launch' className="hvr-underline-from-center">
+              <Link to='launch'
+                    className="hvr-underline-from-center"
+                    onClick={this.saveScroll} >
                 Launch
               </Link>
             </div>
@@ -129,6 +138,20 @@ var React = require('react'),
 
           <LoginForm closeModal={this.closeModal} />
         </Modal>
+        <footer id="main-footer" className="">
+          <div className="footer-inner-col">
+            <p>© LaunchPad</p>
+            <ul>
+              <li><a href="#">Explore</a></li>
+              <li><a href="#">Launch</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">
+                Privacy &amp; Terms
+              </a></li>
+            </ul>
+          </div>
+        </footer>
  			</div>
  		);
  	}
