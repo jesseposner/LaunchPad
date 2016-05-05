@@ -9,13 +9,15 @@
      BrowserApp = require('./components/browser/browserApp'),
      CompanyDetailApp = require('./components/companyDetail/companyDetailApp'),
      SplashApp = require('./components/splashApp'),
-     Modal = require("react-modal");
+     Modal = require("react-modal"),
+     LaunchApp = require('./components/launchApp');
 
  var routes = (
  	<Route path='/' component={App}>
     <IndexRoute component={SplashApp} />
     <Route path='explore' component={BrowserApp} />
     <Route path='explore/:companyId' component={CompanyDetailApp} />
+    <Route path='launch' component={LaunchApp} />
  	</Route>
 
  );

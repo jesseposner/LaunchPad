@@ -1,6 +1,30 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.launch-title {
+  text-align: center;
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+.launch-form {
+  padding-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 960px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #C8C8C8;
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+
+.login-form {
+  margin: 0px;
+  padding: 0px;
+}
+
 .login-form {
   margin: 0px;
   padding: 0px;
@@ -78,6 +102,30 @@
   display: -webkit-flex;
   display: flex;
   flex-wrap: wrap;
+}
+
+.explore-bar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.explore-bar-item {
+  list-style: none;
+  width: 95px;
+  height: 39px;
+  padding-top: 22px;
+  border: solid 1px #A9A9A9;
+  border-radius: 6px;
+  font: 14px normal Arial, sans-serif;
+  color: #292e31;
+  margin: 20px;
+  background-color: #FFFFFF;
+  text-align: center;
 }
 
 .purchase-container {
