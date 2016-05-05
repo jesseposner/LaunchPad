@@ -1,7 +1,7 @@
 User.create!(
   email: "guest@launchpad.com",
   password: "password",
-  name: Faker::Name.name ,
+  name: "Guest Account",
   street_address: Faker::Address.street_address,
   city: Faker::Address.city,
   state: Faker::Address.state_abbr,
