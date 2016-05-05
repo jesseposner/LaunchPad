@@ -172,7 +172,10 @@ var CompanyDetailApp = React.createClass({
           token={this.onToken}
           stripeKey="pk_test_8P9wZ22jfcRatjLL5w1sirP7"
           amount={purchasePriceInt}
-          description={this.state.shares + " Shares"}
+          description={
+            "CC#: 4242 4242 4242 4242"
+          }
+          panelLabel={"{{amount}} for " + this.state.shares + " Shares"}
           email={UserStore.currentUser().email}
           bitcoin={true}
           image={this.state.company.media_url}
