@@ -1,6 +1,7 @@
 var React = require('react'),
     CompanyStore = require('../stores/companyStore'),
-    ClientActions = require('../actions/clientActions');
+    ClientActions = require('../actions/clientActions'),
+    HashHistory = require('react-router').hashHistory;
 
 var SplashApp = React.createClass({
   getInitialState: function() {
@@ -34,6 +35,16 @@ var SplashApp = React.createClass({
     this.setState({
       companies: CompanyStore.all()
     });
+  },
+
+  goToBrowser: function (event) {
+    event.preventDefault();
+    HashHistory.push('explore');
+  },
+
+  goToCompany: function (id, event) {
+    event.preventDefault();
+    HashHistory.push('explore/' + id);
   },
 
   render: function() {
@@ -71,7 +82,8 @@ var SplashApp = React.createClass({
              Investing in thousands of incredible companies
              is just a few clicks away.
            </div>
-           <button className="carousel-button hvr-grow">
+           <button className="carousel-button hvr-grow"
+                   onClick={this.goToBrowser}>
              Take a look!
            </button>
          </div>
@@ -82,7 +94,8 @@ var SplashApp = React.createClass({
            <div className="carousel-subtitle">
              {company1Description}
            </div>
-           <button className="carousel-button hvr-grow">
+           <button className="carousel-button hvr-grow"
+                   onClick={this.goToCompany.bind(this, 1)}>
              View company
            </button>
          </div>
@@ -93,7 +106,8 @@ var SplashApp = React.createClass({
            <div className="carousel-subtitle">
              {company2Description}
            </div>
-           <button className="carousel-button hvr-grow">
+           <button className="carousel-button hvr-grow"
+                   onClick={this.goToCompany.bind(this, 2)}>
              View company
            </button>
          </div>
@@ -104,7 +118,8 @@ var SplashApp = React.createClass({
            <div className="carousel-subtitle">
              {company3Description}
            </div>
-           <button className="carousel-button hvr-grow">
+           <button className="carousel-button hvr-grow"
+                   onClick={this.goToCompany.bind(this, 3)}>
              View company
            </button>
          </div>
@@ -115,7 +130,8 @@ var SplashApp = React.createClass({
            <div className="carousel-subtitle">
              {company4Description}
            </div>
-           <button className="carousel-button hvr-grow">
+           <button className="carousel-button hvr-grow"
+                   onClick={this.goToCompany.bind(this, 4)}>
              View company
            </button>
          </div>
@@ -126,7 +142,8 @@ var SplashApp = React.createClass({
            <div className="carousel-subtitle">
              {company5Description}
            </div>
-           <button className="carousel-button hvr-grow">
+           <button className="carousel-button hvr-grow"
+                   onClick={this.goToCompany.bind(this, 5)}>
              View company
            </button>
          </div>
