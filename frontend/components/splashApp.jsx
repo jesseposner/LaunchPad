@@ -59,16 +59,17 @@ var SplashApp = React.createClass({
         company5Description;
 
     if (this.state.companies.length !== 0) {
-      company1Name = this.state.companies[0].name;
-      company1Description = this.state.companies[0].description;
-      company2Name = this.state.companies[1].name;
-      company2Description = this.state.companies[1].description;
-      company3Name = this.state.companies[2].name;
-      company3Description = this.state.companies[2].description;
-      company4Name = this.state.companies[3].name;
-      company4Description = this.state.companies[3].description;
-      company5Name = this.state.companies[4].name;
-      company5Description = this.state.companies[4].description;
+      var companies = this.state.companies.reverse();
+      company1Name = companies[0].name;
+      company1Description = companies[0].description;
+      company2Name = companies[1].name;
+      company2Description = companies[1].description;
+      company3Name = companies[2].name;
+      company3Description = companies[2].description;
+      company4Name = companies[3].name;
+      company4Description = companies[3].description;
+      company5Name = companies[4].name;
+      company5Description = companies[4].description;
     }
     return (
       <div>
