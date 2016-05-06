@@ -212,7 +212,7 @@ var LoginForm = React.createClass({
             <div className="pure-control-group">
                 <label>State</label>
                 <select id="state"
-                        className="pure-input-1-2"
+                        className="pure-input-1-2 state"
                         onChange={this.updateUserInfo}>
                     <option>AL</option>
                     <option>AK</option>

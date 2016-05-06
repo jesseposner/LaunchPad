@@ -13,17 +13,15 @@ var SplashApp = React.createClass({
   componentDidMount: function() {
     this.removeToken = CompanyStore.addListener(this.onChange);
     ClientActions.fetchCompanies(1);
-    $(document).ready(function(){
-      $('.carousel').slick({
-        dots: true,
-        infinite: true,
-        arrows: false,
-        autoplay: true,
-        slidesToShow: 1,
-        fade: true,
-        speed: 500,
-        cssEase: 'linear'
-      });
+    $('.carousel').slick({
+      dots: true,
+      infinite: true,
+      arrows: false,
+      autoplay: true,
+      slidesToShow: 1,
+      fade: true,
+      speed: 500,
+      cssEase: 'linear'
     });
   },
 

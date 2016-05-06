@@ -2,14 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.state {
+  width: 187px !important;
+}
+
 .launch-title {
   text-align: center;
   font-weight: 500;
-  margin-top: 40px;
+  margin-bottom: 50px;
 }
 
-.launch-form {
-  padding-top: 40px;
+.launch-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: nowrap;
+  padding-top: 20px;
   margin-left: auto;
   margin-right: auto;
   width: 960px;
@@ -18,6 +28,20 @@
   border-color: #C8C8C8;
   border-radius: 6px;
   margin-bottom: 30px;
+  background-color: #FFFFFF;
+  justify-content: center;
+  align-content: center;
+}
+
+.launch-form {
+  background-color: #efefef;
+  padding: 20px;
+  padding-right: 50px;
+  margin: 30px;
+  margin-top: 10px;
+  margin-right: 35px;
+  border-radius: 6px;
+  width: 550px;
 }
 
 .login-form {
@@ -104,7 +128,7 @@
   flex-wrap: wrap;
 }
 
-.explore-bar {
+.launch-bar {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -112,20 +136,26 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  padding-left: 0px;
 }
 
-.explore-bar-item {
+.launch-bar-item {
   list-style: none;
   width: 95px;
   height: 39px;
   padding-top: 22px;
-  border: solid 1px #A9A9A9;
+  border: solid 1px #C8C8C8;
   border-radius: 6px;
   font: 14px normal Arial, sans-serif;
   color: #292e31;
   margin: 20px;
   background-color: #FFFFFF;
   text-align: center;
+  cursor: pointer;
+}
+
+.launch-bar-item:hover {
+  background-color: #EFEFEF;
 }
 
 .purchase-container {
