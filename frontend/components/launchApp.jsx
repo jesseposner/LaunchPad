@@ -26,7 +26,7 @@ var LaunchApp = React.createClass({
       totalShares: "",
       sharesOffered: "",
       offeringDescription: "",
-      expirationDate: moment().add(30, 'days')._d,
+      expirationDate: moment().add(30, 'days'),
       imagePaths: imagePaths,
       isCompanySubmitted: false
     };
@@ -73,7 +73,7 @@ var LaunchApp = React.createClass({
       var category = event.target.id;
       state[category] = event.target.value;
     } else if (event._isAMomentObject) {
-      state = { expirationDate: event._d};
+      state = { expirationDate: event};
     } else {
       state = { price: arguments[1] };
     }
@@ -151,13 +151,13 @@ var LaunchApp = React.createClass({
       });
     } else if (this.state.isCompanySubmitted) {
       HashHistory.push('explore/' + CompanyStore.all()[0].id);
-      
+
       ClientActions.createOffering({
         price: this.state.price,
         new_shares: this.state.sharesOffered,
         post_shares: this.state.totalShares + this.state.sharesOffered,
         offering_date: moment()._d,
-        expiration_date: this.state.expirationDate,
+        expiration_date: this.state.expirationDate._d,
         company_id: CompanyStore.all()[0].id,
         description: this.state.offeringDescription
       });
@@ -360,7 +360,7 @@ var LaunchApp = React.createClass({
               </div>
               <div className="date">
                   <label>Expiration Date&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <DatePicker selected={moment().add(30, 'days')}
+                  <DatePicker selected={this.state.expirationDate}
                               placeholderText="Click to select a date"
                               onChange={this.updateLaunchInfo} />
               </div>
