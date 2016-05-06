@@ -1,4 +1,5 @@
-var React = require('react');
+var React = require('react'),
+    FontAwesome = require('react-fontawesome');
 
 var LaunchApp = React.createClass({
   getInitialState: function() {
@@ -41,15 +42,23 @@ var LaunchApp = React.createClass({
   },
 
   render: function() {
+    var checkCircle;
+
+    if (false) {
+      checkCircle = <FontAwesome name='check-circle'
+                                 style={{ color: '#00D638' }} />;
+    } else {
+      checkCircle = <FontAwesome name='check-circle' />;
+    }
 
     return (
       <div>
         <ul className="launch-bar">
           <li className="launch-bar-item launch-company-button">
-            Company
+            {checkCircle} Company
           </li>
           <li className="launch-bar-item launch-offering-button">
-            Offering
+            {checkCircle} Offering
           </li>
           <li className="launch-bar-item">
             Submit
