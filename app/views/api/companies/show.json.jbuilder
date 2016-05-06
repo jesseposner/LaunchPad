@@ -13,7 +13,8 @@ json.extract! @company, :id,
 
 offering = @company.offerings[0]
 
-json.raised (offering.investments.map(&:shares).inject(:+) *
+json.raised offering.investments.length == 0 ? 0 :
+            (offering.investments.map(&:shares).inject(:+) *
             offering.price).round
 
 json.offering_date offering.offering_date.strftime('%A, %B %-d, %Y')

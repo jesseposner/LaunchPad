@@ -43,7 +43,16 @@ var ServerActions = require('../actions/serverActions'),
    createFounding: function (founding) {
      $.ajax({
        url: 'api/founding',
+       method: 'POST',
        data: { founding: founding }
+     });
+   },
+
+   createOffering: function (offering) {
+     $.ajax({
+       url: 'api/offering',
+       method: 'POST',
+       data: { offering: offering }
      });
    },
 

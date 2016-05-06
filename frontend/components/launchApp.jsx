@@ -5,7 +5,8 @@ var React = require('react'),
     moment = require('moment'),
     CompanyStore = require('../stores/companyStore'),
     ClientActions = require('../actions/clientActions'),
-    UserStore = require('../stores/userStore');
+    UserStore = require('../stores/userStore'),
+    HashHistory = require('react-router').hashHistory;
 
 var LaunchApp = React.createClass({
   getInitialState: function() {
@@ -25,7 +26,9 @@ var LaunchApp = React.createClass({
       totalShares: "",
       sharesOffered: "",
       offeringDescription: "",
-      imagePaths: imagePaths
+      expirationDate: moment().add(30, 'days')._d,
+      imagePaths: imagePaths,
+      isCompanySubmitted: false
     };
   },
 
@@ -90,6 +93,10 @@ var LaunchApp = React.createClass({
         errors: "You must be logged in before you launch."
       });
     } else if (this.isCompanyCompleted() && this.isOfferingCompleted()) {
+      this.setState({
+        isCompanySubmitted: true,
+        errors: ""
+      });
       ClientActions.createCompany({
         name: this.state.companyName,
         street_address: this.state.streetAddress,
@@ -137,14 +144,27 @@ var LaunchApp = React.createClass({
   },
 
   onChange: function () {
-    if (CompanyStore.errors()) {
+    if (UserStore.errors()) {
       this.setState({
-        errors: CompanyStore.errors()
+        errors: UserStore.errors(),
+        isCompanySubmitted: false
       });
-    } else {
+    } else if (this.state.isCompanySubmitted) {
+      HashHistory.push('explore/' + CompanyStore.all()[0].id);
+      
+      ClientActions.createOffering({
+        price: this.state.price,
+        new_shares: this.state.sharesOffered,
+        post_shares: this.state.totalShares + this.state.sharesOffered,
+        offering_date: moment()._d,
+        expiration_date: this.state.expirationDate,
+        company_id: CompanyStore.all()[0].id,
+        description: this.state.offeringDescription
+      });
+
       ClientActions.createFounding({
         user_id: UserStore.currentUser().id,
-        company_id: CompanyStore.all[0].id
+        company_id: CompanyStore.all()[0].id
       });
     }
   },
@@ -340,7 +360,7 @@ var LaunchApp = React.createClass({
               </div>
               <div className="date">
                   <label>Expiration Date&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                  <DatePicker selected={moment()}
+                  <DatePicker selected={moment().add(30, 'days')}
                               placeholderText="Click to select a date"
                               onChange={this.updateLaunchInfo} />
               </div>

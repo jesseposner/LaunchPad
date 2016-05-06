@@ -42,6 +42,10 @@ var ClientActions = {
      ApiUtil.createFounding(founding);
    },
 
+   createOffering: function (offering) {
+     ApiUtil.createOffering(offering);
+   },
+
    createSession: function (user) {
      ApiUtil.createSession(user);
    },

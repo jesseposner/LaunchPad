@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resource :user, only: [:create, :show]
 		resource :investment, only: [:create]
 		resource :founding, only: [:create]
+		resource :offering, only: [:create]
 		resources :companies, only: [:index, :create, :show]
     resource :session, only: [:create, :destroy, :show]
   end
