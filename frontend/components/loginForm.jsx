@@ -13,15 +13,13 @@ var LoginForm = React.createClass({
 
   componentDidMount: function() {
     this.removeToken = UserStore.addListener(this.onChange);
-    $(document).ready(function(){
-      $('.pure-form').slick({
-        accessibility: false,
-        arrows: false,
-        draggable: false,
-        infinite: false,
-        swipe: false,
-        touchMove: false
-      });
+    $('.pure-form').slick({
+      accessibility: false,
+      arrows: false,
+      draggable: false,
+      infinite: false,
+      swipe: false,
+      touchMove: false
     });
   },
 

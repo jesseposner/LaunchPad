@@ -1,5 +1,6 @@
 var React = require('react'),
-    FontAwesome = require('react-fontawesome');
+    FontAwesome = require('react-fontawesome'),
+    CurrencyMaskedInput = require('react-currency-masked-input');
 
 var LaunchApp = React.createClass({
   getInitialState: function() {
@@ -10,13 +11,23 @@ var LaunchApp = React.createClass({
       description: "Company Description",
       errors: "",
       logoURL: imagePaths.placeholder,
-      state: "AL"
+      state: "AL",
+      imagePaths: imagePaths
     };
   },
 
+  componentDidMount: function() {
+    $('.pure-form').slick({
+      accessibility: false,
+      arrows: false,
+      draggable: false,
+      infinite: false,
+      swipe: false,
+      touchMove: false
+    });
+  },
+
   componentDidUpdate: function(prevProps, prevState) {
-    var rootElement = document.getElementById("root"),
-        imagePaths = JSON.parse(rootElement.dataset.images);
     if (!this.state.companyName) {
       this.setState({
         companyName: "Company Name"
@@ -29,16 +40,27 @@ var LaunchApp = React.createClass({
     }
     if (!this.state.logoURL) {
       this.setState({
-        logoURL: imagePaths.placeholder
+        logoURL: this.state.imagePaths.placeholder
       });
     }
   },
 
   updateLaunchInfo: function (event) {
-    var category = event.target.id;
     var state = {};
-    state[category] = event.target.value;
+
+    if (event.target) {
+      var category = event.target.id;
+      state[category] = event.target.value;
+    } else {
+      state = { price: arguments[1] };
+    }
+
     this.setState(state);
+  },
+
+  slickGoTo: function (index, event) {
+    event.preventDefault();
+    $('.pure-form').slick('slickGoTo', index);
   },
 
   render: function() {
@@ -54,10 +76,12 @@ var LaunchApp = React.createClass({
     return (
       <div>
         <ul className="launch-bar">
-          <li className="launch-bar-item launch-company-button">
+          <li className="launch-bar-item launch-company-button"
+              onClick={this.slickGoTo.bind(this, 0)} >
             {checkCircle} Company
           </li>
-          <li className="launch-bar-item launch-offering-button">
+          <li className="launch-bar-item launch-offering-button"
+              onClick={this.slickGoTo.bind(this, 1)} >
             {checkCircle} Offering
           </li>
           <li className="launch-bar-item">
@@ -157,6 +181,65 @@ var LaunchApp = React.createClass({
                   <input id="zip"
                          type="text"
                          placeholder="Zip"
+                         onChange={this.updateLaunchInfo} />
+              </div>
+              <div className="pure-control-group">
+                  <label>Logo URL</label>
+                  <input id="logoURL"
+                         type="text"
+                         placeholder="Logo URL"
+                         onChange={this.updateLaunchInfo} />
+              </div>
+              <div className="pure-control-group">
+                <fieldset>
+                   <label>Description</label>
+                   <textarea id="description"
+                             className="pure-input-1-2"
+                             placeholder="Description"
+                             onChange={this.updateLaunchInfo} />
+                </fieldset>
+              </div>
+              <div className="pure-control-group">
+                <fieldset>
+                   <label>Business Plan</label>
+                   <textarea id="businessPlan"
+                             className="pure-input-1-2"
+                             placeholder="Business Plan"
+                             onChange={this.updateLaunchInfo} />
+                </fieldset>
+              </div>
+            </div>
+            <div className="slide-2">
+              <div className="pure-control-group">
+                <label>Price Per Share&nbsp;</label>
+                <span className="dollar">$</span>
+                <CurrencyMaskedInput id="price"
+                     type="number"
+                     placeholder="Price Per Share"
+                     className="price"
+                     onChange={this.updateLaunchInfo} />
+              </div>
+
+              <div className="pure-control-group">
+                  <label>Total Issued Shares</label>
+                  <input id="totalShares"
+                         type="number"
+                         placeholder="Total Issued Shares"
+                         onChange={this.updateLaunchInfo} />
+              </div>
+
+              <div className="pure-control-group">
+                <label>Total Shares Offered</label>
+                <input id="sharesOffered"
+                       type="number"
+                       placeholder="Total Shares Offered"
+                       onChange={this.updateLaunchInfo} />
+              </div>
+              <div className="pure-control-group">
+                  <label>Description (e.g. seed, Series A, etc.)</label>
+                  <input id="offeringDescription"
+                         type="text"
+                         placeholder="Description"
                          onChange={this.updateLaunchInfo} />
               </div>
               <div className="pure-control-group">

@@ -2,6 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.price {
+  position: relative;
+  right: 9px;
+}
+
+.dollar {
+  position: relative;
+  right: 12px;
+}
+
 .state {
   width: 187px !important;
 }

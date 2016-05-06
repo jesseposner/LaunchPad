@@ -144,8 +144,6 @@ var React = require('react'),
             <ul>
               <li><a href="#">Explore</a></li>
               <li><a href="#">Launch</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
               <li><a href="#">
                 Privacy &amp; Terms
               </a></li>
