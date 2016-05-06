@@ -10,11 +10,21 @@ var LaunchApp = React.createClass({
     var rootElement = document.getElementById("root"),
         imagePaths = JSON.parse(rootElement.dataset.images);
     return {
+      streetAddress: "",
+      city: "",
+      zip: "",
       companyName: "Company Name",
       description: "Company Description",
+      businessPlan: "",
       errors: "",
       logoURL: imagePaths.placeholder,
       state: "AL",
+      price: "",
+      totalShares: "",
+      sharesOffered: "",
+      offeringDescription: "",
+      companyCompleted: false,
+      offeringCompleted: false,
       imagePaths: imagePaths
     };
   },
@@ -82,14 +92,52 @@ var LaunchApp = React.createClass({
     });
   },
 
-  render: function() {
-    var checkCircle;
-
-    if (false) {
-      checkCircle = <FontAwesome name='check-circle'
-                                 style={{ color: '#00D638' }} />;
+  isCompanyCompleted: function () {
+    if (
+        !this.state.companyName    ||
+        !this.state.streetAddress  ||
+        !this.state.city           ||
+        !this.state.zip            ||
+        !this.state.description    ||
+        !this.state.businessPlan   ||
+        this.state.errors
+      ) {
+      return false;
     } else {
-      checkCircle = <FontAwesome name='check-circle' />;
+      return true;
+    }
+  },
+
+  isOfferingCompleted: function () {
+    if (
+        !this.state.price                ||
+        !this.state.totalShares          ||
+        !this.state.sharesOffered        ||
+        !this.state.offeringDescription  ||
+        this.state.errors
+      ) {
+      return false;
+    } else {
+      return true;
+    }
+  },
+
+  render: function() {
+    var companyCheckCircle,
+        offeringCheckCircle;
+
+    if (this.isCompanyCompleted()) {
+      companyCheckCircle = <FontAwesome name='check-circle'
+                                        style={{ color: '#00D638' }} />;
+    } else {
+      companyCheckCircle = <FontAwesome name='check-circle' />;
+    }
+
+    if (this.isOfferingCompleted()) {
+      offeringCheckCircle = <FontAwesome name='check-circle'
+                                         style={{ color: '#00D638' }} />;
+    } else {
+      offeringCheckCircle = <FontAwesome name='check-circle' />;
     }
 
     return (
@@ -97,11 +145,11 @@ var LaunchApp = React.createClass({
         <ul className="launch-bar">
           <li className="launch-bar-item launch-company-button"
               onClick={this.slickGoTo.bind(this, 0)} >
-            {checkCircle} Company
+            {companyCheckCircle} Company
           </li>
           <li className="launch-bar-item launch-offering-button"
               onClick={this.slickGoTo.bind(this, 1)} >
-            {checkCircle} Offering
+            {offeringCheckCircle} Offering
           </li>
           <li className="launch-bar-item"
               onClick={this.submitCompany} >
