@@ -105,7 +105,15 @@ var LaunchApp = React.createClass({
         zip: this.state.zip,
         media_url: this.state.logoURL,
         description: this.state.description,
-        business_plan: this.state.businessPlan
+        business_plan: this.state.businessPlan,
+        offering: {
+          price: this.state.price,
+          new_shares: this.state.sharesOffered,
+          post_shares: this.state.totalShares + this.state.sharesOffered,
+          offering_date: moment()._d,
+          expiration_date: this.state.expirationDate._d,
+          description: this.state.offeringDescription
+        }
       });
     } else {
       this.setState({
@@ -151,21 +159,6 @@ var LaunchApp = React.createClass({
       });
     } else if (this.state.isCompanySubmitted) {
       HashHistory.push('explore/' + CompanyStore.all()[0].id);
-
-      ClientActions.createOffering({
-        price: this.state.price,
-        new_shares: this.state.sharesOffered,
-        post_shares: this.state.totalShares + this.state.sharesOffered,
-        offering_date: moment()._d,
-        expiration_date: this.state.expirationDate._d,
-        company_id: CompanyStore.all()[0].id,
-        description: this.state.offeringDescription
-      });
-
-      ClientActions.createFounding({
-        user_id: UserStore.currentUser().id,
-        company_id: CompanyStore.all()[0].id
-      });
     }
   },
 
