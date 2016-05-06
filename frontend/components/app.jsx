@@ -142,8 +142,8 @@ var React = require('react'),
           <div className="footer-inner-col">
             <p>© LaunchPad</p>
             <ul>
-              <li><a href="#">Explore</a></li>
-              <li><a href="#">Launch</a></li>
+              <li><Link to='explore'>Explore</Link></li>
+              <li><Link to='launch'>Launch</Link></li>
               <li><a href="#">
                 Privacy &amp; Terms
               </a></li>

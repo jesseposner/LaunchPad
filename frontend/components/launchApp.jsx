@@ -12,6 +12,7 @@ var LaunchApp = React.createClass({
   getInitialState: function() {
     var rootElement = document.getElementById("root"),
         imagePaths = JSON.parse(rootElement.dataset.images);
+
     return {
       streetAddress: "",
       city: "",
@@ -28,7 +29,8 @@ var LaunchApp = React.createClass({
       offeringDescription: "",
       expirationDate: moment().add(30, 'days'),
       imagePaths: imagePaths,
-      isCompanySubmitted: false
+      isCompanySubmitted: false,
+      slideIndex: 0
     };
   },
 
@@ -83,6 +85,9 @@ var LaunchApp = React.createClass({
 
   slickGoTo: function (index, event) {
     event.preventDefault();
+    this.setState({
+      slideIndex: index
+    });
     $('.pure-form').slick('slickGoTo', index);
   },
 
@@ -164,7 +169,9 @@ var LaunchApp = React.createClass({
 
   render: function() {
     var companyCheckCircle,
-        offeringCheckCircle;
+        offeringCheckCircle,
+        companyButtonClass = "launch-bar-item launch-company-button",
+        offeringButtonClass = "launch-bar-item launch-offering-button";
 
     if (this.isCompanyCompleted()) {
       companyCheckCircle = <FontAwesome name='check-circle'
@@ -180,14 +187,20 @@ var LaunchApp = React.createClass({
       offeringCheckCircle = <FontAwesome name='check-circle' />;
     }
 
+    if (!this.state.slideIndex) {
+      companyButtonClass += ' launch-bar-item-highlighted';
+    } else {
+      offeringButtonClass += ' launch-bar-item-highlighted';
+    }
+
     return (
       <div>
         <ul className="launch-bar">
-          <li className="launch-bar-item launch-company-button"
+          <li className={companyButtonClass}
               onClick={this.slickGoTo.bind(this, 0)} >
             {companyCheckCircle} Company
           </li>
-          <li className="launch-bar-item launch-offering-button"
+          <li className={offeringButtonClass}
               onClick={this.slickGoTo.bind(this, 1)} >
             {offeringCheckCircle} Offering
           </li>

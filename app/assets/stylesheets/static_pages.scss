@@ -192,6 +192,10 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
+.launch-bar-item-highlighted {
+  background-color: #EFEFEF;
+}
+
 .launch-bar-item:hover {
   background-color: #EFEFEF;
 }
@@ -716,6 +720,7 @@ h1,h2,h3 {
 
 .value-props {
   border-top: 1px solid #C8C8C8;
+  margin-top: 37px;
 }
 
 div.links {
