@@ -67,7 +67,7 @@ The purchase price updates in real-time as the user enters in the number of shar
 
 ### Company Creation
 
-Companies are created with a `launchApp` component. The `FontAwesome` library is used to provide the button tabs of the form with check marks and that turn green when the indicated section is completed, allowing the user to clearly see when the form is ready to be submitted. A data picker is integrated with the `react-datepicker` NPM package.
+Companies are created with a `launchApp` component. The `FontAwesome` library is used to provide the button tabs of the form with check marks that turn green when the indicated section is completed, allowing the user to clearly see when the form is ready to be submitted. A data picker is integrated with the `react-datepicker` NPM package.
 
 ### Splash Page and Navbar
 
@@ -93,4 +93,4 @@ Clicking on an investor in the list provided in the `companyDetailApp` component
 
 ### Likes, Comments, and Updates
 
-The `companyDetailApp` component will allow users to posts likes and comments, and founders to post updates.
+The `companyDetailApp` component will allow users to post likes and comments, and founders to post updates.
