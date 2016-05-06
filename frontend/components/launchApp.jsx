@@ -1,6 +1,8 @@
 var React = require('react'),
     FontAwesome = require('react-fontawesome'),
-    CurrencyMaskedInput = require('react-currency-masked-input');
+    CurrencyMaskedInput = require('react-currency-masked-input'),
+    DatePicker = require('react-datepicker'),
+    moment = require('moment');
 
 var LaunchApp = React.createClass({
   getInitialState: function() {
@@ -51,6 +53,8 @@ var LaunchApp = React.createClass({
     if (event.target) {
       var category = event.target.id;
       state[category] = event.target.value;
+    } else if (event._isAMomentObject) {
+      state = { expirationDate: event._d};
     } else {
       state = { price: arguments[1] };
     }
@@ -242,30 +246,11 @@ var LaunchApp = React.createClass({
                          placeholder="Description"
                          onChange={this.updateLaunchInfo} />
               </div>
-              <div className="pure-control-group">
-                  <label>Logo URL</label>
-                  <input id="logoURL"
-                         type="text"
-                         placeholder="Logo URL"
-                         onChange={this.updateLaunchInfo} />
-              </div>
-              <div className="pure-control-group">
-                <fieldset>
-                   <label>Description</label>
-                   <textarea id="description"
-                             className="pure-input-1-2"
-                             placeholder="Description"
-                             onChange={this.updateLaunchInfo} />
-                </fieldset>
-              </div>
-              <div className="pure-control-group">
-                <fieldset>
-                   <label>Business Plan</label>
-                   <textarea id="businessPlan"
-                             className="pure-input-1-2"
-                             placeholder="Business Plan"
-                             onChange={this.updateLaunchInfo} />
-                </fieldset>
+              <div className="date">
+                  <label>Expiration Date&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <DatePicker selected={moment()}
+                              placeholderText="Click to select a date"
+                              onChange={this.updateLaunchInfo} />
               </div>
             </div>
           </form>
