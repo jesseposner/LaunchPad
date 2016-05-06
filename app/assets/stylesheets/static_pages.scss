@@ -6,6 +6,17 @@
   width: 187px !important;
 }
 
+.launch-company-button {
+  margin-right: 0px !important;
+  border-radius: 6px 0px 0px 6px !important;
+  border-right: 0 !important;
+}
+
+.launch-offering-button {
+  margin-left: 0px !important;
+  border-radius: 0px 6px 6px 0px !important;
+}
+
 .launch-title {
   text-align: center;
   font-weight: 500;
@@ -181,15 +192,17 @@
 .browser-list-item {
   list-style: none;
   width: 200px;
-  height: 300px;
+  height: auto;
   border: solid 1px #A9A9A9;
   border-radius: 6px;
   font: 14px normal Arial, sans-serif;
   color: #292e31;
   margin: 20px;
+  margin-top: 10px;
   margin-left: 12px;
   padding: 10px;
   padding-top: 0px;
+  padding-bottom: 20px;
   background-color: #FFFFFF;
   -webkit-box-shadow: 0 10px 6px -6px #777;
 	-moz-box-shadow: 0 10px 6px -6px #777;

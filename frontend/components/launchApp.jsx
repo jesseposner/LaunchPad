@@ -2,18 +2,58 @@ var React = require('react');
 
 var LaunchApp = React.createClass({
   getInitialState: function() {
+    var rootElement = document.getElementById("root"),
+        imagePaths = JSON.parse(rootElement.dataset.images);
     return {
-      errors: ""
+      companyName: "Company Name",
+      description: "Company Description",
+      errors: "",
+      logoURL: imagePaths.placeholder,
+      state: "AL"
     };
   },
 
+  componentDidUpdate: function(prevProps, prevState) {
+    var rootElement = document.getElementById("root"),
+        imagePaths = JSON.parse(rootElement.dataset.images);
+    if (!this.state.companyName) {
+      this.setState({
+        companyName: "Company Name"
+      });
+    }
+    if (!this.state.description) {
+      this.setState({
+        description: "Company Description"
+      });
+    }
+    if (!this.state.logoURL) {
+      this.setState({
+        logoURL: imagePaths.placeholder
+      });
+    }
+  },
+
+  updateLaunchInfo: function (event) {
+    var category = event.target.id;
+    var state = {};
+    state[category] = event.target.value;
+    this.setState(state);
+  },
+
   render: function() {
+
     return (
       <div>
         <ul className="launch-bar">
-          <li className="launch-bar-item">Company</li>
-          <li className="launch-bar-item">Offering</li>
-          <li className="launch-bar-item">Submit</li>
+          <li className="launch-bar-item launch-company-button">
+            Company
+          </li>
+          <li className="launch-bar-item launch-offering-button">
+            Offering
+          </li>
+          <li className="launch-bar-item">
+            Submit
+          </li>
         </ul>
         <h1 className="launch-title">
           Get investments for your company!
@@ -23,10 +63,10 @@ var LaunchApp = React.createClass({
             <div className="slide-2">
               <div className="pure-control-group">
                 <label>Company Name</label>
-                <input id="lastName"
+                <input id="companyName"
                        type="text"
                        placeholder="Company Name"
-                       onChange={this.updateUserInfo} />
+                       onChange={this.updateLaunchInfo} />
               </div>
 
               <div className="pure-control-group">
@@ -34,7 +74,7 @@ var LaunchApp = React.createClass({
                   <input id="streetAddress"
                          type="text"
                          placeholder="Street Address"
-                         onChange={this.updateUserInfo} />
+                         onChange={this.updateLaunchInfo} />
               </div>
 
               <div className="pure-control-group">
@@ -42,14 +82,14 @@ var LaunchApp = React.createClass({
                 <input id="city"
                        type="text"
                        placeholder="City"
-                       onChange={this.updateUserInfo} />
+                       onChange={this.updateLaunchInfo} />
               </div>
 
               <div className="pure-control-group">
                 <label>State</label>
                 <select id="state"
                         className="pure-input-1-2 state"
-                        onChange={this.updateUserInfo}>
+                        onChange={this.updateLaunchInfo}>
                     <option>AL</option>
                     <option>AK</option>
                     <option>AZ</option>
@@ -108,29 +148,31 @@ var LaunchApp = React.createClass({
                   <input id="zip"
                          type="text"
                          placeholder="Zip"
-                         onChange={this.updateUserInfo} />
+                         onChange={this.updateLaunchInfo} />
               </div>
               <div className="pure-control-group">
-                  <label>Logo Url</label>
-                  <input id="zip"
+                  <label>Logo URL</label>
+                  <input id="logoURL"
                          type="text"
-                         placeholder="Logo Url"
-                         onChange={this.updateUserInfo} />
+                         placeholder="Logo URL"
+                         onChange={this.updateLaunchInfo} />
               </div>
               <div className="pure-control-group">
-                <fieldset class="pure-group">
+                <fieldset>
                    <label>Description</label>
-                   <textarea className="pure-input-1-2"
+                   <textarea id="description"
+                             className="pure-input-1-2"
                              placeholder="Description"
-                             onChange={this.updateUserInfo} />
+                             onChange={this.updateLaunchInfo} />
                 </fieldset>
               </div>
               <div className="pure-control-group">
-                <fieldset class="pure-group">
+                <fieldset>
                    <label>Business Plan</label>
-                   <textarea className="pure-input-1-2"
+                   <textarea id="businessPlan"
+                             className="pure-input-1-2"
                              placeholder="Business Plan"
-                             onChange={this.updateUserInfo} />
+                             onChange={this.updateLaunchInfo} />
                 </fieldset>
               </div>
             </div>
@@ -138,11 +180,11 @@ var LaunchApp = React.createClass({
           <div className="browser-list-item">
 
               <img className="small-company-picture"
-                   src="https://pigment.github.io/fake-logos/logos/medium/color/6.png" />
+                   src={this.state.logoURL} />
               <h6 className="company-name">
-                company name
+                {this.state.companyName}
               </h6>
-            company description
+            {this.state.description}
           </div>
         </div>
       </div>

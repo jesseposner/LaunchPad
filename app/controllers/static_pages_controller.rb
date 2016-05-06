@@ -1,7 +1,8 @@
 class StaticPagesController < ApplicationController
   def root
     @images = {
-      logo: path_to_asset('logo.png')
+      logo: path_to_asset('logo.png'),
+      placeholder: path_to_asset('placeholder.png')
     }
   end
 
