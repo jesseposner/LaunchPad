@@ -3,7 +3,9 @@ var React = require('react'),
     CurrencyMaskedInput = require('react-currency-masked-input'),
     DatePicker = require('react-datepicker'),
     moment = require('moment'),
-    ClientActions = require('../actions/clientActions');
+    CompanyStore = require('../stores/companyStore'),
+    ClientActions = require('../actions/clientActions'),
+    UserStore = require('../stores/userStore');
 
 var LaunchApp = React.createClass({
   getInitialState: function() {
@@ -28,6 +30,7 @@ var LaunchApp = React.createClass({
   },
 
   componentDidMount: function() {
+    this.removeToken = CompanyStore.addListener(this.onChange);
     $('.pure-form').slick({
       accessibility: false,
       arrows: false,
@@ -36,6 +39,10 @@ var LaunchApp = React.createClass({
       swipe: false,
       touchMove: false
     });
+  },
+
+  componentWillUnmount: function() {
+    this.removeToken.remove();
   },
 
   componentDidUpdate: function(prevProps, prevState) {
@@ -78,10 +85,11 @@ var LaunchApp = React.createClass({
 
   submitCompany: function (event) {
     event.preventDefault();
-    if (this.isCompanyCompleted() && this.isOfferingCompleted()) {
+    if (!UserStore.currentUser()) {
       this.setState({
-        errors: ""
+        errors: "You must be logged in before you launch."
       });
+    } else if (this.isCompanyCompleted() && this.isOfferingCompleted()) {
       ClientActions.createCompany({
         name: this.state.companyName,
         street_address: this.state.streetAddress,
@@ -98,7 +106,6 @@ var LaunchApp = React.createClass({
                 " before you launch."
       });
     }
-
   },
 
   isCompanyCompleted: function () {
@@ -126,6 +133,19 @@ var LaunchApp = React.createClass({
       return false;
     } else {
       return true;
+    }
+  },
+
+  onChange: function () {
+    if (CompanyStore.errors()) {
+      this.setState({
+        errors: CompanyStore.errors()
+      });
+    } else {
+      ClientActions.createFounding({
+        user_id: UserStore.currentUser().id,
+        company_id: CompanyStore.all[0].id
+      });
     }
   },
 

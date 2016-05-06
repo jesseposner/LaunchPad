@@ -40,6 +40,13 @@ var ServerActions = require('../actions/serverActions'),
      });
    },
 
+   createFounding: function (founding) {
+     $.ajax({
+       url: 'api/founding',
+       data: { founding: founding }
+     });
+   },
+
    createUser: function (clientUser) {
      $.ajax({
        url: 'api/user',

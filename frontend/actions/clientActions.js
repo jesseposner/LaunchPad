@@ -38,6 +38,10 @@ var ClientActions = {
      ApiUtil.createCompany(company);
    },
 
+   createFounding: function (founding) {
+     ApiUtil.createFounding(founding);
+   },
+
    createSession: function (user) {
      ApiUtil.createSession(user);
    },

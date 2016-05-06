@@ -28,13 +28,13 @@ var LoginForm = React.createClass({
   },
 
   onChange: function () {
-    this.setState({
-      errors: UserStore.errors()
-    }, this.checkResult);
-  },
-
-  checkResult: function () {
-    if (!this.state.errors) this.props.closeModal();
+    if (UserStore.errors()) {
+      this.setState({
+        errors: UserStore.errors()
+      });
+    } else {
+      this.props.closeModal();
+    }
   },
 
   submitLogin: function (event) {
