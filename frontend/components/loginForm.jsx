@@ -275,12 +275,12 @@ var LoginForm = React.createClass({
             <div className="pure-controls">
               <button type="submit"
                       className="pure-button pure-button-primary red-button"
-                      onClick={this.prevSlide}>
+                      onClick={this.prevSlide} >
                         Back
                       </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <button type="submit"
                       className="pure-button pure-button-primary red-button"
-                      onClick={this.submitSignup}>
+                      onClick={this.submitSignup} >
                         Sign up
                       </button>&nbsp;
             </div>

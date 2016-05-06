@@ -20,7 +20,7 @@ User.create!(
   )
 end
 
-1000.times do
+User.all.length.times do
   Company.create(
     name: Faker::Company.name,
     street_address: Faker::Address.street_address,
@@ -38,14 +38,14 @@ end
   )
 end
 
-1000.times do |i|
+Company.all.length.times do |i|
   Founding.create!(
     user_id: i + 1,
     company_id: i + 1
   )
 end
 
-1000.times do |i|
+Company.all.length.times do |i|
   new_shares = rand(100000..5000000)
 
   Offering.create!(
@@ -62,7 +62,7 @@ end
 10000.times do |i|
   Investment.create!(
     shares: rand(50000),
-    user_id: rand(1001),
-    offering_id: rand(1001)
+    user_id: rand(User.all.length) + 1,
+    offering_id: rand(Offering.all.length) + 1
   )
 end

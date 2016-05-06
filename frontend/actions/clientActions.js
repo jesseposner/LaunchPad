@@ -34,6 +34,10 @@ var ClientActions = {
      ApiUtil.createInvestment(investment);
    },
 
+   createCompany: function (company) {
+     ApiUtil.createCompany(company);
+   },
+
    createSession: function (user) {
      ApiUtil.createSession(user);
    },

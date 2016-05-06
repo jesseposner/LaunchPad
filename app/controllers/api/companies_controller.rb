@@ -13,6 +13,9 @@ class Api::CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
+    @company.assign_attributes(
+      business_plan: "[\"" + company_params[:business_plan] + "\"]"
+    )
 		if @company.save
 			render :show
 		else

@@ -2,7 +2,8 @@ var React = require('react'),
     FontAwesome = require('react-fontawesome'),
     CurrencyMaskedInput = require('react-currency-masked-input'),
     DatePicker = require('react-datepicker'),
-    moment = require('moment');
+    moment = require('moment'),
+    ClientActions = require('../actions/clientActions');
 
 var LaunchApp = React.createClass({
   getInitialState: function() {
@@ -67,6 +68,20 @@ var LaunchApp = React.createClass({
     $('.pure-form').slick('slickGoTo', index);
   },
 
+  submitCompany: function (event) {
+    event.preventDefault();
+    ClientActions.createCompany({
+      name: this.state.companyName,
+      street_address: this.state.streetAddress,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip,
+      media_url: this.state.logoURL,
+      description: this.state.description,
+      business_plan: this.state.businessPlan
+    });
+  },
+
   render: function() {
     var checkCircle;
 
@@ -88,7 +103,8 @@ var LaunchApp = React.createClass({
               onClick={this.slickGoTo.bind(this, 1)} >
             {checkCircle} Offering
           </li>
-          <li className="launch-bar-item">
+          <li className="launch-bar-item"
+              onClick={this.submitCompany} >
             Submit
           </li>
         </ul>
