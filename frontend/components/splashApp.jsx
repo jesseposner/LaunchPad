@@ -1,7 +1,8 @@
 var React = require('react'),
     CompanyStore = require('../stores/companyStore'),
     ClientActions = require('../actions/clientActions'),
-    HashHistory = require('react-router').hashHistory;
+    HashHistory = require('react-router').hashHistory,
+    Link = require('react-router').Link;
 
 var SplashApp = React.createClass({
   getInitialState: function() {
@@ -150,7 +151,7 @@ var SplashApp = React.createClass({
          <div className="inner-col">
            <div className="links">
              <section className="all-features">
-               <a href="#">
+               <Link to='explore'>
                  <h2>Incredible companies</h2>
                  <p>
                    Browse thousands of exciting startups.
@@ -158,29 +159,30 @@ var SplashApp = React.createClass({
                  <p>
                    <span className="arrow">Explore companies</span>
                  </p>
-               </a>
+               </Link>
              </section>
 
              <section className="simple-pricing">
-               <a href="#">
-                 <h2>Join the adventure</h2>
+               <Link to='launch'>
+                 <h2>To the moon!</h2>
                  <p>
-                   Catch a rocket to the moon with the next hot startup.
+                   Refill your rocket fuel by posting an offering.
                  </p>
                  <p>
-                   <span className="arrow">View details</span>
+                   <span className="arrow">Launch company</span>
                  </p>
-               </a>
+               </Link>
              </section>
 
-             <section className="web-mobile">
+             <section className="web-mobile"
+                      onClick={this.props.openModal} >
                <a href="#">
                  <h2>Simple payments</h2>
                  <p>
                    Use a credit card to easily buy shares.
                  </p>
                  <p>
-                   <span className="arrow">Learn more</span>
+                   <span className="arrow">Sign up</span>
                  </p>
                </a>
              </section>
