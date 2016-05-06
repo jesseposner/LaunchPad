@@ -1,38 +1,20 @@
 # LaunchPad
 
-[Heroku link][heroku]
+[LaunchPad live][heroku]
 
 [heroku]: http://lapad.herokuapp.com
 
-## Minimum Viable Product
+LaunchPad is a full-stack web application inspired by KickStarter, but with a twist: backers receive equity shares for their seed financing contributions. This site will explore some of the exciting possibilities that have emerged in the wake of the SEC’s newly issued Regulation A+ equity crowdfunding rules.
 
-LaunchPad is a web application inspired by Kickstarter that will be built using Ruby on Rails and React.js. By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+LaunchPad is architected as a single page application using React.js, the Flux data flow design pattern, a PostgreSQL database, and a Ruby on Rails back-end.
 
-- [ ] New account creation, login, and guest/demo login
-- [ ] Smooth, bug-free navigation
-- [ ] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for a Kickstarter-inspired site: company creation and saving, company investing, and company browsing
-- [ ] Hosting on Heroku
-- [ ] CSS styling that is satisfactorily visually appealing
-- [ ] A production README, replacing this README
+## Features & Implementation
 
-## Product Goals and Priorities
+### Single-Page App
 
-LaunchPad will allow users to do the following:
+LaunchPad is a single-page application with all content delivered on one static page using asynchronous API calls to the backend.
 
-<!-- This is a Markdown checklist. Use it to keep track of your
-progress. Put an x between the brackets for a checkmark: [x] -->
-
-- [ ] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Create and view companies (MVP)
-- [ ] Create investments in companies (MVP)
-- [ ] Search companies (expected feature, but not MVP)
-- [ ] Comment on companies (expected feature, but not MVP)
-- [ ] Like companies (expected feature, but not MVP)
-- [ ] Create and view updates to companies (expected feature, but not MVP)
-
-## Design Docs
+### Design Docs
 * [View Wireframes][views]
 * [React Components][components]
 * [Flux Cycles][flux-cycles]
@@ -45,91 +27,70 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 [api-endpoints]: ./docs/api-endpoints.md
 [schema]: ./docs/schema.md
 
-## Implementation Timeline
+### Company Browsing
 
-### Phase 1: Backend setup and User Authentication (0.5 days)
+Companies can be browsed using the `browserIndex` component. The index implements "infinite scroll" functionality to permit a very large number of companies to be viewed without disrupting the user experience.
 
-**Objective:** Functioning rails project with Authentication
+When the component mounts it adds a scroll event listener to the window, and it removes the listener when it unmounts, or when all of the companies have been loaded. The scroll handler checks if the user has reached the bottom of the page, and if so, it grabs another set of 20 companies from the back-end.
 
-- [x] create new project
-- [x] create `User` model
-- [x] authentication
-- [x] user signup/signin pages
-- [x] blank landing page after signin
+```
+handleScroll: function(event) {
+  if (this.state.companies.length === this.state.total) {
+    window.removeEventListener("scroll", this.handleScroll);
+  } else if ($(window).scrollTop() +
+             $(window).height() >
+             $(document).height() - 150) {
+    if (!this.state.loadingFlag) {
+      this.setState({
+        loadingFlag: true,
+      });
+      this.getPage();
+    }
+  }
+}
+```
 
-### Phase 2: Companies Model, API, and basic APIUtil (1.5 days)
+The index is composed of `BrowserIndexItem` components. These components save the scroll position in the `companyStore` when clicked. When the browser mounts it loads the saved scroll position so that the user is returned to the scroll position where they left off.
 
-**Objective:** Companies can be created and read through
-the API.
+### Company Viewing
 
-- [x] create `Company` model
-- [x] seed the database with a small amount of test data
-- [x] CRUD API for companies (`CompaniesController`)
-- [x] jBuilder views for companies
-- [x] setup Webpack & Flux scaffold
-- [x] setup `APIUtil` to interact with the API
-- [x] test out API interaction in the console.
+Companies are viewed with a `companyDetailApp` component. This component calculates the pre-money valuation by determining the total amount of new investment being offered and then finding the post-money valuation using the following formula: (New Investment) * (Total Post Investment Shares) / (Shares Issued for New Investment).
+```
+var newInvestment = offering.price * offering.new_shares;
+var postMoneyValuation = newInvestment *
+  (offering.post_shares/offering.new_shares);
+preMoneyValuation = numberWithCommas(
+  Math.round(postMoneyValuation - newInvestment)
+);
+```
+The purchase price updates in real-time as the user enters in the number of shares being purchased. The update has a subtle animation indicating the change by utilizing the `ReactCSSTransitionGroup`. Clicking on purchase loads a Stripe checkout using `Stripe.js`.
 
-### Phase 3: Flux Architecture and Router (1.5 days)
+### Company Creation
 
-**Objective:** Companies can be browsed and read with the user interface.
+Companies are created with a `launchApp` component. The `FontAwesome` library is used to provide the button tabs of the form with check marks and that turn green when the indicated section is completed, allowing the user to clearly see when the form is ready to be submitted. A data picker is integrated with the `react-datepicker` NPM package.
 
-- [x] setup the flux loop with skeleton files
-- [x] setup React Router
-- implement each company component, building out the flux loop as needed.
-  - [ ] `BrowserSelector`
-  - [x] `BrowserIndex`
-  - [x] `BrowserIndexItem`
-  - [x] `CompanyDetailTabs`
-  - [x] `CompanyDetailTabItem`
+### Splash Page and Navbar
 
-### Phase 4: Start Styling (0.5 days)
+The splash page uses the Slick.js library to provide an animated carousel. A navbar is always present throughout the website. The navbar sticks to the top of the screen, using the `react-sticky` library, to maintain navigation controls when scrolling through the long list of companies.
 
-**Objective:** Existing pages (including singup/signin) will look good.
+Sign in and sign up functionality is provided by means of a modal that opens via a link on the navbar that uses the `react-modal` library. This allows the user to control his or her session without disruption.
 
-- [ ] create a basic style guide
-- [ ] position elements on the page
-- [ ] add basic colors & styles
+## Future Direction for the Project
 
-### Phase 5: Company Creation and Investment (1 day)
+The following features are planned for the project:
 
-**Objective:** Companies can be created with the user interface and invested in.
+### Search Bar
 
-- implement each form component, building out the flux loop as needed.
-  - [ ] `CompanyFormTabs`
-  - [ ] `CompanyFormTabItem`
-  - [ ] `InvestForm (modal)`
-- Use CSS to style new views
+A search bar will be included in the navbar so that companies be easily found by name.
 
-### Phase 6: Splash Carousel and Navbar (1.5 days)
+### Current User Menus
 
-**Objective:** Splash page greets user and companies can be browsed in a carousel viewer and searched in a navbar.
+If a user is logged in, a dropdown menu in the navbar will provide access to a list of the companies that the user has invested in and founded.
 
-- implement each company component, building out the flux loop as needed.
-  - [ ] `SplashCarouselIndex`
-  - [ ] `SplashCarouselIndexItem`
-- Use CSS to style new views
+### Investor Details
 
-### Phase 7: Comments, Likes, and Updates (1.5 days)
+Clicking on an investor in the list provided in the `companyDetailApp` component will open a modal that lists the companies that the investor has invested in and founded.
 
-**Objective:** Companies can be liked, commented on, and updated.
+### Likes, Comments, and Updates
 
-- [ ] create `Like`, `Comment`, and `Update` models and join tables
-- build out API, Flux loop, and components for:
-  - [ ] fetching likes, comments, and updates for companies
-  - [ ] adding likes, comments, and updates to companies
-- [ ] Style new elements
-
-### Phase 8: Styling Cleanup and Seeding (1 day)
-
-**objective:** Make the site feel more cohesive and awesome.
-
-- [ ] Get feedback on my UI from others
-- [ ] Refactor HTML classes & CSS rules
-- [ ] Add modals, transitions, and other styling flourishes.
-
-### Bonus Features (TBD)
-- [ ] Cap tables
-- [ ] Edit company information
-- [ ] Stripe integration
-- [ ] Incorporation Documents
+The `companyDetailApp` component will allow users to posts likes and comments, and founders to post updates.
