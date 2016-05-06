@@ -9,7 +9,7 @@ var _companies = {},
    _pos = 0;
 
 CompanyStore.all = function () {
-  return Object.keys(_companies).map(function (id) {
+  return Object.keys(_companies).reverse().map(function (id) {
     return _companies[id];
   });
 };
