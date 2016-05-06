@@ -23,8 +23,6 @@ var LaunchApp = React.createClass({
       totalShares: "",
       sharesOffered: "",
       offeringDescription: "",
-      companyCompleted: false,
-      offeringCompleted: false,
       imagePaths: imagePaths
     };
   },
@@ -80,16 +78,27 @@ var LaunchApp = React.createClass({
 
   submitCompany: function (event) {
     event.preventDefault();
-    ClientActions.createCompany({
-      name: this.state.companyName,
-      street_address: this.state.streetAddress,
-      city: this.state.city,
-      state: this.state.state,
-      zip: this.state.zip,
-      media_url: this.state.logoURL,
-      description: this.state.description,
-      business_plan: this.state.businessPlan
-    });
+    if (this.isCompanyCompleted() && this.isOfferingCompleted()) {
+      this.setState({
+        errors: ""
+      });
+      ClientActions.createCompany({
+        name: this.state.companyName,
+        street_address: this.state.streetAddress,
+        city: this.state.city,
+        state: this.state.state,
+        zip: this.state.zip,
+        media_url: this.state.logoURL,
+        description: this.state.description,
+        business_plan: this.state.businessPlan
+      });
+    } else {
+      this.setState({
+        errors: "You must complete the company and offering sections" +
+                " before you launch."
+      });
+    }
+
   },
 
   isCompanyCompleted: function () {
@@ -99,8 +108,7 @@ var LaunchApp = React.createClass({
         !this.state.city           ||
         !this.state.zip            ||
         !this.state.description    ||
-        !this.state.businessPlan   ||
-        this.state.errors
+        !this.state.businessPlan
       ) {
       return false;
     } else {
@@ -113,8 +121,7 @@ var LaunchApp = React.createClass({
         !this.state.price                ||
         !this.state.totalShares          ||
         !this.state.sharesOffered        ||
-        !this.state.offeringDescription  ||
-        this.state.errors
+        !this.state.offeringDescription
       ) {
       return false;
     } else {
@@ -159,6 +166,7 @@ var LaunchApp = React.createClass({
         <h1 className="launch-title">
           Get investments for your company!
         </h1>
+        <div className="launch-errors">{this.state.errors}</div>
         <div className="launch-container">
           <form className="pure-form pure-form-aligned launch-form">
             <div className="slide-2">
