@@ -26,6 +26,16 @@ var CompanyDetailApp = React.createClass({
   componentDidMount: function() {
     this.removeToken = CompanyStore.addListener(this.onChange);
     ClientActions.fetchCompany(this.props.params.companyId);
+    setTimeout(function(){
+       $('.company-main-content').slick({
+         accessibility: false,
+         arrows: false,
+         draggable: false,
+         infinite: false,
+         swipe: false,
+         touchMove: false
+       });
+     }, 1000);
   },
 
   componentWillUnmount: function() {
@@ -39,14 +49,6 @@ var CompanyDetailApp = React.createClass({
   onChange: function () {
     var companyId = this.props.params.companyId;
     var company = CompanyStore.find(companyId) || {};
-    $('.company-main-content').slick({
-        accessibility: false,
-        arrows: false,
-        draggable: false,
-        infinite: false,
-        swipe: false,
-        touchMove: false
-    });
     this.setState({
       company: company,
       loaded: true
