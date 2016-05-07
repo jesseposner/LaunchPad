@@ -43,7 +43,9 @@ var CompanyDetailApp = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    ClientActions.fetchCompany(nextProps.params.companyId);
+    if (nextProps.params.companyId !== this.props.params.companyId) {
+      ClientActions.fetchCompany(nextProps.params.companyId);
+    }
   },
 
   onChange: function () {
