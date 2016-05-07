@@ -92,9 +92,9 @@ var LoginForm = React.createClass({
             clearInterval(intObject);
             this.submitLogin();
           }
-        }.bind(this), 100);
+        }.bind(this), 50);
       }
-    }.bind(this), 100);
+    }.bind(this), 50);
   },
 
   updateUserInfo: function (event) {

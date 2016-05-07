@@ -89,6 +89,9 @@ var LaunchApp = React.createClass({
       slideIndex: index
     });
     $('.pure-form').slick('slickGoTo', index);
+    if ($('.pure-form').slick('slickCurrentSlide') !== index) {
+      window.location.reload();
+    }
   },
 
   submitCompany: function (event) {
