@@ -3,6 +3,11 @@ class Api::CompaniesController < ApplicationController
     if params[:total]
       @total = Company.all.length
       render :total
+    elsif params[:query]
+      t = Company.arel_table
+      @companies = Company.where(t[:name].matches(params[:query] + '%'))
+                          .limit(10)
+      render :index
     else
       range_start = Company.all.last.id - (params[:page].to_i * 20)
       range_end = range_start + 20

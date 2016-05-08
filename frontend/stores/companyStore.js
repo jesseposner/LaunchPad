@@ -5,8 +5,9 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
 var CompanyStore = new Store(Dispatcher);
 
 var _companies = {},
+    _search = {},
     _total = 0,
-   _pos = 0;
+    _pos = 0;
 
 CompanyStore.all = function () {
   return Object.keys(_companies).reverse().map(function (id) {
@@ -16,6 +17,12 @@ CompanyStore.all = function () {
 
 CompanyStore.find = function (id) {
   return _companies[id];
+};
+
+CompanyStore.searchResults = function () {
+  return Object.keys(_search).map(function (id) {
+    return _search[id];
+  });
 };
 
 CompanyStore.total = function () {
@@ -36,6 +43,10 @@ CompanyStore.__onDispatch = function (payload) {
       updateCompany(payload.company);
       break;
 
+    case CompanyConstants.SEARCH_RESULTS_RECEIVED:
+      updateSearch(payload.companies);
+      break;
+
     case CompanyConstants.TOTAL_RECEIVED:
       updateTotal(payload.total);
       break;
@@ -51,6 +62,14 @@ CompanyStore.__onDispatch = function (payload) {
 function updateCompanies(companies) {
   companies.forEach(function (company) {
     _companies[company.id] = company;
+  });
+}
+
+function updateSearch(companies) {
+  _search = {};
+  
+  companies.forEach(function (company) {
+    _search[company.id] = company;
   });
 }
 

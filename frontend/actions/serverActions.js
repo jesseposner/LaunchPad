@@ -30,6 +30,13 @@ var Dispatcher = require('../dispatcher/dispatcher.js'),
      });
    },
 
+   receiveSearchResults: function (companies) {
+     Dispatcher.dispatch({
+       actionType: CompanyConstants.SEARCH_RESULTS_RECEIVED,
+       companies: companies
+     });
+   },
+
    receiveTotalCompanies: function (total) {
      Dispatcher.dispatch({
        actionType: CompanyConstants.TOTAL_RECEIVED,

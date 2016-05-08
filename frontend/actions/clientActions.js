@@ -19,6 +19,10 @@ var ClientActions = {
      ApiUtil.fetchTotalCompanies();
    },
 
+   searchCompanies: function (query) {
+     ApiUtil.searchCompanies(query);
+   },
+
    setPosition: function (px) {
      Dispatcher.dispatch({
        actionType: CompanyConstants.POSITION_RECEIVED,

@@ -30,6 +30,16 @@ var ServerActions = require('../actions/serverActions'),
      });
    },
 
+   searchCompanies: function (query) {
+     $.ajax({
+       url: 'api/companies',
+       data: { query: query },
+       success: function (companies) {
+         ServerActions.receiveSearchResults(companies);
+       }
+     });
+   },
+
    fetchTotalCompanies: function () {
      $.ajax({
        url: 'api/companies',

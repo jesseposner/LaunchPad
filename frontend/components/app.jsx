@@ -1,34 +1,63 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
+    CompanyStore = require('../stores/companyStore'),
     UserStore = require('../stores/userStore'),
     LoginForm = require('./loginForm'),
     ClientActions = require('../actions/clientActions'),
     Link = require('react-router').Link,
     Modal = require('react-modal'),
     StickyContainer = require('react-sticky').StickyContainer,
-    Sticky = require('react-sticky').Sticky;
+    Sticky = require('react-sticky').Sticky,
+    HashHistory = require('react-router').hashHistory;
 
  var App = React.createClass({
    getInitialState: function() {
      return {
        currentUser: UserStore.currentUser(),
        modalOpen: false,
+       searchResults: [],
+       autocompleteClass: "",
+       searchInput: "",
+       suggestion: ""
      };
    },
 
    componentDidMount: function() {
-     this.removeToken = UserStore.addListener(this.onChange);
+     this.userRemoveToken = UserStore.addListener(this.onUserChange);
+     this.companyRemoveToken = CompanyStore.addListener(this.onCompanyChange);
      ClientActions.fetchCurrentUser();
    },
 
    componentWillUnmount: function() {
-     this.removeToken.remove();
+     this.userRemoveToken.remove();
+     this.companyRemoveToken.remove();
    },
 
-   onChange: function () {
+   onUserChange: function () {
      this.setState({
        currentUser: UserStore.currentUser()
      });
+   },
+
+   onCompanyChange: function () {
+     if (CompanyStore.searchResults().length !== 0) {
+       var searchLength = this.state.searchInput.length;
+       this.setState({
+         searchResults: CompanyStore.searchResults(),
+         suggestion: (this.state.searchInput) +
+           CompanyStore.searchResults()[0].name.slice(searchLength)
+       });
+     } else {
+       this.setState({
+         suggestion: ""
+       });
+     }
+     if (!this.state.searchInput) {
+       this.setState({
+         suggestion: "",
+         searchResults: []
+       });
+     }
    },
 
    submitLogout: function () {
@@ -51,9 +80,25 @@ var React = require('react'),
      ClientActions.setPosition($(window).scrollTop());
    },
 
+   searchHandler: function functionName(event) {
+     if (event.target.value) {
+       this.setState({
+         searchInput: event.target.value
+       });
+       ClientActions.searchCompanies(event.target.value);
+     } else {
+       this.setState({
+         searchResults: [],
+         searchInput: "",
+         suggestion: ""
+       });
+     }
+   },
+
  	render: function () {
     var navLink,
         userEl,
+        results,
         rootElement = document.getElementById("root"),
         imagePaths = JSON.parse(rootElement.dataset.images),
         customStyle = {
@@ -104,6 +149,25 @@ var React = require('react'),
       );
     }
 
+    if (this.state.searchResults.length !== 0) {
+      results = (<ul className="results" >
+        {this.state.searchResults.map(function (company) {
+          return (
+              <li key={company.id}
+                  onMouseOver={function (id) {
+                                 this.linkId = id;
+                               }.bind(this, company.id)}
+                  onMouseOut={function () {
+                               this.linkId = null;
+                             }.bind(this)} >
+                <a>{company.name}</a>
+              </li>
+            );
+          }.bind(this))
+        }
+      </ul>);
+    }
+
  		return(
  			<div>
         <StickyContainer>
@@ -124,6 +188,47 @@ var React = require('react'),
                 Launch
               </Link>
             </div>
+            <form className="search"
+                  autoComplete="off"
+                  onKeyPress={function (event) {
+                    if (event.key === 'Enter' && this.state.suggestion) {
+                      ClientActions.searchCompanies(this.state.suggestion);
+                      this.setState({
+                        searchInput: this.state.suggestion
+                      });
+                    }
+                  }.bind(this)}>
+               <input id="autocomplete"
+                      className={this.state.autocompleteClass}
+                      type="text"
+                      disabled="disabled"
+                      value={this.state.suggestion} />
+               <input id="searchbox"
+                      type="text" name="q"
+                      placeholder="Search..."
+                      onChange={this.searchHandler}
+                      value={this.state.searchInput}
+                      onFocus={function () {
+                        this.setState({
+                          autocompleteClass: "autocompleteExpand"
+                        });
+                      }.bind(this)}
+                      onBlur={function () {
+                        if (this.linkId) {
+                          HashHistory.push('explore/' + this.linkId);
+                          this.setState({
+                            searchInput: "",
+                            suggestion: "",
+                            searchResults: []
+                          });
+                        }
+                        this.setState({
+                          autocompleteClass: ""
+                        });
+                      }.bind(this)} />
+
+                {results}
+             </form>
             {userEl}
           </Sticky>
           {this.props.children && React.cloneElement(this.props.children, {
