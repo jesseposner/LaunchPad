@@ -13,7 +13,11 @@ var SplashApp = React.createClass({
 
   componentDidMount: function() {
     this.removeToken = CompanyStore.addListener(this.onChange);
-    ClientActions.fetchCompanies(1);
+    ClientActions.fetchCompany(1);
+    ClientActions.fetchCompany(2);
+    ClientActions.fetchCompany(3);
+    ClientActions.fetchCompany(4);
+    ClientActions.fetchCompany(5);
     $('.carousel').slick({
       dots: true,
       infinite: true,
@@ -58,18 +62,18 @@ var SplashApp = React.createClass({
         company5Name,
         company5Description;
 
-    if (this.state.companies.length !== 0) {
-      var companies = this.state.companies.reverse();
-      company1Name = companies[0].name;
-      company1Description = companies[0].description;
-      company2Name = companies[1].name;
-      company2Description = companies[1].description;
-      company3Name = companies[2].name;
-      company3Description = companies[2].description;
-      company4Name = companies[3].name;
-      company4Description = companies[3].description;
-      company5Name = companies[4].name;
-      company5Description = companies[4].description;
+    if (this.state.companies.length >= 5) {
+      var companies = this.state.companies;
+      company1Name = companies[companies.length - 1].name;
+      company1Description = companies[companies.length - 1].description;
+      company2Name = companies[companies.length - 2].name;
+      company2Description = companies[companies.length - 2].description;
+      company3Name = companies[companies.length - 3].name;
+      company3Description = companies[companies.length - 3].description;
+      company4Name = companies[companies.length - 4].name;
+      company4Description = companies[companies.length - 4].description;
+      company5Name = companies[companies.length - 5].name;
+      company5Description = companies[companies.length - 5].description;
     }
     return (
       <div>

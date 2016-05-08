@@ -19,7 +19,8 @@ var LoginForm = React.createClass({
       draggable: false,
       infinite: false,
       swipe: false,
-      touchMove: false
+      touchMove: false,
+      speed: 250
     });
   },
 

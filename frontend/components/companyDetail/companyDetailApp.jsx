@@ -4,7 +4,8 @@ var React = require('react'),
     ClientActions = require('../../actions/clientActions'),
     StripeCheckout = require('react-stripe-checkout'),
     Loader = require('react-loader'),
-    ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+    ReactCSSTransitionGroup = require('react-addons-css-transition-group'),
+    Slider = require('react-slick');
 
 var CompanyDetailApp = React.createClass({
   onToken: function(token) {
@@ -19,23 +20,14 @@ var CompanyDetailApp = React.createClass({
     return {
       company: {},
       shares: "",
-      loaded: false
+      loaded: false,
+      slideIndex: 0
     };
   },
 
   componentDidMount: function() {
     this.removeToken = CompanyStore.addListener(this.onChange);
     ClientActions.fetchCompany(this.props.params.companyId);
-    setTimeout(function(){
-       $('.company-main-content').slick({
-         accessibility: false,
-         arrows: false,
-         draggable: false,
-         infinite: false,
-         swipe: false,
-         touchMove: false
-       });
-     }, 1000);
   },
 
   componentWillUnmount: function() {
@@ -77,7 +69,9 @@ var CompanyDetailApp = React.createClass({
 
   slickGoTo: function (index, event) {
     event.preventDefault();
-    $('.company-main-content').slick('slickGoTo', index);
+    this.setState({
+      slideIndex: index
+    });
   },
 
   render: function() {
@@ -283,12 +277,20 @@ var CompanyDetailApp = React.createClass({
             </ul>
             <div className="company-main-container">
               <div className="company-main-content">
-                <div className="bplan">
-                  {this.parseBusinessPlan()}
-                </div>
-                <div className="investors">
-                  {investorList}
-                </div>
+                <Slider slickGoTo={this.state.slideIndex}
+                        arrows={false}
+                        draggable={false}
+                        infinite={false}
+                        swipe={false}
+                        touchMove={false}
+                        accessibility={false} >
+                  <div className="bplan">
+                    {this.parseBusinessPlan()}
+                  </div>
+                  <div className="investors">
+                    {investorList}
+                  </div>
+                </Slider>
               </div>
             </div>
           </div>
