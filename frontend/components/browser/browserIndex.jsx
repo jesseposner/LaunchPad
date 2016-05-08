@@ -33,10 +33,12 @@ var BrowserIndex = React.createClass({
 
   onChange: function () {
     var companies;
-    if (CompanyStore.all().length === CompanyStore.total()) {
+    if (this.state.companies.length > this.state.total - 30) {
       companies = CompanyStore.all();
     } else {
-      companies = CompanyStore.all().slice(0, CompanyStore.total() - 5);
+      companies = CompanyStore.all().filter(function (company) {
+        return company.id > 5;
+      });
     }
 
     this.setState({
@@ -52,7 +54,7 @@ var BrowserIndex = React.createClass({
       window.removeEventListener("scroll", this.handleScroll);
     } else if ($(window).scrollTop() +
                $(window).height() >
-               $(document).height() - 150) {
+               $(document).height() - 200) {
       if (!this.state.loadingFlag) {
         this.setState({
           loadingFlag: true,
