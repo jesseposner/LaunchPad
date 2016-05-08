@@ -32,8 +32,15 @@ var BrowserIndex = React.createClass({
   },
 
   onChange: function () {
+    var companies;
+    if (CompanyStore.all().length === CompanyStore.total()) {
+      companies = CompanyStore.all();
+    } else {
+      companies = CompanyStore.all().slice(0, CompanyStore.total() - 5);
+    }
+
     this.setState({
-      companies: CompanyStore.all(),
+      companies: companies,
       loadingFlag: false,
       total: CompanyStore.total(),
       loaded: true
