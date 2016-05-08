@@ -216,6 +216,7 @@ var React = require('react'),
                       onBlur={function () {
                         if (this.linkId) {
                           HashHistory.push('explore/' + this.linkId);
+                          this.linkId = null;
                           this.setState({
                             searchInput: "",
                             suggestion: "",
