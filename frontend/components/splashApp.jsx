@@ -184,7 +184,7 @@ var SplashApp = React.createClass({
                <a href="#">
                  <h2>Simple payments</h2>
                  <p>
-                   Use a credit card to easily buy shares.
+                   Use a credit card or bitcoin to easily buy shares.
                  </p>
                  <p>
                    <span className="arrow">Sign up</span>

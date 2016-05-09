@@ -28,6 +28,7 @@ var React = require('react'),
      ClientActions.fetchCurrentUser();
      this.newInvestment = false;
      this.newFounding = false;
+     this.key = 1;
    },
 
    componentWillUnmount: function() {
@@ -175,7 +176,7 @@ var React = require('react'),
             <ul>
               {this.state.currentUser.investments.map(function (investment) {
                 return (
-                  <li key={investment.company_id}>
+                  <li key={this.key++}>
                     <Link to={'explore/' + investment.company_id}
                           onClick={this.saveScroll} >
                           {investment.company_name}
@@ -198,7 +199,7 @@ var React = require('react'),
             <ul>
               {this.state.currentUser.foundings.map(function (founding) {
                 return (
-                  <li key={founding.company_id}>
+                  <li key={this.key++}>
                     <Link to={'explore/' + founding.company_id}
                           onClick={this.saveScroll} >
                           {founding.company_name}
@@ -216,7 +217,7 @@ var React = require('react'),
       results = (<ul className="results" >
         {this.state.searchResults.map(function (company) {
           return (
-              <li key={company.id}
+              <li key={this.key++}
                   onMouseOver={function (id) {
                                  this.linkId = id;
                                }.bind(this, company.id)}

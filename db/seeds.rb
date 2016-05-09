@@ -8,7 +8,7 @@ User.create!(
   zip: Faker::Address.zip
 )
 
-1000.times do |i|
+3000.times do |i|
   User.create(
     email: Faker::Internet.email,
     password: Faker::Internet.password,
