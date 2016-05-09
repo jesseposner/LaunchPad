@@ -14,6 +14,7 @@ var CompanyDetailApp = React.createClass({
       offering_id: this.state.company.offerings[0].id,
       shares: this.state.shares
     });
+    this.props.logNewInvestment();
   },
 
   getInitialState: function () {

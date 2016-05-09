@@ -113,6 +113,7 @@ var LaunchApp = React.createClass({
           description: this.state.offeringDescription
         }
       });
+      this.props.logNewFounding();
     } else {
       this.setState({
         errors: "You must complete the company and offering sections" +

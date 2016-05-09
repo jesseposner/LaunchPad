@@ -26,6 +26,8 @@ var React = require('react'),
      this.userRemoveToken = UserStore.addListener(this.onUserChange);
      this.companyRemoveToken = CompanyStore.addListener(this.onCompanyChange);
      ClientActions.fetchCurrentUser();
+     this.newInvestment = false;
+     this.newFounding = false;
    },
 
    componentWillUnmount: function() {
@@ -40,6 +42,11 @@ var React = require('react'),
    },
 
    onCompanyChange: function () {
+     if (this.newInvestment || this.newFounding) {
+       ClientActions.fetchCurrentUser();
+       this.newInvestment = false;
+       this.newFounding = false;
+     }
      if (CompanyStore.searchResults().length !== 0) {
        var searchLength = this.state.searchInput.length;
        this.setState({
@@ -93,6 +100,14 @@ var React = require('react'),
          suggestion: ""
        });
      }
+   },
+
+   logNewInvestment: function () {
+     this.newInvestment = true;
+   },
+
+   logNewFounding: function () {
+     this.newFounding = true;
    },
 
  	render: function () {
@@ -289,7 +304,9 @@ var React = require('react'),
             {userEl}
           </Sticky>
           {this.props.children && React.cloneElement(this.props.children, {
-              openModal: this.openModal
+              openModal: this.openModal,
+              logNewInvestment: this.logNewInvestment,
+              logNewFounding: this.logNewFounding
             })}
         </StickyContainer>
         <Modal
