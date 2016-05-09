@@ -126,14 +126,57 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    margin-right: 0px;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
 .navbar-links {
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .navbar-login {
-  margin-left: auto;
   margin-right: 60px;
+  margin-left: 17px;
   padding-bottom: 10px;
   padding-top: 10px;
   -webkit-transition: color .77s cubic-bezier(.225,.5,.165,1),text-shadow .77s cubic-bezier(.225,.5,.165,1),border .77s cubic-bezier(.225,.5,.165,1);
@@ -1259,14 +1302,9 @@ footer#main-footer p {
     margin: 0;
     border-width: 1px;
     border-style: solid;
-    border-color: #cbcfe2 #c8cee7 #c4c7d7;
+    border-color: #FFFFFF;
     border-radius: 3px;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fdfdfd), color-stop(100%, #eceef4));
-    background-image: -webkit-linear-gradient(top, #fdfdfd, #eceef4);
-    background-image: -moz-linear-gradient(top, #fdfdfd, #eceef4);
-    background-image: -ms-linear-gradient(top, #fdfdfd, #eceef4);
-    background-image: -o-linear-gradient(top, #fdfdfd, #eceef4);
-    background-image: linear-gradient(top, #fdfdfd, #eceef4);
+    background: #414141;
 }
 
 .search .results li { display: block }
@@ -1301,10 +1339,9 @@ footer#main-footer p {
     position: relative;
     margin: 0 -1px;
     padding: 6px 40px 6px 10px;
-    color: #808394;
+    color: #FFFFFF;
     font-weight: 500;
-    text-shadow: 0 1px #fff;
-    border: 1px solid transparent;
+    border: 1px solid #FFFFFF;
     border-radius: 3px;
 }
 
@@ -1318,14 +1355,14 @@ footer#main-footer p {
     top: 50%;
     right: 10px;
     margin-top: -9px;
-    background: url("http://cssdeck.com/uploads/media/items/7/7BNkBjd.png") 0 0 no-repeat;
 }
 
 .search .results a:hover {
     text-decoration: none;
     color: #fff;
     text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
-    background-color: #414141;
+    background-color: #292E31;
+    cursor: pointer;
 }
 
 :-moz-placeholder {
@@ -1351,4 +1388,78 @@ footer#main-footer p {
   left: 0;
   background: transparent;
   z-index: 11;
+}
+
+.menu-container {
+  margin-left: auto;
+}
+
+.nav ul {
+    *zoom:1;
+    list-style:none;
+    margin:0;
+    padding:0;
+    margin-right: auto;
+}
+.nav ul:before,.nav ul:after {
+    content:"";
+    display:table;
+}
+.nav ul:after {
+    clear:both;
+}
+.nav ul > li {
+    float:left;
+    position:relative;
+    padding-bottom: 16px;
+    top: 9px;
+}
+
+.nav ul > li:hover {
+  cursor: pointer;
+}
+.nav a {
+    display:block;
+    padding:10px 20px;
+    line-height:1.2em;
+    color: #fff;
+    margin-right: 0;
+}
+.nav a:hover {
+    text-decoration:none;
+
+}
+.nav li ul {
+    background: #414141;
+}
+.nav li ul li {
+    width: 200px;
+}
+.nav li ul a {
+    border: none;
+    padding-right: 6px;
+    padding-left: 6px;
+}
+.nav li ul a:hover {
+    background: rgba(0,0,0,0.2);
+}
+
+.nav li ul {
+    position:absolute;
+    left: -1px;
+    top: 48px;
+    z-index:1;
+    max-height:0;
+    overflow:hidden;
+    -webkit-transform:perspective(400) rotate3d(1,0,0,-90deg);
+    -webkit-transform-origin:50% 0;
+    -webkit-transition:350ms;
+    -moz-transition:350ms;
+    -o-transition:350ms;
+    transition:350ms;
+    border: 1px solid #FFFFFF;
+}
+.nav ul > li:hover ul {
+    max-height:1000px;
+    -webkit-transform:perspective(400) rotate3d(0,0,0,0);
 }

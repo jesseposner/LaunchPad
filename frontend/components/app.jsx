@@ -99,6 +99,8 @@ var React = require('react'),
     var navLink,
         userEl,
         results,
+        investments,
+        foundings,
         rootElement = document.getElementById("root"),
         imagePaths = JSON.parse(rootElement.dataset.images),
         customStyle = {
@@ -147,6 +149,52 @@ var React = require('react'),
           Log out
         </div>
       );
+
+      if (this.state.currentUser.investments.length !== 0) {
+        investments = (
+          <li>
+            <a className="hvr-underline-from-center
+                           animated
+                           fadeInLeft"
+                href="#">Investments</a>
+            <ul>
+              {this.state.currentUser.investments.map(function (investment) {
+                return (
+                  <li key={investment.company_id}>
+                    <Link to={'explore/' + investment.company_id}
+                          onClick={this.saveScroll} >
+                          {investment.company_name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+        </li>
+       );
+      }
+
+      if (this.state.currentUser.foundings.length !== 0) {
+        foundings = (
+          <li>
+            <a className="hvr-underline-from-center
+                           animated
+                           fadeInLeft"
+                href="#">Foundings</a>
+            <ul>
+              {this.state.currentUser.foundings.map(function (founding) {
+                return (
+                  <li key={founding.company_id}>
+                    <Link to={'explore/' + founding.company_id}
+                          onClick={this.saveScroll} >
+                          {founding.company_name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+        </li>
+       );
+      }
     }
 
     if (this.state.searchResults.length !== 0) {
@@ -230,6 +278,14 @@ var React = require('react'),
 
                 {results}
              </form>
+            <div className="menu-container">
+              <nav className="nav">
+                <ul>
+                    {investments}
+                    {foundings}
+                </ul>
+              </nav>
+            </div>
             {userEl}
           </Sticky>
           {this.props.children && React.cloneElement(this.props.children, {
