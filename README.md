@@ -4,7 +4,7 @@
 
 [heroku]: http://lapad.herokuapp.com
 
-LaunchPad is a full-stack web application inspired by KickStarter, but with a twist: backers receive equity shares for their seed financing contributions. This site will explore some of the exciting possibilities that have emerged in the wake of the SEC’s newly issued Regulation A+ equity crowdfunding rules.
+LaunchPad is a full-stack web application inspired by KickStarter, but with a twist: backers receive equity shares for their financing contributions. This site will explore some of the exciting possibilities that have emerged in the wake of the SEC’s newly issued Regulation A+ equity crowdfunding rules.
 
 LaunchPad is architected as a single page application using React.js, the Flux data flow design pattern, a PostgreSQL database, and a Ruby on Rails back-end.
 
